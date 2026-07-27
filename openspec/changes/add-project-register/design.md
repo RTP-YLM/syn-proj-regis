@@ -121,6 +121,33 @@ Leader assignment (`project-leader-assignment`) then simply stores `project.regi
 
 This is the same principle as D6 ("authorization decided by verified JWT, never by client-supplied context") applied to a client that happens to be an LLM instead of a browser.
 
+### D12 — The Project Management table follows the sales team's Excel template, not the HTML prototype
+
+**Problem (impact assessment `0f.1`/`0f.2`, added 2026-07-27):** the PM table exists in two incompatible forms. The HTML prototype has three independent levels, hand-typed GP fields, and computes `GP% = (sell − cost) / sell`. The workbook the sales team actually fills in (`prototype/Template_ProjectManagement.xlsx`, sheet `หลายรายการ`) computes `GP = sell − cost − EP`, rolls every number up through two grouped tiers, and treats Overriding Commission specially. Building the prototype's version would ship the wrong margin on every project.
+
+**Decision:** the template is the source of truth for this table (`project-management-costing`):
+
+- **Three tiers**, matching the template's cell shading and Excel outline levels: white spec lines (`task_level = 2`, keyed in) → light-grey main items (`task_level = 1`, rolled up from their spec lines) → dark-grey project summary (computed at read time, never stored).
+- **`GP = ราคาขาย − ต้นทุน − EP`** at every tier, `GP% = GP ÷ ราคาขาย × 100`, `GP @ = GP Amt ÷ Qty`. No GP field is user-editable anywhere.
+- **OC (Overriding Commission — the Dealer-side commission, called *Outside Commission* by Dealers) is an EP line, not a column**, and produces two GP figures: spec lines show GP **before** OC, main items and the summary show GP **after** OC. Confirmed against the file's own arithmetic (a main item with ค่าขนส่ง 10,000 + OC 150,000 yields 2,863,286.30 on the white row and 2,713,286.30 on the grey row — exactly the OC apart) and confirmed by the user on 2026-07-27. Whether a line is an OC comes from `ep_item_type.is_oc`, never from text matching.
+- **Roll-ups are auto-calculated and read-only, updating as the user types** — the behaviour users already have in Excel. Qty on a main item is its first spec line's Qty (spec lines are components of one unit, so Qty is not summed); unit values on the summary row are `Amt ÷ Qty`, not sums of unit values.
+- **The server recomputes every derived field on save and discards client-supplied aggregates**, as it already does for other client-side calculations.
+- **Item names will come from the ERP item master** but the integration is deferred: free text now, with an `erp_item_code` column reserved (`9b.22`).
+
+**Alternatives considered:** keeping the prototype's simpler table and treating the template as "just how they do it in Excel today" — rejected, because the GP number is the whole point of the screen and the two definitions differ by the full commission amount on any Dealer-brokered deal.
+
+### D13 — A Project is identified by organization + project name; Dealer belongs to the Entry
+
+**Problem (impact assessment `0f.4`):** the prototype's duplicate check matched on organization + project + Dealer, but Dealer is stored per Entry revision, and different Entries of the same Project routinely carry different Dealers. Matching on all three would split one real-world job into several Projects the moment a second Dealer asked for pricing.
+
+**Decision:** Project identity is the normalized organization name + project name only. Dealer is deliberately Entry-level: the business is B2B and several Dealers requesting pricing for the same job is the reason multi-Entry Projects exist at all. The duplicate-check response still lists the Dealers already attached to each matched Project, as context for the Sales user, and a database-level unique index on the two normalized name columns backstops the application check.
+
+### D14 — Project-level fields get their own revision chain
+
+**Problem (impact assessment `0f.6`):** the "edit data" request lets Sales pick organization name or project name as the topic, but those live on the Project header shared by every Entry — an Entry revision cannot express the change, and applying it silently would alter other Sales users' Entries and the duplicate-check key.
+
+**Decision:** add `project.registration_revision`, mirroring the Entry revision lifecycle (draft → resubmit → approve → current, prior superseded, one current row enforced by a unique partial index). Edit topics naming organization/project name/org type open a Project revision; every other topic opens an Entry revision as before. The requester is warned that the change affects all Entries, approval re-runs the duplicate check before applying, and the change is logged at Project scope.
+
 ## Data Model Summary
 
 All tables live in a new `project` schema, except `auth.user` (SSO provisioning cache). `BIGINT GENERATED ALWAYS AS IDENTITY` PK + standard audit columns on every table unless noted.
@@ -139,7 +166,9 @@ All tables live in a new `project` schema, except `auth.user` (SSO provisioning 
 | `project.entry_revision` | Trans | Entry form data per revision (D4): team, dealer, sale condition, due date, warranty, `revision_status`, unique-filtered current flag |
 | `project.entry_file` | Trans | Attachments, child of Revision |
 | `project.entry_product` | Trans | Product lines, child of Revision |
-| `project.entry_task` | Trans | PM cost/price/GP task tree (≤3 levels), child of Revision |
+| `project.entry_task` | Trans | PM cost/price/GP rows per the Excel template (D12), child of Revision: main item (`task_level = 1`) + spec line (`task_level = 2`), item/brand/model, qty, cost (@/amt + quotation date), EP (item type FK/@/amt + price date/source), sell (@/amt), GP (@/amt/% — derived, both before- and after-OC), competitor bid (model/@/amt), `erp_item_code` reserved for the deferred ERP integration |
+| `project.ep_item_type` | Master | EP line types (seeded ค่าขนส่ง, OC) with the `is_oc` flag that decides which GP figure a line affects (D12) |
+| `project.registration_revision` | Trans | Project-level revision chain (D14): org/project name, org type, `revision_status`, unique-filtered current flag, originating request + requesting Entry |
 | `project.status_request` | Trans | Won/lost/postpone/edit requests: type, payload, `request_status` (D1), lose/collapse split fields |
 | `project.approval` | Trans | Approval history: approver, role (head/supervisor), action, reason |
 | `project.status_log` | Trans | Every EntryStatus **and** ProjectStatus transition (D2), old due-date-on-postpone history |
@@ -157,6 +186,8 @@ All tables live in a new `project` schema, except `auth.user` (SSO provisioning 
 - **Cost/GP visible to every Sales user** (accepted business decision, not mitigated by hiding data) → mitigated by audit-logging every comparison-page view and keeping the response shape easy to strip cost/GP fields later if policy changes.
 - **"ล่ม" closes a Project with zero approval** → mitigated by required-field validation (reason/date/detail), full audit log of who/when, the D5 event notification to team lead + all managers, and a monthly collapsed-projects report; a headsale approval gate for "ล่ม" was considered and explicitly rejected to match the flowchart's "= End" intent.
 - **Two-tier approval adds lead time**; a single unavailable `salemanager` user stalls every `waitingSupervisor*` Entry system-wide → mitigated by a clearly visible "stuck" queue on the Manager dashboard and the role design already supporting more than one `salemanager` account (no schema change needed to add a second one).
+- **The PM table's money maths is now multi-tier with two GP variants (D12)** — the same formulas have to exist in React (live preview) and Fastify (authority), so they can drift apart and silently produce different margins → mitigated by keeping the calculation in one shared package used by both tiers and unit-testing it directly against the figures in `Template_ProjectManagement.xlsx` (2,863,286.30 / 2,713,286.30 / 5,426,572.60) rather than against hand-written expectations.
+- **A Project-level revision (D14) changes data other Sales users own** → mitigated by warning the requester before submission, re-running the duplicate check at approval time so a rename cannot collide with another Project, and logging the change at Project scope.
 - **Revision-table split (D4) adds join complexity** to every read query (list/detail/compare must always join to the current revision) → mitigated by the mandatory unique-filtered index making "find the current revision" a single indexed lookup, never a scan.
 - **Standalone delivery** — nothing to reuse from Syndome CRM, including auth — mitigated by freezing this spec plus the impact assessment's `9c` SSO contract before implementation starts, and developing UI/API against mocks in parallel.
 - **Single external dependency (SSO)** — if Active Directory/LDAP is down, no one can log in anywhere in the org, not just this app; this app cannot mitigate that itself (impact assessment risk `8.11`).
@@ -181,6 +212,6 @@ Purely additive — brand-new standalone system, nothing existing to modify. Rol
 
 ## Open Questions
 
-All 24 **business** questions from the impact assessment are closed (unchanged by the re-platform), and the 3 SSO/auth questions (9b.1–9b.3) are now closed as of 2026-07-21 — see impact assessment `9c`. Still genuinely open, tracked in impact assessment `9b`: ORM choice (`9b.4`), attachment storage backend (`9b.5`), repo topology (`9b.6`), UI design system (`9b.7`), Thai geography data source (`9b.8`), hosting/CI-CD target (`9b.9`), legacy-data migration (`9b.10`) — none of these block this spec further, only implementation start. Two items remain explicitly deferred out of scope rather than open: SYS No. integration and webhook dispatch (see Non-Goals).
+All 24 **business** questions from the impact assessment are closed (unchanged by the re-platform), and the 3 SSO/auth questions (9b.1–9b.3) are now closed as of 2026-07-21 — see impact assessment `9c`. Still genuinely open, tracked in impact assessment `9b`: ORM choice (`9b.4`), attachment storage backend (`9b.5`), repo topology (`9b.6`), UI design system (`9b.7`), Thai geography data source (`9b.8`), hosting/CI-CD target (`9b.9`), legacy-data migration (`9b.10`) — none of these block this spec further, only implementation start. Two items remain explicitly deferred out of scope rather than open: SYS No. integration and webhook dispatch (see Non-Goals). Added 2026-07-27: **how the PM table's item names bind to the ERP item master (`9b.22`)** — API call, periodic sync, or manual entry — is open but deliberately parked; this design ships free-text entry with an `erp_item_code` column reserved (D12), so closing it later does not invalidate anything specified here, though it will change the PM-table effort figure.
 
 Also open, from the two scope additions this design now covers (both lower-confidence than SSO — no prototype for either, and for AI Chat no reference document at all, just a requirement the user typed in chat): mobile breakpoint/pattern for dense tables (`9b.11`), which LINE OA to use (`9b.12`), LINE account-linking mechanism (`9b.13`), push-only vs. interactive LINE (`9b.14`), which events push to LINE (`9b.15`), and for the AI Chat Assistant — **LLM provider + data-processing policy (`9b.16`, blocking D11 entirely)**, conversation-history retention (`9b.17`), streaming vs. request/response (`9b.18`), chat rate-limiting (`9b.19`), aggregate/stats freshness requirements (`9b.20`), and confirmation that tool-use is sufficient without a RAG layer (`9b.21`).

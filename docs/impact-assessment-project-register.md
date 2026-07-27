@@ -2,10 +2,10 @@
 
 | หัวข้อ | รายละเอียด |
 |---|---|
-| วันที่ประเมิน | 17 ก.ค. 2026 — ปรับตาม updated-flow 18 ก.ค. 2026 — รอบ review + ปิดคำถาม 9.22–9.24 วันที่ 19 ก.ค. 2026 — 21 ก.ค. 2026: รอบ Re-platform เปลี่ยน tech stack ทั้งหมด (ดูหัวข้อ 0c) — 21 ก.ค. 2026 (รอบ 6): ปิดคำถาม SSO ตามเอกสาร integration guide ที่ผู้ใช้ให้มา (ดูหัวข้อ 9c) — 22 ก.ค. 2026 (รอบ 7): เพิ่มขอบเขต Mobile Responsive + แจ้งเตือนอนุมัติผ่าน LINE Flex Message (ดูหัวข้อ 0d) — 22 ก.ค. 2026 (รอบ 8): เพิ่มขอบเขต AI Chat Assistant สำหรับค้นหา/สรุปข้อมูลโครงการผ่านแชท (ดูหัวข้อ 0e) — **23 ก.ค. 2026 (รอบ 9): ทำ mockup ต้นแบบหน้าจอมือถือ (AI Chat Assistant + LINE Push) ขึ้นเองเพื่อสาธิต UX ของ 0d/0e — ไม่ใช่ requirement/ขอบเขตใหม่ ไม่กระทบประมาณการงาน (ดูหัวข้อ 4.6)** |
-| แหล่งข้อมูล Prototype | เดิม: `C:\Users\SYN\Downloads\UI_ProjectRegister\Role_Sale.html`, `Role_HeadSale.html`<br>**ยึดชุดนี้ (ไม่เปลี่ยนจากรอบก่อน):** `updated-flow\Role_Sale_Lastest.html`, `Role_HeadSale_Lastest.html`, `Role_Manager_Lastest.html`, `FlowProjectRegis(Update)_compressed.pdf` — Prototype เป็น HTML/CSS/JS ธรรมดา ใช้เป็นแหล่งอ้างอิง UX/field/workflow ต่อได้ตามเดิม ไม่ผูกกับ backend เดิมแต่อย่างใด **หมายเหตุ: Prototype ไม่เคยครอบคลุม mobile/LINE/AI Chat — ส่วนนี้ไม่มีของเดิมให้อ้างอิง (ดู 0d/0e)** — **0e (AI Chat Assistant) ผู้ใช้ระบุ requirement ละเอียดในแชทแล้ว (FR-01–FR-11 พร้อมตัวอย่างคำถาม/คำตอบจริง — พิมพ์ในแชทโดยตรง ไม่ใช่เอกสารแนบ) — ละเอียดกว่าคำขอสั้นๆ ของรอบ 0d** — **23 ก.ค. 2026: มี mockup หน้าจอ chat + LINE push แล้ว (`updated-flow\ChatAssistant_Mobile_Prototype.html`) แต่เป็นไฟล์ที่ทำขึ้นเองระหว่างงานนี้เพื่อสาธิต ไม่ใช่ Prototype ที่ผู้ใช้ส่งมาแบบชุด `Role_*.html` ข้างต้น และยังไม่ผ่านการยืนยันจากผู้ใช้ — ดูรายละเอียด 4.6** |
+| วันที่ประเมิน | 17 ก.ค. 2026 — ปรับตาม updated-flow 18 ก.ค. 2026 — รอบ review + ปิดคำถาม 9.22–9.24 วันที่ 19 ก.ค. 2026 — 21 ก.ค. 2026: รอบ Re-platform เปลี่ยน tech stack ทั้งหมด (ดูหัวข้อ 0c) — 21 ก.ค. 2026 (รอบ 6): ปิดคำถาม SSO ตามเอกสาร integration guide ที่ผู้ใช้ให้มา (ดูหัวข้อ 9c) — 22 ก.ค. 2026 (รอบ 7): เพิ่มขอบเขต Mobile Responsive + แจ้งเตือนอนุมัติผ่าน LINE Flex Message (ดูหัวข้อ 0d) — 22 ก.ค. 2026 (รอบ 8): เพิ่มขอบเขต AI Chat Assistant สำหรับค้นหา/สรุปข้อมูลโครงการผ่านแชท (ดูหัวข้อ 0e) — **23 ก.ค. 2026 (รอบ 9): ทำ mockup ต้นแบบหน้าจอมือถือ (AI Chat Assistant + LINE Push) ขึ้นเองเพื่อสาธิต UX ของ 0d/0e — ไม่ใช่ requirement/ขอบเขตใหม่ ไม่กระทบประมาณการงาน (ดูหัวข้อ 4.6)** — **27 ก.ค. 2026 (รอบ 10): ผู้ใช้ส่ง Template Excel ของตาราง Project Management ที่ใช้งานจริง + ตอบคำถามค้างจากรอบ review → เขียนภาคผนวก A.8 ใหม่ทั้งหัวข้อ และปิดคำถาม 8 ข้อ (ดูหัวข้อ 0f)** |
+| แหล่งข้อมูล Prototype | เดิม: `C:\Users\SYN\Downloads\UI_ProjectRegister\Role_Sale.html`, `Role_HeadSale.html`<br>**ยึดชุดนี้:** `prototype/Role_Sale_Lastest.html`, `prototype/Role_HeadSale_Lastest.html`, `prototype/Role_Manager_Lastest.html`, `prototype/FlowProjectRegis(Update)_compressed.pdf` — **🆕 27 ก.ค. 2026: `prototype/Template_ProjectManagement.xlsx` (sheet `หลายรายการ`) ไฟล์ที่ทีมขายใช้กรอกงานจริง = source of truth ของ "ตาราง Project Management" แทนตาราง PM ใน prototype HTML (ดู 0f, A.8)** — Prototype เป็น HTML/CSS/JS ธรรมดา ใช้เป็นแหล่งอ้างอิง UX/field/workflow ต่อได้ตามเดิม ไม่ผูกกับ backend เดิมแต่อย่างใด **หมายเหตุ: Prototype ไม่เคยครอบคลุม mobile/LINE/AI Chat — ส่วนนี้ไม่มีของเดิมให้อ้างอิง (ดู 0d/0e)** — **0e (AI Chat Assistant) ผู้ใช้ระบุ requirement ละเอียดในแชทแล้ว (FR-01–FR-11 พร้อมตัวอย่างคำถาม/คำตอบจริง — พิมพ์ในแชทโดยตรง ไม่ใช่เอกสารแนบ) — ละเอียดกว่าคำขอสั้นๆ ของรอบ 0d** — **23 ก.ค. 2026: มี mockup หน้าจอ chat + LINE push แล้ว (`prototype/ChatAssistant_Mobile_Prototype.html`) แต่เป็นไฟล์ที่ทำขึ้นเองระหว่างงานนี้เพื่อสาธิต ไม่ใช่ Prototype ที่ผู้ใช้ส่งมาแบบชุด `Role_*.html` ข้างต้น และยังไม่ผ่านการยืนยันจากผู้ใช้ — ดูรายละเอียด 4.6** |
 | ระบบที่กระทบ | **ระบบใหม่แบบ standalone ทั้งชุด** — ✅ ตัดสินใจ 21 ก.ค. 2026: **ไม่ใช้/ไม่ผูกกับ** `syndome-crm-mvc-ui`, `syndome-crm-api`, SQL Server 2016 เดิมอีกต่อไป — Web UI: **React (responsive, desktop+mobile)**, API: **Node.js (Fastify)**, Database: **PostgreSQL**, Auth: **SSO Management** (Authentication Gateway ขององค์กร ผ่าน Active Directory/LDAP) ใช้ **OAuth2 Authorization Code Flow** + JWT RS256 — ดูหัวข้อ 0c/9c, แจ้งเตือน: in-app + **LINE Messaging API (Flex Message)** — ดูหัวข้อ 0d, **AI Chat Assistant** (เรียก LLM API ภายนอกสำหรับ NLU/entity-extraction/สรุปคำตอบ — provider ยังไม่เลือก) — ดูหัวข้อ 0e |
-| สถานะเอกสาร | Business requirement/workflow (หัวข้อ 1, 2, 1.3–1.5, ภาคผนวก D) **ยังใช้ได้ทั้งหมด ไม่เปลี่ยน** — หัวข้อ 3–9 + ภาคผนวก A–C **เขียนใหม่ให้ตรง stack ใหม่** (21 ก.ค. 2026) — ✅ **ปิด spec ส่วน auth/access-control แล้ว** ตามเอกสาร SSO integration guide (ดู 9c) — 🆕 22 ก.ค. 2026: เพิ่ม scope mobile + LINE (ดู 0d) — เปิดคำถามใหม่ 9b.11–9b.15 ยังไม่ปิด — 🆕 22 ก.ค. 2026: เพิ่ม scope AI Chat Assistant (ดู 0e) — เปิดคำถามใหม่ 9b.16–9b.21 ยังไม่ปิด — 🆕 **23 ก.ค. 2026: เพิ่ม mockup UI (ดู 4.6) — ไม่ปิดคำถามค้างข้อใดเลย (9b.11/9b.14/9b.16/9b.17/9b.18 ยังเปิดอยู่ทั้งหมด) เป็นแค่ภาพประกอบสำหรับให้ผู้ใช้ feedback เร็วขึ้น** |
+| สถานะเอกสาร | Business requirement/workflow (หัวข้อ 1, 2, 1.3–1.5, ภาคผนวก D) **ยังใช้ได้ทั้งหมด ไม่เปลี่ยน** — หัวข้อ 3–9 + ภาคผนวก A–C **เขียนใหม่ให้ตรง stack ใหม่** (21 ก.ค. 2026) — ✅ **ปิด spec ส่วน auth/access-control แล้ว** ตามเอกสาร SSO integration guide (ดู 9c) — 🆕 22 ก.ค. 2026: เพิ่ม scope mobile + LINE (ดู 0d) — เปิดคำถามใหม่ 9b.11–9b.15 ยังไม่ปิด — 🆕 22 ก.ค. 2026: เพิ่ม scope AI Chat Assistant (ดู 0e) — เปิดคำถามใหม่ 9b.16–9b.21 ยังไม่ปิด — 🆕 **23 ก.ค. 2026: เพิ่ม mockup UI (ดู 4.6) — ไม่ปิดคำถามค้างข้อใดเลย (9b.11/9b.14/9b.16/9b.17/9b.18 ยังเปิดอยู่ทั้งหมด) เป็นแค่ภาพประกอบสำหรับให้ผู้ใช้ feedback เร็วขึ้น** — 🆕 **27 ก.ค. 2026 (รอบ 10): ปิดคำถามจากรอบ review 8 ข้อ (ดู 0f) — ตาราง Project Management ยึด Template Excel เป็นต้นแบบ (A.8 เขียนใหม่), Project identity เหลือ 2 field, เพิ่ม revision ระดับ Project; เปิดคำถามใหม่ 1 ข้อ (9b.22 — ผูก item master จาก ERP) ยังไม่ปิด** |
 
 ---
 
@@ -92,7 +92,7 @@
 | # | ความต้องการ (คำขอผู้ใช้) | แนวทางที่เอกสารนี้ใช้เขียนต่อ (สมมติฐาน — ยังไม่ยืนยัน) |
 |---|---|---|
 | 0d.1 | ใช้งานผ่านมือถือได้ | **Responsive web** — React SPA ชุดเดียวกัน ปรับ layout ตาม breakpoint (ไม่ใช่แอป native แยก, ไม่ใช่ codebase คนละชุด) — ถ้าที่จริงต้องการแอป native (ติดตั้งจาก App Store/Play Store) เป็นคนละงานที่ใหญ่กว่านี้มาก ต้องแจ้งแยกต่างหาก |
-| 0d.2 | หน้ามือถือดูข้อมูลได้เหมือนหน้าจอ | **Feature parity แต่ไม่ใช่ layout parity** — ข้อมูล/ฟังก์ชันเดียวกันทุกอย่างผ่าน API endpoint เดียวกัน แต่จอที่มีตารางแน่น (PM task 3 ระดับ, ตารางเปรียบเทียบ Entry หลายคอลัมน์) ต้องออกแบบการแสดงผลใหม่สำหรับจอเล็ก ไม่ใช่ย่อตารางเดิมให้เล็กลงเฉยๆ (อ่านไม่ออก) |
+| 0d.2 | หน้ามือถือดูข้อมูลได้เหมือนหน้าจอ | **Feature parity แต่ไม่ใช่ layout parity** — ข้อมูล/ฟังก์ชันเดียวกันทุกอย่างผ่าน API endpoint เดียวกัน แต่จอที่มีตารางแน่น (ตาราง PM ตาม template — 18 คอลัมน์, ตารางเปรียบเทียบ Entry หลายคอลัมน์) ต้องออกแบบการแสดงผลใหม่สำหรับจอเล็ก ไม่ใช่ย่อตารางเดิมให้เล็กลงเฉยๆ (อ่านไม่ออก) |
 | 0d.3 | แจ้งเตือนอนุมัติผ่าน LINE แบบ Flex Message | ช่องทางแจ้งเตือน **เพิ่มเติม** จากกระดิ่งในแอป (ไม่ใช่แทนที่) — ต้องผูก LINE Official Account + LINE Messaging API เข้ากับระบบ event notification ที่มีอยู่แล้ว (`project.notification`, ข้อ 9.24) |
 | 0d.4 | ออกแบบสวยงาม เข้าใจงานง่าย | ผูกกับ design system ที่ยังไม่เลือก (9b.7) — เพิ่มเกณฑ์ "รองรับ mobile-first/responsive ในตัว" เป็นเกณฑ์เลือก design system ด้วย |
 
@@ -126,6 +126,27 @@
 
 ---
 
+## 0f. รอบ 10 (27 ก.ค. 2026) — ยึด Template Excel เป็นต้นแบบตาราง Project Management + ปิดคำถามจากรอบ review
+
+รอบนี้ผู้ใช้ส่ง **`prototype/Template_ProjectManagement.xlsx`** (sheet `หลายรายการ` — ไฟล์ที่ทีมขายใช้กรอกงานจริง) มาให้ พร้อมตอบคำถามค้างจากรอบ review เอกสาร ผลคือ **ตาราง Project Management ถูกออกแบบใหม่ตาม template ทั้งชุด** (ภาคผนวก A.8 เขียนใหม่) ส่วนหน้าจออื่นไม่แตะ
+
+| # | ประเด็นจาก review | ข้อสรุปรอบนี้ | จุดที่แก้ |
+|---|---|---|---|
+| 0f.1 | สูตร GP ในระบบไม่ตรงกัน (prototype คิด GP ไม่หัก EP / ข้อมูลหน้าเปรียบเทียบหัก EP / ช่อง GP ให้กรอกมือ) | **ยึด template:** `GP = ราคาขาย − ต้นทุน − EP`, `GP% = GP ÷ ราคาขาย × 100`, **GP ทุกช่องเป็นค่า derived ห้ามกรอกมือ** + **กติกา OC** (OC = Overriding Commission ค่าคอม Dealer — เป็นรายการหนึ่งใน EP): ระบบต้องมี GP 2 ชุด — **แถวสีขาว (spec line) = GP ก่อนหัก OC / แถวสีเทา (main + สรุป) = GP หลังหัก OC** ตามตัวเลขที่คำนวณจริงในไฟล์ (ต่างกันเท่าค่า OC พอดี — ดูตารางพิสูจน์ใน A.8.3.1) — **✅ ผู้ใช้ยืนยันทิศทางนี้แล้ว 27 ก.ค. 2026** | A.8 (เขียนใหม่ทั้งหัวข้อ), 1.1, 4.1, 6.1, C.3, D36 |
+| 0f.2 | คอลัมน์/ระดับ record ของตาราง PM | **เอาตาม template ทุกคอลัมน์และทุกกลุ่มคอลัมน์**: 2 ระดับ (main item → spec line) + แถวสรุปโครงการที่คำนวณตอนแสดงผล — ไม่ใช่ 3 ระดับอิสระแบบ prototype; ยอดรวมระดับ Entry = ผลรวมของ main item เท่านั้น (ปิดคำถามเรื่อง roll-up/นับซ้ำ) — **และทุกช่องที่เป็นยอดรวมต้องรวมให้อัตโนมัติเหมือนสูตรใน Excel + read-only เมื่อ main item นั้นมีรายการย่อยอยู่ (A.8.3.2)** | A.8, 1.1, 4.1, 6.1, 4.4, 8.15, D36 |
+| 0f.3 | ช่อง `รายการ`/Model ของตาราง PM มาจากไหน | **ดึงจาก ERP (item master) — น่าจะผ่าน API แต่ยังไม่สรุปกลไก จึงค้างไว้ก่อน** รอบนี้เตรียมคอลัมน์ `erp_item_code` ไว้เฉยๆ ยังกรอกมือได้เหมือน template | 9b.22 (ใหม่), A.8.2 |
+| 0f.4 | Dealer อยู่ระดับ Project หรือ Entry (ตรวจซ้ำ 3 field ใช้ไม่ได้) | **Dealer อยู่ระดับ Entry ตามเดิม ถูกต้องแล้วตาม business** — ขาย B2B, Dealer หลายเจ้ามาขอราคางานเดียวกันได้ → **identity ของ Project = ชื่อหน่วยงาน + ชื่อโครงการ เท่านั้น (2 field)**, Dealer เป็นข้อมูลประกอบไว้เตือน/แสดงผล ไม่ใช่ key ตรวจซ้ำ | 1.1, A.4, B ข้อ 6, D5, D6 |
+| 0f.5 | Entry ต่าง Dealer อาจเสนอราคาเท่ากัน | **ยอมรับได้ ไม่ต้องมี tie-break** — ป้าย "ต่ำสุด/สูงสุด/ดีที่สุด" ติดได้พร้อมกันหลาย Entry | 1.1, B ข้อ 7, D11 |
+| 0f.6 | "แก้ไขข้อมูล" แก้ชื่อหน่วยงาน/ชื่อโครงการ ซึ่งเป็นข้อมูลระดับ Project ที่ทุก Entry ใช้ร่วมกัน | **เก็บ revision ระดับ Project ด้วย** — เพิ่มตาราง `project.registration_revision` คู่กับ revision ระดับ Entry ที่มีอยู่แล้ว | A.4b (ใหม่), 1.4, 9.23, B ข้อ 19b, D17 |
+| 0f.7 | ฟอร์ม "ไม่ได้งาน → แพ้" ในหน้าจริงไม่มีช่อง "เหตุผลที่แพ้" (มีแต่ใน modal ที่เป็น dead UI) | **เก็บทั้ง 2 อย่าง: dropdown เหตุผลที่แพ้ (สำหรับรายงาน) + ช่องวิเคราะห์แบบ free text** → เพิ่ม dropdown เข้าไปในโซนอัพเดตสถานะของหน้า Detail | C.2, 1.4, A.9 (ไม่เปลี่ยน — รองรับอยู่แล้ว) |
+| 0f.8 | ฟอร์ม "ได้งาน" ใน modal มีช่อง เลขที่ PO/สัญญา, มูลค่างาน, วันที่ได้งาน ที่ schema ไม่มีคอลัมน์รองรับ | **ไม่เพิ่ม field นอกเหนือจาก prototype ที่ใช้งานจริง** — ยึดชุด field ของโซนอัพเดตสถานะในหน้า Detail เท่านั้น (`#statusUpdateModal` ถือเป็น legacy ไม่ implement) | C.2 |
+
+> **หลักการของรอบนี้:** หน้าจออื่นทั้งหมดใน prototype **ผ่านการ confirm กับผู้ใช้ปลายทางแล้ว — ไม่ปรับเพิ่ม/ไม่ redesign** ข้อสังเกตอื่นๆ จากรอบ review (เช่น งานเลยกำหนดไม่เข้ากระดิ่ง, filter วันคาดจบเป็นวันเดียว, dark mode) ให้ implement ตามพฤติกรรมของ prototype ไปก่อน ไม่ถือเป็นงานแก้ในรอบนี้ — **ยกเว้น 2 จุดที่ตัดสินใจเปลี่ยนไว้ข้างบน (ตาราง PM ทั้งตาราง และ dropdown เหตุผลที่แพ้)**
+
+> ⚠️ **ผลต่อประมาณการงาน:** ตาราง PM ตาม template ซับซ้อนกว่าที่ประเมินไว้เดิม (roll-up 2 ระดับ + สูตร GP 2 ชุดตามกติกา OC + master EP item type + ผูก item จาก ERP) — ตัวเลขข้อ 10 บรรทัด "UI: ตาราง Project Management" (3–4 man-day) **ต้องทบทวนใหม่หลังปิด 9b.22** ยังไม่ปรับตัวเลขในรอบนี้เพราะยังไม่รู้ว่าต่อ ERP แบบไหน
+
+---
+
 ## 1. สรุปฟีเจอร์จาก Prototype
 
 โมดูลใหม่สำหรับ **ลงทะเบียนโครงการ (Project Register)** และ **บริหารต้นทุน/ราคาโครงการ (Project Management)** — ตาม updated-flow มี workflow อนุมัติ 2 ชั้น (หัวหน้าเซลล์ → Manager/พี่บี) แบ่งเป็น **3 Role**: Sales, หัวหน้าเซลล์ (HeadSale), Manager
@@ -138,9 +159,9 @@
 | **To do list** | รายการเฉพาะ Account ตัวเอง + การ์ดสรุป 5 ใบ (ทั้งหมด / รออนุมัติ / โดน Reject / ใกล้ครบกำหนด <90 วัน / อนุมัติแล้ว) กดการ์ดเพื่อ filter |
 | **อัพเดตสถานะ Register** | รายการของตัวเอง กดปุ่ม "อัพเดต Status" ได้เฉพาะสถานะ **นำเสนอ** → เปิดหน้า Detail แบบ read-only พร้อมโซนเลือกหัวข้ออัพเดต 4 แบบ: **ได้งาน / ไม่ได้งาน / เลื่อนวันคาดจบ / แก้ไขข้อมูล** แต่ละแบบมีฟอร์ม required + บันทึกร่างได้ → ส่งหัวหน้าอนุมัติ — **ใหม่: ฟอร์ม "ไม่ได้งาน" ให้เลือกก่อนว่า แพ้ หรือ ล่ม** (รายละเอียดข้อ 0.3 และ 1.4) |
 | **ฟอร์ม Create/Edit Register** | ข้อมูลเซลล์ (ลำดับ auto, วันที่ auto, ทีม, Sales, แนบไฟล์เอกสารยื่นงาน, วันคาดจบ), รายละเอียดโครงการ (ชื่อหน่วยงาน, ชื่อโครงการ, ประเภทหน่วยงาน, Dealer จากฐานข้อมูล/Dealer ชั่วคราว, เงื่อนไขการขาย), **ปุ่มตรวจสอบข้อมูลซ้ำ**, ข้อมูลสินค้า (หลายรายการ), ระยะเวลารับประกัน, Bid Result (แสดงตอนอัพเดตสถานะ) |
-| **ตรวจสอบข้อมูลซ้ำ** | เทียบ 3 field: ชื่อหน่วยงาน + ชื่อโครงการ + Dealer (normalize: trim/lowercase/ยุบช่องว่าง) — ซ้ำครบ 3 field → เสนอให้ยื่นเป็น **Entry ลำดับถัดไป** ของ Project เดิม, ซ้ำบางส่วน → เตือนอย่างเดียว, กดดูรายละเอียด Project ที่ซ้ำได้ |
-| **Project Management (tab)** | ตาราง Task แบบลำดับชั้นสูงสุด 3 ระดับ (Main/Sub/Sub-sub), คอลัมน์ Qty, ต้นทุน @/Amt, EP รายการ/@/Amt, ราคาขาย @/Amt, GP @/Amt/%, Bid Result (รุ่น, ราคาคู่แข่ง), คำนวณ Amt = Qty×@ และ GP% อัตโนมัติ, การ์ดสรุป Total Qty / Main Task / All Task |
-| **หน้าเปรียบเทียบ Entry** | Project 1 ตัวมีหลาย Entry (Entry ลำดับ 1 = เจ้าของ), tab เลือก Entry, ตารางเทียบข้อมูล Register ทุก Entry, เทียบ Project Management (ต้นทุน/EP/ราคาขาย/GP/GP% + ป้าย "ต่ำสุด/สูงสุด/ดีที่สุด" + BOM รายรายการ) เฉพาะ Entry ที่สถานะผ่านการอนุมัติแล้ว |
+| **ตรวจสอบข้อมูลซ้ำ** | **ปรับ 27 ก.ค. 2026 (0f.4): เทียบ 2 field เป็น key — ชื่อหน่วยงาน + ชื่อโครงการ** (normalize: trim/lowercase/ยุบช่องว่าง) — ตรงทั้ง 2 → เสนอให้ยื่นเป็น **Entry ลำดับถัดไป** ของ Project เดิม, ตรงบางส่วน → เตือนอย่างเดียว, กดดูรายละเอียด Project ที่ซ้ำได้ — **Dealer ไม่ใช่ key อีกต่อไป** (ขาย B2B: Dealer หลายเจ้าขอราคางานเดียวกันได้ → Dealer ต่างกันแต่เป็นงานเดียวกัน ต้องได้เป็น Entry ของ Project เดิม) แต่ยังแสดง Dealer ของ Entry ที่มีอยู่ในผลตรวจซ้ำเพื่อให้ Sales ตัดสินใจ |
+| **Project Management (tab)** | **ปรับ 27 ก.ค. 2026 (0f.1/0f.2) — ยึด `Template_ProjectManagement.xlsx` แทนตารางใน prototype:** 2 ระดับ (**Main item → Spec line**) + **แถวสรุปโครงการ** ที่ระบบรวมให้เอง, คอลัมน์ตาม template: รายการ / Brand / Model / Q'ty / ต้นทุน @-Amt / EP รายการ-@-Amt / ราคาขาย @-Amt / GP @-Amt-% / ราคาขายคู่แข่ง รุ่น-@-Amt — **`GP = ราคาขาย − ต้นทุน − EP` เป็นค่า derived ห้ามกรอกมือ** และมีกติกา OC — GP 2 ชุด: **แถวขาว (spec line) = GP ก่อนหัก OC / แถวเทา (main + สรุป) = GP หลังหัก OC** — **ทุกช่องที่เป็นยอดรวมคำนวณให้อัตโนมัติเหมือนสูตรใน Excel และแก้ด้วยมือไม่ได้ เมื่อ main item นั้นมีรายการย่อยอยู่** — รายละเอียดสูตรครบทุกระดับ + สีพื้น/ชั้นการ group ดูภาคผนวก A.8 |
+| **หน้าเปรียบเทียบ Entry** | Project 1 ตัวมีหลาย Entry (Entry ลำดับ 1 = เจ้าของ), tab เลือก Entry, ตารางเทียบข้อมูล Register ทุก Entry, เทียบ Project Management (ต้นทุน/EP/ราคาขาย/GP/GP% + ป้าย "ต่ำสุด/สูงสุด/ดีที่สุด" + BOM รายรายการ) เฉพาะ Entry ที่สถานะผ่านการอนุมัติแล้ว — ✅ 0f.5: **Entry ที่ราคา/GP เท่ากันเป๊ะเป็นเรื่องปกติ ติดป้ายพร้อมกันได้หลาย Entry ไม่ต้องมีกติกา tie-break**; ตัวเลขรวมของแต่ละ Entry = แถวสรุปโครงการตาม A.8.3 (รวมจาก main item เท่านั้น) |
 | **เหตุผลการไม่อนุมัติ** | แสดงประวัติเหตุผล Reject จากหัวหน้า Sales (และช่องเตรียมไว้สำหรับ Supervisor/พี่บี) ในหน้า See Detail |
 | **การแจ้งเตือน (กระดิ่ง)** | รายการโครงการที่วันคาดจบเหลือ < 90 วัน เรียงตามใกล้ครบกำหนด |
 
@@ -186,7 +207,7 @@
 | `waitingSupervisorWon` | **Manager อนุมัติ** | `won` | End |
 | `waitingSupervisorLost` | **Manager อนุมัติ** | `lost` | End |
 | `waitingPostpone` | หัวหน้าอนุมัติ | `presented` | จบที่หัวหน้าชั้นเดียว (flowchart ไม่ส่งต่อพี่บี) — apply วันคาดจบใหม่ + log วันเดิม |
-| `waitingEdit` (รอบคำขอ) | หัวหน้าอนุมัติคำขอแก้ไข | `presented` | ✅ ข้อ 9.23 — ระบบ clone **revision ร่าง** (`RevisionStatus='draft'`) ให้ Sales แก้เฉพาะหัวข้อที่ขอ — **ยังไม่ apply ข้อมูลใหม่** current revision ยังเป็นตัวเดิม |
+| `waitingEdit` (รอบคำขอ) | หัวหน้าอนุมัติคำขอแก้ไข | `presented` | ✅ ข้อ 9.23 — ระบบ clone **revision ร่าง** (`RevisionStatus='draft'`) ให้ Sales แก้เฉพาะหัวข้อที่ขอ — **ยังไม่ apply ข้อมูลใหม่** current revision ยังเป็นตัวเดิม — 🆕 **27 ก.ค. 2026 (0f.6): ถ้าหัวข้อที่ขอแก้เป็น ชื่อหน่วยงาน / ชื่อโครงการ / ประเภทหน่วยงาน → เปิด revision ระดับ Project (`registration_revision`, A.4b) แทน revision ระดับ Entry เพราะข้อมูลชุดนี้ทุก Entry ใช้ร่วมกันและเป็น key ตรวจซ้ำ** |
 | `presented` (มี revision ร่าง) | Sales แก้เสร็จ ส่งอนุมัติ revision | `waitingEdit` | รอบที่ 2 — ใช้สถานะเดิม ไม่เพิ่มสถานะใหม่ (revision → `waiting`) |
 | `waitingEdit` (รอบ revision) | หัวหน้าอนุมัติ revision | `presented` | revision ใหม่เป็น `current`, ตัวเดิม → `superseded` (เปิดดู read-only) — ✅ ข้อ 9.23: **ต้องผ่านอนุมัติซ้ำก่อนมีผล** |
 | `waitingXxx` (คำขอเปลี่ยนสถานะทุกแบบ) | หัวหน้า/Manager ไม่อนุมัติ | `presented` | **ปรับตาม review R1 (19 ก.ค. 2026 — ทับข้อสรุป 9.1 เดิม):** Entry กลับ `presented` ส่วน**ตัวคำขอ**เป็น RequestStatus `rejected` พร้อมเหตุผล (แสดงการ์ดแยก role ฝั่ง Sales, การ์ด "โดน Reject" นับจากคำขอ) — Sales แก้แล้วส่งคำขอใหม่ได้ทันที; EntryStatus `rejected` คงใช้เฉพาะ Reject Register ตั้งต้น (`waiting → rejected`) |
@@ -252,17 +273,17 @@
 | ประเภท | รายการ (ประมาณการ) |
 |---|---|
 | Pages/Routes | เทียบเท่า Controller เดิม 1 ต่อ 1 โดยประมาณ: `ProjectListPage` (ALL), `TodoListPage`, `StatusUpdateListPage`, `RegisterFormPage` (create/edit), `EntryDetailPage`, `ManagementTabPage`, `ComparePage`, `ApproveListPage`, `ApproveDetailPage`, `LeaderListPage`, `LeaderDetailPage` — ใช้ router ฝั่ง client (เช่น React Router) แทน MVC routing |
-| Components | เทียบเท่า `_Partials/` เดิม: แถวสินค้า (`ProductRow`), แถว Task PM แบบ recursive (`TaskRow` — ลึกสุด 3 ระดับ), `DealerModal`, `DuplicateCheckModal`, `ApprovalModal`, `SummaryCard`, `RejectReasonCard` (แยก head/supervisor), `LostPathCard` (แพ้/ล่ม) |
+| Components | เทียบเท่า `_Partials/` เดิม: แถวสินค้า (`ProductRow`), แถว Task PM (`TaskRow` — main item / spec line ตาม A.8 + แถวสรุปที่คำนวณให้), `DealerModal`, `DuplicateCheckModal`, `ApprovalModal`, `SummaryCard`, `RejectReasonCard` (แยก head/supervisor), `LostPathCard` (แพ้/ล่ม) |
 | State/data-fetching | เสนอ React Query/TanStack Query (หรือเทียบเท่า) คุม cache + loading/error state ของทุก endpoint — ไม่ต้อง reload เต็มหน้าแบบ MVC เดิม |
 | Form handling | เสนอ React Hook Form + schema validation ฝั่ง client (เช่น Zod) ที่**ใช้ schema เดียวกับฝั่ง Fastify ได้ถ้าแชร์ package** (ลดโอกาส client/server validation ไม่ตรงกัน — ปัญหาเดิมที่ระบุไว้ในความเสี่ยง 8.7/9.14) |
 | Styling/Design system | Prototype เดิมใช้ font Sarabun + CSS มือเขียนแบบ standalone (ไม่ใช่ theme "Sneat" ของระบบเดิมอีกต่อไป เพราะไม่ผูกกับระบบเดิมแล้ว) — **ต้องเลือก design system ใหม่สำหรับ React** (เช่น MUI, Ant Design, Chakra, หรือ Tailwind + component เขียนเอง) แล้วแปล UX จาก Prototype เข้าไป — ยังไม่ตัดสินใจ (ดู 9b.7) |
-| Auto-calc logic | ย้าย logic เดิมใน `project-register*.js` (Amt = Qty×@, GP% = (ขาย−ทุน)/ขาย) เป็น pure function ใน React — **server ยังต้องคำนวณซ้ำเสมอเป็นค่าจริง** (หลักการเดิมไม่เปลี่ยน — ความเสี่ยง 8.7) |
+| Auto-calc logic | **ปรับ 27 ก.ค. 2026 (0f.1): ยึดสูตรตาม Template Excel ไม่ใช่ `calcRow` ของ prototype** — `Amt = Qty×@`, **`GP = ราคาขาย − ต้นทุน − EP`**, `GP% = GP ÷ ราคาขาย × 100`, roll-up spec line → main item → แถวสรุป และกติกา OC (ดู A.8.3 ครบทุกสูตร) — **ช่องที่เป็นยอดรวมต้อง auto + read-only และอัปเดตสดทันทีที่พิมพ์เหมือน Excel (A.8.3.2)** เขียนเป็น pure function ชุดเดียวใน React — **server ยังต้องคำนวณซ้ำเสมอเป็นค่าจริง** (หลักการเดิมไม่เปลี่ยน — ความเสี่ยง 8.7) — แนะนำแชร์ฟังก์ชันคำนวณเป็น package เดียวกับฝั่ง Fastify เพื่อไม่ให้สูตร 2 ฝั่งหลุดจากกัน |
 
 ### 4.2 จุดที่ Prototype กับสถาปัตยกรรมใหม่ต้องปรับตอน implement
 
 1. **Pagination/ค้นหา/sort/filter** — เดิม Prototype ทำ client-side ทั้งหมด ระบบจริงควรทำ server-side ผ่าน query parameter ไปที่ Fastify (เช่น `?sortBy=team&sortDir=asc&team=...`) แล้ว query แบบ paginate ที่ PostgreSQL (`LIMIT/OFFSET` หรือ keyset pagination ถ้าข้อมูลโตมาก) — หลักการเดิมไม่เปลี่ยนจากตอนคิดบน SQL Server แค่เปลี่ยน syntax
 2. **รายชื่อทีม 10 ทีม / sale1–sale20 / ยี่ห้อคู่แข่ง / ประเภทหน่วยงาน** hardcode ใน Prototype — ต้องเป็น master data จาก API เหมือนเดิม (ย้ายเป็น seed migration ของ PostgreSQL แทน `Deploy_SQL/` เดิม — ดูหัวข้อ 6)
-3. ปุ่ม "บันทึก" ในกล่องข้อมูลสินค้า และปุ่ม footer ("บันทึกร่าง/รอหัวหน้าอนุมัติ") ใน Prototype ยังไม่มี logic จริง — ต้องกำหนด behavior ตอนทำ spec (ไม่เปลี่ยนจากเดิม)
+3. ปุ่ม "บันทึก" ในกล่องข้อมูลสินค้า และปุ่ม footer ("บันทึกร่าง/รอหัวหน้าอนุมัติ") ใน Prototype ยังไม่มี logic จริง — ต้องกำหนด behavior ตอนทำ spec (ไม่เปลี่ยนจากเดิม) — **เพิ่ม 27 ก.ค. 2026: ช่อง `Amt` ในกล่อง "ข้อมูลสินค้า" ของ prototype เป็นช่องพิมพ์เปล่าๆ ไม่คำนวณให้ (`productTemplate` ไม่มี handler) → ให้ auto เป็น `Qty × @` + read-only ตามหลักการเดียวกับตาราง PM (A.8.3.2) เพื่อไม่ให้มีช่องเงินที่พิมพ์ทับได้หลงเหลือในระบบ**
 4. **ไม่มี "แปลง theme" อีกต่อไป** (ข้อเดิมที่บอกว่าต้องแปลงจาก Sarabun ไปใช้ Sneat) — เพราะระบบใหม่ไม่มี theme เดิมให้ยึด ต้องออกแบบใหม่ทั้งชุด (เพิ่มงานเมื่อเทียบกับแผนเดิมที่ "มี theme อยู่แล้วแค่แปลง" — ดูผลต่อประมาณการงานหัวข้อ 10)
 
 ### 4.3 Auth ฝั่ง UI (ปิดตาม 9c)
@@ -278,7 +299,7 @@
 - **แนวทาง**: Responsive web ด้วย React ชุดเดียว (ไม่ใช่แอปแยก, ไม่ใช่ codebase คนละชุด) — ใช้ breakpoint ของ design system ที่เลือก (9b.7) กำหนด layout อย่างน้อย 2 ระดับ: desktop (≥ ~1024px) และ mobile (< ~768px) — ทุกหน้า render ได้ทั้ง 2 ระดับจาก component/route เดียวกัน ไม่ทำเป็นชุดหน้าแยกต่างหาก
 - **จุดที่ต้องออกแบบใหม่จริงจัง** (ไม่ใช่แค่ CSS responsive ธรรมดา) เพราะ Prototype วางมาสำหรับตาราง desktop กว้างล้วนๆ:
   - ตาราง ProjectRegister ALL / To-do list / Approve list (คอลัมน์เยอะ) → บนมือถือควรเป็น **card list** ต่อแถวแทนตารางแนวนอน
-  - ตาราง Project Management (3 ระดับ, ~15 คอลัมน์ต่อแถวตาม A.8) → **จุดยากที่สุดของงานนี้** บนจอเล็กตารางกว้างขนาดนี้อ่านไม่ได้เลย ต้องคิด pattern ใหม่ (เช่น การ์ดต่อ task แสดงแบบ key-value + ยุบ/ขยายตามลำดับชั้น) — ยังไม่ออกแบบละเอียด เป็นงานออกแบบเพิ่มจริงจัง (ดูความเสี่ยง 8.15)
+  - ตาราง Project Management (2 ระดับ + แถวสรุป, 18 คอลัมน์ตาม template — A.8) → **จุดยากที่สุดของงานนี้** บนจอเล็กตารางกว้างขนาดนี้อ่านไม่ได้เลย ต้องคิด pattern ใหม่ (เช่น การ์ดต่อ task แสดงแบบ key-value + ยุบ/ขยายตามลำดับชั้น) — ยังไม่ออกแบบละเอียด เป็นงานออกแบบเพิ่มจริงจัง (ดูความเสี่ยง 8.15)
   - ตารางเปรียบเทียบ Entry (S6) — ปกติเทียบหลาย Entry เคียงข้างกัน บนจอเล็กอาจต้องเปลี่ยนเป็น tab สลับดูทีละ Entry แทนเทียบข้างกันทั้งหมด
 - **Feature parity**: ไม่มีฟีเจอร์ไหนถูกตัดทิ้งสำหรับมือถือ (ตามคำขอ 0d.2) — เปลี่ยนแค่การแสดงผล ไม่เปลี่ยนข้อมูลที่เรียกจาก API (endpoint เดิมใช้ร่วมกันได้ทั้ง desktop/mobile ไม่ต้องแยก endpoint)
 - **ยังไม่ตัดสินใจ**: breakpoint ที่แน่นอน, pattern การแสดงผลของตาราง PM/compare บนมือถือ (ต้องมี mockup/ทดสอบกับผู้ใช้จริงก่อน ไม่ใช่แค่เดา) — ดูคำถามใหม่ 9b.11
@@ -304,7 +325,7 @@
 | **🤖 AI Chat Assistant** | ชิปหัวข้อความสามารถ 11 ปุ่ม (ตรงกับ FR-01–FR-11) กดแล้วเล่นตัวอย่างบทสนทนาพร้อม typing indicator, การ์ดคำตอบแบบมีโครงสร้าง (header/body/footer คล้าย LINE Flex Message — ดู 4.5 เรื่องการ์ดแบบมีโครงสร้าง), ปุ่ม deep-link ทุกการ์ดเปิด bottom-sheet dialog จำลองหน้าที่จะถูกพาไป (แสดงหลักการ read-only ตาม 0e.9 — ปุ่มอนุมัติในหน้าจำลองถูก disable พร้อมข้อความอธิบาย) |
 | **💬 LINE Push** | จำลองหน้าตาแอป LINE จริง (header/แชท/input bar ของ LINE เอง) ส่ง Flex Message ตัวอย่าง 4 แบบ (รออนุมัติใหม่/ใกล้ครบกำหนด/อนุมัติแล้ว/ไม่อนุมัติ) เนื้อหาในการ์ดจำกัดเฉพาะรหัสโครงการ + ประเภทคำขอตามความเสี่ยง 8.18 — กดปุ่มในการ์ดแล้วเห็น toast "กำลังออกจาก LINE" ก่อนเปิด preview หน้าเว็บภายนอก แสดงให้เห็นเป็นรูปธรรมว่าปุ่มใน Flex Message เป็น URI action เท่านั้น (ไม่มี dialog/การทำงานค้างอยู่ใน LINE เพราะยังไม่ทำ webhook/postback ตามสมมติฐาน 9b.14) |
 
-**ขอบเขตที่ mockup นี้ยังไม่ครอบคลุม** (สำคัญ — อย่าตีความว่าปิดคำถามไปแล้ว): ไม่ได้แตะ pattern การ์ด/accordion ของตาราง PM 3 ระดับ หรือตารางเปรียบเทียบ Entry บนมือถือ ซึ่งเป็นจุดยากที่สุดที่ยังไม่มี mockup อยู่ (9b.11 ยังเปิดอยู่เหมือนเดิม); ไม่ได้ตัดสินใจเรื่อง LLM provider/data policy (9b.16), streaming (9b.18), หรือ LINE interactive/postback (9b.14) — เป็นแค่ภาพประกอบของสมมติฐานที่มีอยู่แล้วในเอกสารนี้
+**ขอบเขตที่ mockup นี้ยังไม่ครอบคลุม** (สำคัญ — อย่าตีความว่าปิดคำถามไปแล้ว): ไม่ได้แตะ pattern การ์ด/accordion ของตาราง PM (ตาม template) หรือตารางเปรียบเทียบ Entry บนมือถือ ซึ่งเป็นจุดยากที่สุดที่ยังไม่มี mockup อยู่ (9b.11 ยังเปิดอยู่เหมือนเดิม); ไม่ได้ตัดสินใจเรื่อง LLM provider/data policy (9b.16), streaming (9b.18), หรือ LINE interactive/postback (9b.14) — เป็นแค่ภาพประกอบของสมมติฐานที่มีอยู่แล้วในเอกสารนี้
 
 ---
 
@@ -343,7 +364,8 @@
 | `project.entry_revision` | Trans | ข้อมูลฟอร์มราย revision: `revision_no`, `revision_status` (draft/waiting/current/superseded), `is_current_revision`, ทีม, Dealer, เงื่อนไขการขาย, วันคาดจบ, ประกัน — unique partial index คุม current 1 แถวต่อ Entry; ตารางลูก File/Product/Task ผูกกับ revision |
 | `project.entry_file` | Trans | ไฟล์แนบหลายไฟล์ต่อ revision (เอกสาร/PDF, รวม ≤ 10 MB) — ที่เก็บไฟล์จริง (disk path หรือ object storage key) **ยังไม่ตัดสินใจ (ดู 9b.5)** |
 | `project.entry_product` | Trans | สินค้าใน revision: Model, Group, ชนิดแบต, Qty Batt, Batt Bank, Option, Qty, @, Amt |
-| `project.entry_task` | Trans | ตาราง Project Management (ผูกกับ revision): `parent_task_id` (self-FK, ลึกสุด 3 ระดับ), Sale, Brand, Dealer, Model, Qty, ต้นทุน @/Amt, EP รายการ/@/Amt, ราคาขาย @/Amt, GP @/Amt/%, Bid Result (รุ่น + ราคาคู่แข่ง @/Amt — ไม่มีคอลัมน์ Socomec ตามที่ตัดออกไปก่อนหน้านี้) |
+| `project.entry_task` | Trans | ตาราง Project Management (ผูกกับ revision) — **ยึด Template Excel (0f.2):** `parent_task_id` (self-FK; ใช้จริง 2 ระดับ main→spec), รายการ, Brand, Model, Qty, ต้นทุน @/Amt (+ วันที่อ้างอิงราคาทุน), EP รายการ/@/Amt (+ ชนิด EP/OC + วันที่-แหล่งที่มาราคา), ราคาขาย @/Amt, **GP @/Amt/% (derived)**, ราคาขายคู่แข่ง รุ่น/@/Amt — รายละเอียดครบดู A.8 |
+| `project.ep_item_type` | Master | **(ใหม่ 27 ก.ค. 2026)** ชนิดรายการ EP (ค่าขนส่ง, **OC = Overriding Commission / Outside Commission — ค่าคอมจ่าย Dealer**) + flag `is_oc` — ใช้แยกว่ารายการ EP ไหนต้องถูกหักใน GP ชุด "หลังหัก OC" เท่านั้น (A.8.3.1) |
 | `project.status_request` | Trans | คำขอเปลี่ยนสถานะ (won/lost/postpone/edit): ประเภท, payload, `request_status` แยกจากสถานะ Entry (review R1), `is_draft` + กลุ่ม `lost_type`/`lost_reason_id`/`collapse_reason_id`/`collapse_date`/`collapse_note` |
 | `project.approval` | Trans | ประวัติพิจารณา: ผู้อนุมัติ, role (head/supervisor), อนุมัติ/ไม่อนุมัติ, เหตุผล, ประเภทการ approve, วันที่ |
 | `project.status_log` | Trans | Log ทุกการเปลี่ยนสถานะระดับ Entry และระดับ Project (จาก → ไป, โดยใคร, เมื่อไร) |
@@ -405,7 +427,7 @@
 | 8.4 | ตรวจซ้ำแบบ exact-match พิมพ์ต่างกันเล็กน้อยจะหลุด | กลาง | **ดีขึ้นกว่าเดิมได้ง่ายๆ** — PostgreSQL มี `pg_trgm` ในตัว ใช้ `similarity()` แทน `LIKE` ธรรมดาได้ตั้งแต่ phase แรกโดยไม่ต้องรอ phase หน้าแบบที่เอกสารเดิมเสนอ |
 | 8.5 | ไฟล์แนบ — ที่เก็บไฟล์จริงยังไม่ตัดสินใจ (disk ของ API server vs object storage) | กลาง | ถ้าเลือก disk ยังมีความเสี่ยงเดิม (หายตอน redeploy, ไม่ redundant) เหมือนระบบเดิมทุกประการ — **แนะนำพิจารณา object storage (S3-compatible) ตั้งแต่ต้น** เพราะเป็นระบบใหม่ ไม่มี pattern เดิมผูกไว้แล้ว — ตัด pain point "ต้อง backup โฟลเดอร์ Upload" ไปได้ทั้งหมด (ดู 9b.5) |
 | 8.6 | "แก้ไขข้อมูล Register" เป็น revise version ใหม่ — ทุกตารางลูกต้องผูกกับ revision | กลาง–สูง | หลักการเดิมทั้งหมด (แยก `entry`/`entry_revision`, unique partial index คุม current, สลับ current ใน transaction เดียว) — ไม่เปลี่ยนจาก stack ใหม่ เพราะเป็น data-model pattern ไม่ใช่เรื่องภาษา/framework |
-| 8.7 | ตาราง PM 3 ระดับ + คำนวณเงินฝั่ง client — ปัดเศษ/ทศนิยมไม่ตรงกับฝั่ง server | ต่ำ | กำหนดกติกา `NUMERIC(18,2)` + server คำนวณซ้ำเป็น source of truth เหมือนเดิม |
+| 8.7 | ตาราง PM (roll-up 2 ระดับตาม template) + คำนวณเงินฝั่ง client — ปัดเศษ/ทศนิยมไม่ตรงกับฝั่ง server | ต่ำ–**กลาง (ปรับขึ้น 27 ก.ค. 2026)** | กำหนดกติกา `NUMERIC(18,2)` + server คำนวณซ้ำเป็น source of truth เหมือนเดิม — **เพิ่มความเสี่ยงจากรอบนี้: สูตรมีหลายชั้น (spec→main→สรุป) และ GP มี 2 แบบตามกติกา OC → ถ้า React กับ Fastify implement คนละที่จะเพี้ยนกันได้ง่ายกว่าเดิมมาก แนะนำแชร์ฟังก์ชันคำนวณเป็น package เดียว + มี unit test เทียบกับตัวเลขในไฟล์ template โดยตรง (D36)** |
 | 8.8 | ขอบเขต 2 ส่วน (UI/API) — เริ่มพัฒนาขนานไม่ได้ถ้าไม่มี contract ก่อน | ต่ำ | เหมือนเดิม: ตกลง API contract ก่อน (ภาคผนวก B) แล้วพัฒนาขนานด้วย mock — Fastify generate OpenAPI จาก schema ได้ ช่วยเรื่องนี้ได้ดีกว่าเดิมด้วยซ้ำ |
 | 8.9 | "ล่ม" ปิดโครงการ (`closed`) ได้ทันทีโดยไม่ผ่านการอนุมัติใคร | กลาง–สูง | หลักการเดิมทั้งหมด (บังคับกรอกครบ + log + event notification ข้อ 9.24) — ไม่เปลี่ยนจาก stack ใหม่ |
 | 8.10 | ขั้นอนุมัติ 2 ชั้นทำให้ lead time ยาวขึ้น ถ้า Manager ไม่อยู่งานค้าง | กลาง | เหมือนเดิม (การ์ด/แจ้งเตือนชัด + พิจารณา assign role Manager มากกว่า 1 คน) |
@@ -413,7 +435,7 @@
 | 8.12 | **(ใหม่) ทีมอาจไม่มีประสบการณ์ Node/Fastify/React/Postgres เท่ากับ .NET/SQL Server เดิม** — ยังไม่ทราบ ไม่ได้ระบุ | ไม่ทราบ | ถ้าเป็นทีมเดิมที่ถนัด .NET มาก่อน ควรกันเวลาช่วง ramp-up ไว้ในประมาณการงาน (หัวข้อ 10) — ต้องยืนยันจากผู้ใช้ |
 | 8.13 | **(ใหม่) ต้องหาแหล่งข้อมูลภูมิศาสตร์ไทย (จังหวัด/อำเภอ/ตำบล/ไปรษณีย์) ใหม่** เพราะเดิม reuse lookup API ของ `syndome-crm-api` ได้ฟรี ตอนนี้ standalone แล้วไม่มีให้ reuse | ต่ำ–กลาง | มี dataset เปิดสาธารณะสำหรับข้อมูลจังหวัด/อำเภอ/ตำบลไทยหลายแหล่ง เลือก seed เข้า PostgreSQL ตอนตั้งระบบครั้งแรก |
 | 8.14 | **(ใหม่)** SSO ไม่มี JWKS endpoint — public key สำหรับ verify JWT ต้องได้รับแบบ manual (copy ไฟล์ `public.pem`) จาก SSO admin | ต่ำ–กลาง | ตกลง process รับ-เปลี่ยน key กับทีม SSO ล่วงหน้า (ใครแจ้งใคร เมื่อ SSO rotate key) — พิจารณารองรับ 2 public key พร้อมกันชั่วคราวตอน rotate กันบริการสะดุด |
-| 8.15 | **(ใหม่ 22 ก.ค. 2026)** ตาราง PM 3 ระดับ + ตารางเปรียบเทียบ Entry เป็นข้อมูลหนาแน่นที่สุดในระบบ — ทำ responsive แบบ CSS ธรรมดาแล้วจะใช้งานจริงบนมือถือไม่ได้ (อ่านตัวเลขไม่ออก, กดผิดแถว) | กลาง–สูง | ต้องออกแบบ pattern การแสดงผลใหม่เฉพาะจุด (card/accordion) ก่อน ไม่ใช่แค่ทำ mobile-responsive ปกติ — แนะนำทำ mockup + ทดสอบกับ Sales/หัวหน้าจริงก่อน implement เต็มรูปแบบ (ดู 4.4/9b.11) |
+| 8.15 | **(ใหม่ 22 ก.ค. 2026 — ปรับ 27 ก.ค. 2026)** ตาราง PM ตาม template (2 ระดับ + แถวสรุป, 18 คอลัมน์) + ตารางเปรียบเทียบ Entry เป็นข้อมูลหนาแน่นที่สุดในระบบ — ทำ responsive แบบ CSS ธรรมดาแล้วจะใช้งานจริงบนมือถือไม่ได้ (อ่านตัวเลขไม่ออก, กดผิดแถว) | กลาง–สูง | ต้องออกแบบ pattern การแสดงผลใหม่เฉพาะจุด (card/accordion) ก่อน ไม่ใช่แค่ทำ mobile-responsive ปกติ — แนะนำทำ mockup + ทดสอบกับ Sales/หัวหน้าจริงก่อน implement เต็มรูปแบบ (ดู 4.4/9b.11) |
 | 8.16 | **(ใหม่)** LINE Messaging API push message มีโควตาฟรีต่อเดือนตามแพ็กเกจ OA เกินแล้วมีค่าใช้จ่ายเพิ่มหรือถูกจำกัด — ถ้า push ทุก event (ทุกคำขออนุมัติ/reject/ล่ม ฯลฯ) อาจชนโควตาเร็วกว่าคาด | กลาง | เลือกเฉพาะ event ที่สำคัญพอต้อง push จริง (ดู 9b.15) ไม่ mirror ทุก event ในกระดิ่งไปที่ LINE ทั้งหมด — ต้องยืนยันแพ็กเกจ/โควตา LINE OA ที่จะใช้กับผู้ใช้ก่อน |
 | 8.17 | **(ใหม่)** ต้องมีขั้นตอนผูกบัญชี LINE ↔ ผู้ใช้ในระบบ ไม่ใช่อัตโนมัติ 100% — ถ้า user ไม่ผูกบัญชี จะไม่ได้รับแจ้งเตือนผ่าน LINE แบบเงียบๆ (กระดิ่งในแอปยังทำงาน แต่ถ้า user ไม่ค่อยเข้าเว็บอาจพลาดงานอนุมัติ) | กลาง | UI ต้องเตือนชัดเจนตอนยังไม่ผูกบัญชี (เช่น banner "ยังไม่ได้รับแจ้งเตือนผ่าน LINE") ไม่ใช่แค่เงียบไป |
 | 8.18 | **(ใหม่)** LINE Flex Message อาจมีข้อมูลธุรกิจ (ชื่อโครงการ/หน่วยงาน/ราคา) หลุดไปอยู่ในแอปนอกระบบ (LINE chat) ที่ควบคุมไม่ได้เท่าเว็บของเราเอง | กลาง | จำกัดเนื้อหาใน Flex Message ให้น้อยที่สุดเท่าที่ยัง usable (เช่น ใส่แค่ project code + ประเภทคำขอ ไม่ใส่ราคา/GP) แล้วให้ปุ่ม deep-link เปิดรายละเอียดเต็มในเว็บที่มี auth คุมอยู่แล้วแทน |
@@ -504,7 +526,7 @@
 | 9b.8 | แหล่งข้อมูลภูมิศาสตร์ไทย (จังหวัด/อำเภอ/ตำบล/ไปรษณีย์) ใหม่ | สมมติว่าต้อง seed จาก dataset เปิดสาธารณะเอง (ความเสี่ยง 8.13) | กระทบ `project.dealer` และฟอร์ม Register ส่วนที่อยู่ Dealer |
 | 9b.9 | Hosting/deployment target + CI/CD | ยังไม่ระบุ | ไม่กระทบ business spec แต่ต้องรู้ก่อนวางแผน timeline จริง |
 | 9b.10 | มีข้อมูลใดจากระบบ Syndome CRM เดิมที่ต้อง migrate/import เข้าระบบใหม่ครั้งเดียวหรือไม่ (เช่น รายชื่อ user/Dealer ที่มีอยู่แล้ว) หรือเริ่มจาก DB ว่างเปล่าทั้งหมด | **สมมติว่าเริ่มว่างเปล่า ไม่ migrate อะไรจากเดิมเลย** ตาม "ไม่อิงกับอันเดิมใดใดเลย" | ถ้าจริงๆ ต้อง migrate ข้อมูลบางส่วน (เช่น Dealer ที่ Sales กรอกไว้แล้วในระบบเดิม) จะเพิ่มงานใหม่ทั้งก้อนที่เอกสารนี้ยังไม่ได้ประเมิน |
-| 9b.11 | **(ใหม่ 22 ก.ค. 2026 — ดู 0d.1/0d.2)** Responsive breakpoint + pattern การแสดงผลตารางข้อมูลหนาแน่น (PM task 3 ระดับ, ตารางเปรียบเทียบ Entry) บนจอมือถือ | สมมติ card/accordion pattern แทนตารางกว้าง — **ยังไม่ออกแบบละเอียด ยังไม่มี mockup** | กระทบเวลาออกแบบ UI หน้า PM/compare มากที่สุดในทั้งระบบ (ดูความเสี่ยง 8.15) |
+| 9b.11 | **(ใหม่ 22 ก.ค. 2026 — ดู 0d.1/0d.2)** Responsive breakpoint + pattern การแสดงผลตารางข้อมูลหนาแน่น (ตาราง PM ตาม template — 18 คอลัมน์ 2 ระดับ, ตารางเปรียบเทียบ Entry) บนจอมือถือ | สมมติ card/accordion pattern แทนตารางกว้าง — **ยังไม่ออกแบบละเอียด ยังไม่มี mockup** | กระทบเวลาออกแบบ UI หน้า PM/compare มากที่สุดในทั้งระบบ (ดูความเสี่ยง 8.15) |
 | 9b.12 | **(ใหม่ — ดู 0d.3)** ใช้ LINE Official Account ตัวไหน — OA ที่องค์กรมีอยู่แล้ว (เช่นของบริษัทแม่/CRM เดิม) หรือสร้างใหม่เฉพาะระบบนี้ | ยังไม่ระบุ | กระทบ Channel ID/Secret ที่ต้องขอ, กระทบว่าโควตาข้อความใช้ร่วมกับระบบอื่นในองค์กรหรือไม่ (ดูความเสี่ยง 8.16) |
 | 9b.13 | **(ใหม่)** วิธีผูกบัญชี LINE ↔ ผู้ใช้ในระบบ — LINE Login OAuth เต็มรูปแบบ vs ให้ user ยืนยันรหัสผ่านแชทกับ OA vs admin กรอก LINE userId เอง | ยังไม่ระบุ — LINE Login เป็นแนวทางมาตรฐานสุด (คล้าย OAuth flow ของ SSO ที่มีอยู่แล้ว จึง reuse pattern ความคุ้นเคยได้) | กระทบ endpoint account-linking ใหม่ (ดูหัวข้อ 5), กระทบว่าต้องขอ LINE Login channel เพิ่มจาก LINE Developers หรือไม่ |
 | 9b.14 | **(ใหม่)** แจ้งเตือน LINE เป็น one-way push อย่างเดียว หรือต้องกดอนุมัติ/ไม่อนุมัติได้จากปุ่มใน Flex Message โดยตรง (ต้องมี webhook รับ postback) | สมมติ **push อย่างเดียว + ปุ่ม deep-link เปิดเว็บ** ไปก่อน (ไม่ต้องมี webhook, ทำเร็วกว่า) | ถ้าต้องการอนุมัติจากใน LINE จริง ต้องเพิ่ม webhook endpoint ใหม่ + คิดกลไกยืนยันตัวตนจาก LINE เอง (คนละกลไกกับ SSO) — งานเพิ่มมาก ไม่ใช่แค่ต่อยอด |
@@ -515,6 +537,7 @@
 | 9b.19 | **(ใหม่)** ต้อง rate-limit การใช้ chat ต่อ user/ทีมหรือไม่ (กันต้นทุน LLM API บานปลาย) | ยังไม่ระบุ | กระทบความเสี่ยง 8.22 และต้องมี middleware ใหม่ที่ chat endpoint (endpoint อื่นในระบบไม่เคยต้องมี rate limit ระดับนี้มาก่อน) |
 | 9b.20 | **(ใหม่)** FR-07 (aggregate/stats) ต้องเป็นตัวเลข real-time เป๊ะ หรือ acceptable ให้หน่วง/cache ได้บ้างถ้าข้อมูลเยอะขึ้นในอนาคต | สมมติ **คำนวณสดทุกครั้งก่อน** (ข้อมูลปริมาณยังไม่มาก) — ยังไม่ทำ materialized view | กระทบ query performance ระยะยาวถ้าจำนวน Project โตมาก — ยังไม่ใช่ปัญหาตอนเริ่ม |
 | 9b.21 | **(ใหม่)** ยืนยัน architecture "tool-use ผ่าน endpoint เดิม" (ที่เอกสารนี้ใช้เขียนต่อใน 0e.1/5) เพียงพอสำหรับทุกคำถามใน FR-01–FR-11 จริงหรือไม่ หรือมีบาง use case ที่ต้องการ vector search/RAG จริงๆ (เช่น ค้นจากเนื้อหาไฟล์แนบ PDF ที่ไม่มีใน DB) | สมมติ **tool-use พอสำหรับ scope ปัจจุบัน** เพราะทุกตัวอย่างใน FR document เป็นการ query ข้อมูลโครงสร้าง (structured data) ที่มีอยู่ใน DB อยู่แล้ว ไม่มีตัวอย่างค้นจากเนื้อหาไฟล์แนบ | ถ้าคำตอบเปลี่ยนเป็น "ต้องการ" จะเพิ่มงานก้อนใหญ่ (vector DB/embedding pipeline) ที่ประมาณการหัวข้อ 10 ยังไม่รวมไว้ |
+| 9b.22 | **(ใหม่ 27 ก.ค. 2026 — ดู 0f.3)** ช่อง `รายการ`/`Model` ในตาราง Project Management **ดึงจาก item master ของ ERP** — ยังไม่สรุปว่าเชื่อมอย่างไร: ERP ตัวไหน / มี REST API ให้เรียกไหม (ค้นหา + ดึงราคาทุนล่าสุด) / หรือ sync เป็นรอบเข้ามาเก็บใน `project` DB / หรือรอบแรกให้พิมพ์เองไปก่อน | สมมติ **รอบแรกกรอกเองได้เหมือน template + เตรียมคอลัมน์ `erp_item_code` ไว้** ยังไม่ต่อ ERP จริง (ผู้ใช้ระบุว่า "ค้างไว้ก่อน") | กระทบ: (1) ตัวเลข man-day ของตาราง PM ในหัวข้อ 10 (ถ้าต้องต่อ API + จัดการ cache/ราคาที่เปลี่ยน) (2) กติกาว่าต้นทุนที่กรอกต้องผูกกับราคา ERP ณ วันไหน (`cost_quote_date` ใน A.8.2) (3) ถ้า ERP เป็นแหล่งราคาทุน อาจกระทบเรื่องสิทธิ์เห็นต้นทุน (ความเสี่ยง 8.1) |
 
 ---
 
@@ -579,7 +602,7 @@
 | API+UI: Project-level lifecycle (aggregate `ProjectStatus` + badge + กติกาหยุดรับคำขอ — ✅ ข้อ 9.22) | 1–2 |
 | API+UI: event notification (`notification` table + read state + รวมในกระดิ่ง — ✅ ข้อ 9.24) | 2–3 |
 | UI: หน้า list ทั้ง 3 + sort/filter bar + ฟอร์ม Register + ตรวจซ้ำ + Dealer modal | 6–9 |
-| UI: ตาราง Project Management (3 ระดับ + auto calc) | 3–4 |
+| UI+API: ตาราง Project Management **ตาม Template Excel** (2 ระดับ + แถวสรุป, roll-up ทุกคอลัมน์, สูตร GP หัก EP + กติกา OC, master EP item type) — ⚠️ **ตัวเลขเดิมประเมินจากตารางแบบ prototype ที่ทุกแถวอิสระ ต้องทบทวนใหม่หลังปิด 9b.22 (ERP item)** | 3–4 (รอทบทวน) |
 | UI: หน้าเปรียบเทียบ Entry + ประวัติเหตุผล 2 role + ดู revision ย้อนหลัง | 3–5 |
 | UI: โซนอัพเดตสถานะ 4 ฟอร์ม + draft + **ทางแยก แพ้/ล่ม** | 4–5 |
 | UI: ฝั่งหัวหน้า (Approve Zone, รายการรออนุมัติ, Approval Detail + กรองตาม matrix ทีม) | 4–6 |
@@ -663,6 +686,32 @@
 | leader_entry_id | BIGINT FK → `project.entry`, NULL | Entry ที่ Manager เลือกเป็น Leader (NULL = ยังไม่ระบุ) + `leader_assign_by`/`leader_assign_date` — source of truth เดียวของ Leader |
 | is_active | BOOLEAN | |
 
+> **Project identity = `org_name_norm` + `project_name_norm` เท่านั้น (✅ 0f.4, 27 ก.ค. 2026)** — ไม่มีคอลัมน์ normalized ของ Dealer ที่ระดับ Project และ**ไม่ต้องมี** เพราะ Dealer เป็นข้อมูลระดับ Entry (`entry_revision.dealer_id`) โดยเจตนา: ขาย B2B — Dealer หลายเจ้าเข้ามาขอราคางานเดียวกันได้ ซึ่งคือเหตุผลที่ Project หนึ่งมีหลาย Entry ตั้งแต่แรก → แนะนำ UNIQUE index บน `(org_name_norm, project_name_norm)` เมื่อ `is_active` เพื่อกัน Project ซ้ำระดับ DB ไม่ใช่พึ่งการตรวจฝั่ง UI อย่างเดียว
+
+### A.4b `project.registration_revision` — revision ระดับ Project (**ใหม่ 27 ก.ค. 2026 — ✅ 0f.6**)
+
+เหตุผล: ฟอร์ม "แก้ไขข้อมูล" ให้เลือกแก้ **ชื่อหน่วยงาน / ชื่อโครงการ** ได้ ซึ่งเป็นข้อมูลบน `project.registration` ที่ **ทุก Entry ของ Project ใช้ร่วมกัน และเป็น key ตรวจซ้ำ** — เก็บเป็น revision ของ Entry ไม่ได้ จึงต้องมีชั้น revision ของตัวเองคู่ขนานกับ `entry_revision`
+
+| คอลัมน์ | ชนิด | หมายเหตุ |
+|---|---|---|
+| id | BIGINT GENERATED ALWAYS AS IDENTITY PK | |
+| project_id | BIGINT FK → `project.registration` | |
+| revision_no | INT | เริ่ม 1 — **UNIQUE (project_id, revision_no)** |
+| revision_status | TEXT | `draft` / `waiting` / `current` / `superseded` — ชุดเดียวกับ `entry_revision` |
+| is_current_revision | BOOLEAN | **unique partial index** `(project_id) WHERE is_current_revision` |
+| org_name / project_name / org_type_id | TEXT / TEXT / BIGINT | ค่าที่ถูกแก้ในรอบ revision นั้น |
+| ref_request_id | BIGINT FK → `project.status_request`, NULL | คำขอ `edit` ที่เป็นต้นเรื่อง |
+| requested_by_entry_id | BIGINT FK → `project.entry` | Entry (และ Sales) ที่เป็นคนขอแก้ — ใช้หาว่าหัวหน้าคนไหนเป็นผู้อนุมัติ |
+| is_active | BOOLEAN | |
+
+**กติกาที่ต้อง implement คู่กัน:**
+
+1. คำขอ `edit` ที่หัวข้อเป็น **ชื่อหน่วยงาน / ชื่อโครงการ / ประเภทหน่วยงาน** → อนุมัติแล้วเปิด **`registration_revision` ร่าง**; หัวข้ออื่น (Dealer / เงื่อนไขการขาย / ข้อมูลสินค้า / ระยะเวลารับประกัน) → เปิด **`entry_revision` ร่าง** ตามเดิม (9.23)
+2. ค่าใหม่มีผลกับ **ทุก Entry ของ Project** — UI ต้องเตือนผู้ขอให้ชัดว่าการแก้นี้กระทบ Entry ของ Sales คนอื่นด้วย (ไม่ใช่แก้เฉพาะของตัวเอง)
+3. ตอนอนุมัติ revision ระดับ Project ต้อง **ตรวจซ้ำอีกครั้งด้วย key ใหม่ (org+project)** — ถ้าชนกับ Project อื่นที่มีอยู่ ให้ปฏิเสธพร้อมชี้ Project ที่ชน (กัน Project ซ้ำเกิดจากทางแก้ไขข้อมูล)
+4. คอลัมน์ `org_name_norm`/`project_name_norm` บน `project.registration` อัพเดตตามค่าที่ approve แล้วเท่านั้น (revision ร่างยังไม่แตะ)
+5. log ลง `project.status_log` แบบระบุ `project_id` (แถวระดับ Project ตาม A.11)
+
 ### A.5 `project.entry` — identity ของ Entry (1 แถว = 1 Entry ตลอดชีวิต)
 
 | คอลัมน์ | ชนิด | หมายเหตุ |
@@ -707,18 +756,135 @@
 
 `id, revision_id FK, seq_no, model TEXT, product_group TEXT (Commercial/Innovative/Premium/Superior/Heavy Duty/Enterprise), batt_type TEXT, qty_batt INT, batt_bank INT, option TEXT, qty NUMERIC(12,2), unit_price NUMERIC(18,2), amount NUMERIC(18,2), is_active, audit`
 
-### A.8 `project.entry_task` — ตาราง Project Management (ลำดับชั้น ≤ 3)
+### A.8 `project.entry_task` — ตาราง Project Management (**ยึด `prototype/Template_ProjectManagement.xlsx` sheet `หลายรายการ` — ปรับ 27 ก.ค. 2026 ดู 0f**)
 
-| กลุ่มคอลัมน์ | คอลัมน์ |
-|---|---|
-| โครงสร้าง | `id, revision_id FK, parent_task_id (self-FK, NULL = main), task_level SMALLINT (1–3), seq_no INT` |
-| รายละเอียด | `item_name TEXT, sale_name TEXT, brand TEXT, dealer_name TEXT, model TEXT, qty NUMERIC(12,2)` |
-| ต้นทุน | `cost_unit, cost_amt NUMERIC(18,2)` |
-| EP | `ep_item TEXT, ep_unit, ep_amt NUMERIC(18,2)` |
-| ราคาขาย / GP | `sell_unit, sell_amt, gp_unit, gp_amt NUMERIC(18,2), gp_pct NUMERIC(9,2)` |
-| Bid Result | `bid_model TEXT, bid_competitor_model TEXT, bid_competitor_unit, bid_competitor_amt NUMERIC(18,2)` — 4 คอลัมน์ (ไม่มี Socomec — ตัดออกไปแล้วตามรอบก่อนหน้า) |
+> **source of truth ของตารางนี้คือ Template Excel ที่ผู้ใช้กรอกงานจริง ไม่ใช่ตาราง PM ใน `Role_Sale_Lastest.html`** — คอลัมน์ / กลุ่มคอลัมน์ / ระดับ record / สูตรคำนวณ ยึดตาม template ทั้งหมด จุดที่ต่างจาก prototype อยู่ท้ายหัวข้อนี้
 
-> ค่า Amt/GpPct ให้ **server คำนวณซ้ำเสมอ** (Amt = Qty×Unit, GpPct = (SellAmt−CostAmt)/SellAmt×100) — ตัวเลขจาก React เป็นแค่ preview (ความเสี่ยง 8.7)
+#### A.8.1 โครงสร้าง record 3 ชั้น: แถวสรุป → main item → spec line (ตาม template)
+
+| ระดับ | ที่มาใน template | เก็บใน DB | ความหมาย |
+|---|---|---|---|
+| **แถวสรุปโครงการ** | R3–R4 (`ปี ?? : ชื่องาน/ชื่อโครงการ : ? Ys`, `ชื่อเซลล์`, `ชื่อ Dealer`) | ❌ **ไม่เก็บ** — คำนวณตอนแสดงผล | ยอดรวมทั้ง Entry = ตัวเลขชุดเดียวกับการ์ดหน้าเปรียบเทียบ (ปิดคำถาม A2 เดิม); หัวแถวดึงจาก Register (ชื่อหน่วยงาน/ชื่อโครงการ/Sales/Dealer/จำนวนปีประกัน) ไม่กรอกซ้ำ |
+| **Main item** (`task_level = 1`) | R5, R9 — `ลำดับ` 1, 2 + `รายการ/สเปก` | ✅ | 1 แถว = 1 รายการที่เสนอขาย — ทุกช่องตัวเลข roll-up จาก spec line ไม่ให้กรอกมือ (ยกเว้น `qty`) |
+| **Spec line** (`task_level = 2`) | R6–R8, R10–R12 | ✅ | บรรทัดสเปก/BOM ของ main item (ตัวเครื่อง / แบต / SNMP / ค่าขนส่ง / OC) — **ระดับเดียวที่กรอกตัวเลขจริง** |
+
+**สีพื้นในไฟล์ = ชั้นของการ group (ยืนยันจาก fill + Excel outline level ในไฟล์จริง):**
+
+| สีพื้น | outline level | คือแถวอะไร | ที่มาของตัวเลข |
+|---|---|---|---|
+| **ขาว** (ไม่มีสีพื้น) | 2 | Spec line — R6–R8, R10–R12 | กรอกมือ |
+| **เทาอ่อน** (theme 0 tint −0.25) | 1 | Main item — R5, R9 | **รวมขึ้นมาจากแถวสีขาวในกลุ่มของตัวเอง** |
+| **เทาเข้ม** (theme 0 tint −0.35) | 0 | แถวสรุปโครงการ — R4 (และ R3 ที่ mirror ค่าจาก R4 ขึ้นมาโชว์ที่หัวตาราง) | **รวมขึ้นมาจากแถวเทาอ่อนทุกกลุ่ม** |
+| **เหลือง** (`FFFF00`) | — | เน้นเฉพาะช่อง ไม่ใช่ทั้งแถว: ต้นทุน `@` (F), EP `Amt.` (J), ราคาขาย `@` (K), GP `Amt.` (N) | ช่องกรอกมือหลัก + ช่องผลลัพธ์ที่ต้องดู |
+
+> UI ควรสื่อลำดับชั้นนี้ให้ตรงกับที่ผู้ใช้ชินจาก Excel (สีพื้น/การยุบ-ขยายกลุ่มแบบ outline) ไม่ใช่แค่ย่อหน้าเข้าไปเฉยๆ
+
+#### A.8.2 คอลัมน์ (เรียงตาม template A–R)
+
+| Col | หัวตาราง (กลุ่ม / ชื่อ) | คอลัมน์ DB | หมายเหตุ |
+|---|---|---|---|
+| A | ลำดับ | `seq_no INT` | main = 1, 2, 3…; spec line เรียงในกลุ่มพ่อ (แสดงผลเป็น 1.1/1.2 ได้ ไม่เก็บเป็นข้อความ) |
+| B | รายการ | `item_name TEXT` | main = ชื่อรายการ/สเปก; spec = ชื่อรุ่น/สเปก (comment ใน template: *"ใส่ Revision Name"* สำหรับแถวตัวเครื่อง, *"ขนาดแบต @ จำนวน x ราคา"* สำหรับแถวแบต) — **ค่านี้จะดึงจาก ERP (item master) ดู 9b.22** |
+| C | Sale (แถวสรุป) / **Brand** (spec) | `brand TEXT` | template ใช้คอลัมน์เดียวร่วมกัน 2 ความหมาย — ฝั่ง DB **ไม่ overload**: ชื่อ Sale มาจาก `entry.sale_user_name` อยู่แล้ว, เก็บเฉพาะ `brand` ที่ spec line; แถว main แสดง `COUNT(DISTINCT brand)` ของลูก (template ใช้ `COUNTA`) — ค่าคำนวณ ไม่เก็บ |
+| D | Dealer (แถวสรุป) / **Model** (spec) | `model TEXT` | เช่นเดียวกัน — Dealer มาจาก `entry_revision.dealer_id` อยู่แล้ว; แถว main แสดง `COUNT(DISTINCT model)` ของลูก |
+| E | Q'ty | `qty NUMERIC(12,2)` | template ใช้จำนวนเต็ม (`#,##0`) — spec line กรอกเอง, main = กรอกเอง หรือ = qty ของ spec line แรก (template ใช้ทั้ง 2 แบบ: `E5=300` ตรงๆ, `E9==E10`) → **ระบบยึดแบบ auto: main = Qty ของ spec line แรก (ไม่ใช่ผลบวกของลูก) และแถวสรุป = Σ Qty ของ main ทุกแถว — ดู A.8.3.2** |
+| F–G | **ต้นทุน** @ / Amt. | `cost_unit`, `cost_amt NUMERIC(18,2)` | + `cost_quote_date DATE NULL` — comment ใน template: *"ให้ใส่เสนอว่าราคา ณ วันที่เท่าไร"* (ราคาทุนต้องระบุว่าเป็นราคา ณ วันไหน) |
+| H–J | **EP** รายการ / @ / Amt. | `ep_item TEXT`, `ep_unit`, `ep_amt NUMERIC(18,2)` | EP = ค่าใช้จ่ายเพิ่มนอกต้นทุนสินค้า (ตัวอย่างจริงใน template: `ค่าขนส่ง`, `OC`) — **`OC` = Overriding Commission (ฝั่ง Dealer ใช้คำว่า Outside Commission) = ค่าคอมมิชชั่นที่จ่ายให้ Dealer / คนหา lead ฝั่ง Dealer — เป็น "รายการหนึ่งในกลุ่ม EP" ไม่ใช่คอลัมน์แยก** และเป็นตัวที่ทำให้ GP มี 2 ชุด (A.8.3) + `ep_type_id BIGINT FK → project.ep_item_type` (มี flag `is_oc`) + `ep_quote_date DATE NULL`, `ep_source TEXT NULL` — comment ใน template: *"ราคาต้องได้จากจัดส่งเท่านั้น เมื่อได้ราคามาแล้ว ให้เอามาใส่ พร้อมลงวันที่ที่ได้ราคามา"* |
+| K–L | **ราคาขาย** @ / Amt. | `sell_unit`, `sell_amt NUMERIC(18,2)` | ใน template ราคาขายกรอกที่ spec line แรกของ main item (เป็นราคาต่อหน่วยของทั้งรายการ) ไม่ได้กรอกทุกบรรทัด |
+| M–O | **GP** @ / Amt. / % | `gp_unit`, `gp_amt NUMERIC(18,2)`, `gp_pct NUMERIC(9,2)` | **ค่า derived ทั้งหมด ห้ามให้กรอกมือ** (ต่างจาก prototype ที่เป็น input) — สูตรดู A.8.3 |
+| P–R | **Bid Result → ราคาขายคู่แข่ง** รุ่น / @ / Amt. | `bid_competitor_model TEXT`, `bid_competitor_unit`, `bid_competitor_amt NUMERIC(18,2)` | 3 คอลัมน์ตาม template |
+| — | โครงสร้าง | `id, revision_id FK, parent_task_id (self-FK, NULL = main), task_level SMALLINT (1–2), erp_item_code TEXT NULL, is_active` + audit | `erp_item_code` เตรียมไว้ผูกกับ item master ของ ERP (ดู 9b.22 — ยังไม่ต่อจริงรอบนี้) |
+
+#### A.8.3 สูตรคำนวณ — **server เป็น source of truth ทุกระดับ** (React คำนวณได้แค่ preview)
+
+**Spec line (`task_level = 2`)** — ระดับที่กรอกจริง:
+
+- `cost_amt = cost_unit × qty` (template `G6 = F6*E6`)
+- `sell_amt = sell_unit × qty` (template `L6 = E6*K6`)
+- `ep_unit = ep_amt ÷ qty(main)` (template `I6 = J6/E5` — หารด้วย Qty ของ **main item** ไม่ใช่ของแถวตัวเอง)
+- `gp_amt = sell_amt − cost_amt(main) − ep_amt(main เฉพาะรายการที่ is_oc = false)` = **GP ก่อนหัก OC** (template `N6 = L6-G5-J5`, `N10 = L10-G9-J10`)
+- `gp_unit = gp_amt ÷ qty(main)` , `gp_pct = gp_amt ÷ sell_amt × 100`
+
+**Main item (`task_level = 1`)** — roll-up จากลูกทั้งหมด:
+
+- `qty` = กรอกที่ main; `cost_unit = Σ spec.cost_unit`, `cost_amt = Σ spec.cost_amt` (template `F5 = SUM(F6:F8)`, `G5 = SUM(G6:G8)`)
+- `ep_unit = Σ spec.ep_unit`, `ep_amt = Σ spec.ep_amt` (**รวมทุกรายการ EP รวมทั้งรายการ OC**), `sell_unit = Σ spec.sell_unit`, `sell_amt = Σ spec.sell_amt`
+- `gp_amt = sell_amt − cost_amt − ep_amt(ทุกรายการ)` = **GP หลังหัก OC** (template `N5 = L5-G5-J5`, `N9 = L9-J9-G9`)
+- `gp_unit = gp_amt ÷ qty` , `gp_pct = gp_amt ÷ sell_amt × 100`
+
+**แถวสรุปโครงการ (ไม่เก็บใน DB)** — รวมจาก **main item เท่านั้น ห้ามรวม spec line ซ้ำ**:
+
+- `qty = Σ main.qty` , `cost_amt = Σ main.cost_amt` , `ep_amt = Σ main.ep_amt` , `sell_amt = Σ main.sell_amt` (template `E4=E5+E9` ฯลฯ)
+- **ค่าต่อหน่วยที่ระดับสรุปเป็นค่าถัวเฉลี่ย ไม่ใช่ผลบวก**: `cost_unit = cost_amt ÷ qty`, `ep_unit = ep_amt ÷ qty`, `sell_unit = sell_amt ÷ qty` (template `F4 = G4/E4`)
+- `gp_amt = sell_amt − cost_amt − ep_amt` , `gp_unit = gp_amt ÷ qty` , `gp_pct = gp_amt ÷ sell_amt × 100`
+
+> 🔑 **นิยาม GP ที่ใช้ทั้งระบบ: `GP = ราคาขาย − ต้นทุน − EP` และ `GP% = GP ÷ ราคาขาย × 100`** (ปิดคำถาม A1 — template ยืนยันว่า **หัก EP ด้วย** ต่างจากสูตรใน `calcRow` ของ prototype ที่ไม่หัก EP) — ตัวเลขชุดนี้ไปโผล่ที่การ์ดหน้าเปรียบเทียบ, ป้าย "GP สูงสุด/ดีที่สุด" และ FR-07 (win rate / GP เฉลี่ย) ทั้งหมด
+
+#### A.8.3.1 กติกา OC — GP 2 ชุด (จุดที่พลาดง่ายที่สุดในตารางนี้)
+
+**`OC` = Overriding Commission** (ฝั่ง Dealer เรียก *Outside Commission*) = ค่าคอมมิชชั่นจ่ายให้ Dealer / คนหา lead ฝั่ง Dealer — **เป็นรายการหนึ่งในกลุ่ม EP** (คอลัมน์ H–J) ไม่ใช่คอลัมน์ของตัวเอง
+
+หมายเหตุที่เจ้าของไฟล์เขียนไว้เองในเซลล์ M12: *"กรณีมี OC แถวช่องขาวคิด GP ไม่รวม OC / ช่องสีเทา คิดรวม OC"* — **ตัวเลขจริงในไฟล์ (main item ที่ 2 ซึ่งมีรายการ OC 150,000 อยู่ในแถว R11) เป็นดังนี้:**
+
+| แถว | สูตรในไฟล์ | ค่า | หัก OC ออกจาก GP ไหม |
+|---|---|---|---|
+| **R10 สีขาว** (spec line) | `N10 = L10 − G9 − J10` → 5,100,000 − 2,226,713.70 − **10,000 (เฉพาะค่าขนส่ง)** | **2,863,286.30** (GP% 56.14) | ❌ **ไม่หัก** → GP ก่อนหัก OC |
+| **R9 เทาอ่อน** (main item) | `N9 = L9 − J9 − G9` → 5,100,000 − **160,000 (ค่าขนส่ง 10,000 + OC 150,000)** − 2,226,713.70 | **2,713,286.30** (GP% 53.20) | ✅ **หัก** → GP หลังหัก OC |
+| **R4 เทาเข้ม** (สรุปโครงการ) | `N4 = L4 − G4 − J4` โดย `J4 = J5 + J9 = 170,000` (รวม OC) | **5,426,572.60** | ✅ **หัก** |
+
+ผลต่าง `N10 − N9 = 150,000` = ค่า OC พอดี → **ยืนยันว่าไฟล์ทำงานแบบ: แถวขาวไม่หัก OC (GP สูงกว่า) / แถวเทาทั้ง 2 ชั้นหัก OC (GP ต่ำกว่า)**
+
+**สิ่งที่ระบบต้องทำ:** เก็บ/แสดง GP **2 ชุดคู่กันเสมอเมื่อ main item นั้นมีรายการ OC**
+
+- `gp_before_oc` (แถวขาว) = `ราคาขาย − ต้นทุน − EP ที่ is_oc = false` — margin ก่อนจ่ายค่าคอม Dealer — **ถ้า main item นั้นมีรายการ OC อยู่ในกลุ่ม EP ช่อง GP ของแถวขาวจะไม่หัก OC ออก (ข้อสรุปผู้ใช้ 27 ก.ค. 2026)**
+- `gp_after_oc` (แถวเทาอ่อน/เทาเข้ม) = `ราคาขาย − ต้นทุน − EP ทั้งหมด` — margin จริงหลังจ่ายค่าคอม
+- main item ที่ไม่มีรายการ OC → ค่า 2 ชุดเท่ากัน ไม่ต้องแสดงแยก
+- **ต้องรู้ว่า EP แถวไหนเป็น OC จาก flag ในฐานข้อมูล (`project.ep_item_type.is_oc`) ห้าม match จากข้อความใน `ep_item`** (พิมพ์ว่า "OC 5% N Success" / "Support งาน Sale 1%" ก็ยังต้องจับได้ถูก)
+
+> ✅ **ยืนยันจากผู้ใช้แล้ว (27 ก.ค. 2026):** *"เฉพาะแถวขาว — ถ้ามี OC อยู่ในรายการ EP ช่อง GP ของแถวขาวจะไม่รวม (ไม่หัก) OC"* → ตรงกับตัวเลขที่คำนวณจริงในไฟล์ทุกประการ **ปิดประเด็นนี้แล้ว ไม่ต้องถามซ้ำ**: แถวขาว = GP ก่อนหัก OC / แถวเทาอ่อน + เทาเข้ม = GP หลังหัก OC
+
+> 📌 **สมมติฐานที่ใช้ต่อ (ยังไม่ยืนยัน — เปลี่ยนได้ก่อนเริ่ม implement):** ตัวเลข GP ที่แสดง**นอกหน้า Project Management** — การ์ด/ตารางหน้าเปรียบเทียบ Entry, ป้าย "GP สูงสุด/ดีที่สุด", สถิติ FR-07 (win rate / GP เฉลี่ย) — ใช้ **`gp_after_oc`** (margin จริงหลังจ่ายค่าคอม Dealer) เป็นค่าหลัก ส่วน `gp_before_oc` แสดงเฉพาะในตาราง PM ที่แถวสีขาวตาม template — ถ้าต้องการให้หน้าเปรียบเทียบใช้ `gp_before_oc` แทน ให้แจ้งก่อนเริ่ม (กระทบเฉพาะชั้น response shaping ไม่กระทบ schema/สูตร)
+
+#### A.8.3.2 ช่องไหนกรอกมือ / ช่องไหน auto — **ต้องรวมยอดอัตโนมัติเหมือน Excel (ข้อสรุปผู้ใช้ 27 ก.ค. 2026)**
+
+หลักการ: **ถ้า main item นั้นมี spec line (รายการย่อย) อยู่ ช่องตัวเลขของแถว main และแถวสรุปต้องคำนวณให้เองทั้งหมด ห้ามให้พิมพ์ทับ** — พฤติกรรมเดียวกับสูตรใน Excel ที่ผู้ใช้ใช้อยู่ (พิมพ์ที่แถวขาว → แถวเทาอ่อน → แถวเทาเข้ม อัปเดตขึ้นไปเอง)
+
+| Col | คอลัมน์ | Spec line (ขาว) | Main item (เทาอ่อน) | แถวสรุป (เทาเข้ม) |
+|---|---|---|---|---|
+| A | ลำดับ | auto (ลำดับในกลุ่ม) | auto (1, 2, 3…) | — |
+| B | รายการ | **กรอก** (เลือกจาก ERP item — 9b.22) | **กรอก** | จาก Register (ชื่อโครงการ) |
+| C | Brand | **กรอก** | auto = `COUNT(DISTINCT brand)` ของลูก | ชื่อ Sales (จาก Register) |
+| D | Model | **กรอก** | auto = `COUNT(DISTINCT model)` ของลูก | ชื่อ Dealer (จาก Register) |
+| E | Q'ty | **กรอก** | auto = Qty ของ spec line แรก — **ไม่ใช่ผลบวกของลูก** (ลูกเป็นส่วนประกอบของชุดเดียวกัน ใช้ Qty ชุดเดียวกัน ตาม template `E9==E10`) | auto = **Σ Qty ของ main item ทุกแถว** (`E4=E5+E9`) |
+| F | ต้นทุน @ | **กรอก** (+ `cost_quote_date`) | auto = **Σ** ของลูก | auto = `cost_amt ÷ qty` |
+| G | ต้นทุน Amt. | auto = `@ × Qty` | auto = **Σ** ของลูก | auto = **Σ** ของ main |
+| H | EP รายการ | **กรอก** (เลือกจาก `ep_item_type`) | auto = จำนวนรายการ EP ของลูก | — |
+| I | EP @ | auto = `EP Amt ÷ Qty(main)` | auto = **Σ** ของลูก | auto = `ep_amt ÷ qty` |
+| J | EP Amt. | **กรอก** (+ `ep_quote_date`/`ep_source`) | auto = **Σ** ของลูก | auto = **Σ** ของ main |
+| K | ราคาขาย @ | **กรอก** | auto = **Σ** ของลูก | auto = `sell_amt ÷ qty` |
+| L | ราคาขาย Amt. | auto = `@ × Qty` | auto = **Σ** ของลูก | auto = **Σ** ของ main |
+| M–O | GP @ / Amt. / % | auto (ก่อนหัก OC) | auto (หลังหัก OC) | auto (หลังหัก OC) |
+| P–R | ราคาขายคู่แข่ง รุ่น / @ / Amt. | **กรอก** | — | — |
+
+**กติกาที่ต้อง implement คู่กัน:**
+
+1. **คำนวณสดทันทีที่พิมพ์** (เหมือน Excel) — ไม่ต้องกดปุ่ม "คำนวณ" และไม่ต้องบันทึกก่อนถึงจะเห็นยอดรวม
+2. **ช่อง auto ทุกช่องเป็น read-only** (แสดงต่างจากช่องกรอก เช่นพื้นสีตาม A.8.1) พิมพ์ทับไม่ได้ — โดยเฉพาะช่อง GP ทั้ง 3 ช่อง ที่ prototype เดิมเปิดให้พิมพ์เอง
+3. **เพิ่ม / แก้ / ลบ spec line → recalculate ไล่ขึ้นทันที** (spec → main → แถวสรุป → การ์ดสรุปหน้าเปรียบเทียบ) ไม่ใช่รอ refresh
+4. **เคส main item ที่ไม่มี spec line เลย** (งาน "รายการเดียว" ที่ไม่ต้องแตกสเปก): ช่องของแถว main กลับมากรอกมือได้ — พอเพิ่ม spec line แรกเข้ามา ระบบสลับเป็นโหมด auto และเตือนก่อนทับค่าที่กรอกไว้
+5. **ฝั่ง server คำนวณซ้ำเสมอตอน `/save` และทิ้งค่า aggregate ที่ client ส่งมาทุกครั้ง** (ไม่ใช่แค่ validate) — ค่าที่เก็บลง DB คือค่าที่ server คำนวณเท่านั้น
+6. เก็บค่า aggregate ของแถว main ลง DB (denormalized) เพื่อให้ list/report/FR-07 query ได้เร็ว ส่วนแถวสรุปโครงการยังคำนวณตอนอ่าน (A.8.1)
+
+#### A.8.4 จุดที่ต่างจากตาราง PM ใน `Role_Sale_Lastest.html` (ยึด template เป็นหลัก)
+
+1. **ระดับ record: 2 ระดับ + แถวสรุป** (prototype รองรับ 3 ระดับ) — `parent_task_id` ยังเป็น self-FK รองรับลึกกว่านี้ได้ในอนาคต แต่ UI/validation รอบนี้ยึด 2 ระดับตาม template
+2. **GP เป็นค่า derived** (prototype ให้กรอก `GP @`/`GP Amt` เอง) และ **หัก EP** (prototype ไม่หัก)
+3. **แถว main เป็น roll-up ทั้งแถว** (prototype ทุกแถวอิสระต่อกัน ไม่มีการรวมยอด) + ช่อง Brand/Model ที่แถว main แสดงเป็น **จำนวนนับ** ตาม `COUNTA` ของ template
+4. **ยอดรวมระดับ Entry = ผลรวมของ main item เท่านั้น** (prototype รวม Qty ทุกแถวทุกระดับ → นับซ้ำ)
+5. คอลัมน์ `Sale`/`Dealer` ในตาราง PM ของ prototype **ตัดออก** — template ใช้ค่าจาก Register (แถวสรุป) ไม่ได้กรอกรายแถว
+6. Bid Result เหลือ **3 คอลัมน์ตาม template** (`ราคาขายคู่แข่ง`: รุ่น/@/Amt.) — คอลัมน์ "รุ่น (ของเรา)" ที่ prototype มีเพิ่มมา ไม่มีใน template
+7. เพิ่ม field ที่ template ระบุผ่าน comment แต่ prototype ไม่มี: `cost_quote_date`, `ep_quote_date`/`ep_source`
+8. ช่องต้นทุน @ ใน template มีการพิมพ์เป็นนิพจน์คำนวณ (`=294.893*3` = จำนวนแบต × ราคาต่อลูก) — UI ควรรองรับพิมพ์นิพจน์คูณ/บวกในช่องเงิน หรืออย่างน้อยมีช่อง `qty × unit` ย่อยสำหรับแบต (ยังไม่ตัดสินใจ — ไม่ blocking)
 
 ### A.9 `project.status_request` — คำขออัพเดตสถานะ (won/lost/postpone/edit)
 
@@ -750,6 +916,7 @@
 | `project.team_user` | `id, team_id FK, user_name TEXT, role_in_team TEXT ('member'/'head'), is_active` + audit | matrix 1-M — สิทธิ์มองเห็นและอนุมัติของ `headsale` กรองจากตารางนี้ (ข้อ 9.7), UNIQUE (team_id, user_name, role_in_team) |
 | `project.competitor_brand` | `id, name TEXT, seq_no, is_active` + audit | ยี่ห้อคู่แข่ง — admin จัดการผ่านหน้า config |
 | `project.org_type` | `id, name TEXT, seq_no, is_active` + audit | ประเภทหน่วยงาน — admin จัดการผ่านหน้า config |
+| `project.ep_item_type` **(ใหม่ 27 ก.ค. 2026)** | `id, name TEXT, is_oc BOOLEAN, seq_no, is_active` + audit | ชนิดรายการ EP — seed จาก template: `ค่าขนส่ง` (`is_oc = false`), **`OC` — Overriding Commission (ฝั่ง Dealer เรียก Outside Commission) = ค่าคอมจ่าย Dealer/ผู้หา lead** (`is_oc = true`) — **`is_oc` เป็นตัวตัดสินว่ารายการนี้ถูกหักใน GP ชุด "หลังหัก OC" (A.8.3.1) ห้ามเดาจากข้อความชื่อรายการ** (ในไฟล์จริงมีการพิมพ์เป็น `OC 5% N Success`, `Support งาน Sale 1%`) |
 | `project.lost_reason` | `id, name TEXT, seq_no, is_active` + audit | เหตุผลที่แพ้ — seed: ราคา, Specification, ระยะเวลาส่งมอบ, เงื่อนไขการขาย, อื่นๆ |
 | `project.collapse_reason` | `id, name TEXT, seq_no, is_active` + audit | สาเหตุที่โครงการล่ม — seed: ลูกค้ายกเลิกโครงการ, งบประมาณไม่ผ่าน, โครงการเลื่อนโดยไม่มีกำหนด, ไม่มีการจัดซื้อ, อื่นๆ |
 | `project.notification_config` | `id, near_due_days INT default 90, webhook_url TEXT, webhook_enable BOOLEAN, notify_enable BOOLEAN` + audit | เกณฑ์แจ้งเตือนปรับได้ + ปลายทาง webhook (ข้อ 9.6) |
@@ -795,8 +962,8 @@
 | 3 | POST | `/status-update-list` | อัพเดตสถานะ | list ของตัวเอง + flag `canUpdate` (status = presented) |
 | 4 | POST | `/detail` | ฟอร์ม/See Detail | ข้อมูล Entry เต็ม: Register + Products + Warranty + PM Tasks + ประวัติพิจารณา |
 | 5 | POST | `/save` | ฟอร์ม Register + PM | บันทึกร่าง/ส่งอนุมัติ (`isDraft`) — สร้าง Project+Entry ใหม่ หรือ Entry ใต้ Project เดิม (ส่ง `projectId` มาด้วย) — server ออก `projectCode`/`entryCode` เอง |
-| 6 | POST | `/duplicate-check` | ปุ่มตรวจสอบข้อมูลซ้ำ | รับ org/project/dealer → คืน exact matches (3/3 field, ใช้ `pg_trgm` ช่วยหา partial ได้ดีขึ้นกว่าเดิม) + partial matches + `nextEntrySequence` |
-| 7 | POST | `/compare` | หน้าเปรียบเทียบ Entry | ทุก Entry ของ Project + PM summary + BOM — server กรองเฉพาะสถานะ eligible สำหรับส่วน compare |
+| 6 | POST | `/duplicate-check` | ปุ่มตรวจสอบข้อมูลซ้ำ | **ปรับ 27 ก.ค. 2026 (0f.4):** รับ org/project (+ dealer ไว้แสดงผลเฉยๆ) → คืน exact matches ที่ **ตรงครบ 2 field (org+project)** + partial matches (ตรง field เดียว, ใช้ `pg_trgm` ช่วยหาที่พิมพ์ต่างกันเล็กน้อย) + `nextEntrySequence` + รายชื่อ Dealer ของ Entry ที่มีอยู่แล้วในแต่ละ Project ที่ match (ให้ Sales เห็นว่ามีเจ้าไหนยื่นไปแล้วบ้าง) |
+| 7 | POST | `/compare` | หน้าเปรียบเทียบ Entry | ทุก Entry ของ Project + PM summary + BOM — server กรองเฉพาะสถานะ eligible สำหรับส่วน compare; **PM summary ต่อ Entry = แถวสรุปโครงการตาม A.8.3 (รวมจาก main item เท่านั้น) และ GP หัก EP ตามนิยามใหม่ (0f.1)**; ป้าย "ต่ำสุด/สูงสุด/ดีที่สุด" คืนเป็น flag ต่อ Entry — **เท่ากันได้หลาย Entry พร้อมกัน ไม่ต้อง tie-break (0f.5)** |
 | 8 | POST | `/status-request/save` | ฟอร์มอัพเดตสถานะ 4 แบบ | บันทึกร่าง/ส่งคำขอ won/lost/postpone/edit — **lost ต้องระบุ `lostType` (แพ้/ล่ม); ล่ม = server เปลี่ยนเป็น `closed` ทันที + log ไม่สร้างงานอนุมัติ + สร้าง event notification ถึงหัวหน้า/Manager (✅ 9.24)** — server validate required + transition; เจ้าของ Entry เท่านั้น (B.2) และปฏิเสธเมื่อ Project จบแล้ว (1.5) |
 | 9 | POST | `/approve-list` ✅🟣 | หน้าอนุมัติ | list รอพิจารณา + filter ประเภท + ตัวเลข Approve Zone cards — ขอบเขตตาม role (✅ ข้อ 9.17): `headsale` เห็น `waiting`/`waitingWon`/`waitingLost`/`waitingPostpone`/`waitingEdit` ของทีมตาม matrix / `salemanager` เห็นเฉพาะ `waitingSupervisorWon/Lost` ทุกทีม |
 | 10 | POST | `/approve` ✅🟣 | Approval Detail | อนุมัติ — server ทำ state transition ตามชั้นของ role (head: `waitingWon→waitingSupervisorWon` ฯลฯ / Manager: `waitingSupervisor*→won/lost`) + apply ผล (postpone → อัพเดตวันคาดจบ + log) |
@@ -813,7 +980,7 @@
 | 18 | GET | `/master/competitor-brand` | Bid Result | ยี่ห้อคู่แข่งจาก `project.competitor_brand` |
 | 18b | GET | `/master/project-lost-reason`, `/project-collapse-reason` | ฟอร์มไม่ได้งาน | เหตุผลที่แพ้ / สาเหตุที่โครงการล่ม (ข้อ 0.3) |
 | 19 | POST | `/entry-revisions` | See Detail | รายการ revision ทั้งหมดของ Entry + เปิดดู revision เก่าแบบ read-only (ข้อ 9.2) |
-| 19b | POST | `/entry-revision/submit` | ฟอร์มแก้ไข revision | Sales ส่ง revision ร่างที่แก้เสร็จเข้าอนุมัติรอบ 2 (✅ 9.23) — Entry → `waitingEdit`, revision → `waiting`; หัวหน้าอนุมัติผ่าน `/approve` (`approvalType = editRevision`) → revision เป็น `current` ตัวเดิม `superseded` |
+| 19b | POST | `/entry-revision/submit` | ฟอร์มแก้ไข revision | Sales ส่ง revision ร่างที่แก้เสร็จเข้าอนุมัติรอบ 2 (✅ 9.23) — Entry → `waitingEdit`, revision → `waiting`; หัวหน้าอนุมัติผ่าน `/approve` (`approvalType = editRevision`) → revision เป็น `current` ตัวเดิม `superseded` — 🆕 **รองรับ revision ระดับ Project ด้วย (0f.6): payload ระบุ `revisionScope` = `entry` หรือ `project`; scope `project` ตอนอนุมัติต้องตรวจซ้ำ org+project ใหม่ก่อน apply (A.4b ข้อ 3) และมีผลกับทุก Entry ของ Project นั้น** |
 | 20 | POST | `/config/team/list`, `/config/team/save` ✅(admin) | หน้า config | จัดการ `project.team` + matrix `project.team_user` (member/head) |
 | 21 | POST | `/config/competitor-brand/save` ✅(admin) | หน้า config | จัดการยี่ห้อคู่แข่ง |
 | 22 | POST | `/config/org-type/save` ✅(admin) | หน้า config | จัดการประเภทหน่วยงาน |
@@ -868,15 +1035,28 @@
 
 | ฟอร์ม | Field Prototype | คอลัมน์ |
 |---|---|---|
+> **ยึด "โซนอัพเดตสถานะในหน้า Detail" (`#statusUpdateZone`) เป็นหน้าจอจริงชุดเดียว (✅ 0f.8)** — prototype ยังมี modal `#statusUpdateModal` ค้างอยู่ในไฟล์ (ฟอร์ม `formWon`/`formLost`/`formPostpone`/`formEdit` + ช่อง `wonRef` เลขที่ PO, `wonAmount` มูลค่างาน, `wonDate` วันที่ได้งาน) แต่ **ไม่มีปุ่มไหนเรียกใช้เลย = dead UI ไม่ implement และไม่เพิ่มคอลัมน์รองรับ**
+
+| ฟอร์ม | Field Prototype (id จริงในโซนหน้า Detail) | คอลัมน์ |
+|---|---|---|
 | ได้งาน (`won`) | `wonAnalysis, wonCompetitorBrand, wonCompetitorModel, wonCompetitorPrice, wonInspector, wonResultDate` | `sale_analysis, competitor_brand, competitor_model, competitor_price, inspector_name, result_date` — required ทุกตัว |
-| ไม่ได้งาน → **แพ้** (`lost` + `lostType='lose'`) | เลือกการ์ด "แพ้" → `lostReasonType`, `lostAnalysis`, `lostBrand, lostModel, lostPrice, lostDate` (Bid Result) | `lost_type='lose'`, `lost_reason_id`, `sale_analysis`, `competitor_brand/model/price`, `result_date` — required ทุกตัว → เข้า flow อนุมัติ 2 ชั้น |
-| ไม่ได้งาน → **ล่ม** (`lost` + `lostType='collapse'`) | เลือกการ์ด "ล่ม" → `collapseReason`, `collapseDate`, `collapseNote` — required ทั้ง 3 | `lost_type='collapse'`, `collapse_reason_id`, `collapse_date`, `collapse_note` → server เปลี่ยนสถานะเป็น `closed` ทันที (ไม่มีการอนุมัติ) |
+| ไม่ได้งาน → **แพ้** (`lost` + `lostType='lose'`) | เลือกการ์ด "แพ้" → `lostAnalysis, lostCompetitorBrand, lostCompetitorModel, lostCompetitorPrice, lostInspector, lostResultDate` **+ 🆕 ช่อง "เหตุผลที่แพ้" (dropdown) ที่ต้องเพิ่มเข้าไป** | `lost_type='lose'`, **`lost_reason_id`** (dropdown จาก `project.lost_reason`), `sale_analysis` (= วิเคราะห์สาเหตุที่แพ้ แบบ free text), `competitor_brand/model/price`, `inspector_name`, `result_date` — required ทุกตัว → เข้า flow อนุมัติ 2 ชั้น |
+| ไม่ได้งาน → **ล่ม** (`lost` + `lostType='collapse'`) | เลือกการ์ด "ล่ม" → `detailCollapseReason`, `detailCollapseDate`, `detailCollapseNote` — required ทั้ง 3 | `lost_type='collapse'`, `collapse_reason_id`, `collapse_date`, `collapse_note` → server เปลี่ยนสถานะเป็น `closed` ทันที (ไม่มีการอนุมัติ) |
 | เลื่อนวันคาดจบ (`postpone`) | `detailOldDue, detailNewDue, detailPostponeReason` | `old_expect_date, new_expect_date, postpone_reason` |
-| แก้ไขข้อมูล (`edit`) | `detailEditField, detailEditValue, detailEditReason` | `edit_field, edit_new_value, edit_reason` |
+| แก้ไขข้อมูล (`edit`) | `detailEditField, detailEditValue, detailEditReason` | `edit_field, edit_new_value, edit_reason` — หัวข้อที่เลือกได้ 6 ค่า: ชื่อหน่วยงาน / ชื่อโครงการ / Dealer / เงื่อนไขการขาย / ข้อมูลสินค้า / ระยะเวลารับประกัน → **2 ค่าแรกเปิด revision ระดับ Project (A.4b) ที่เหลือเปิด revision ระดับ Entry** (✅ 0f.6); 1 คำขอ = 1 หัวข้อ ตาม prototype (แก้หลายเรื่องยื่นหลายคำขอ) |
 
-### C.3 ตาราง Project Management (`taskRow`) → `project.entry_task`
+> **🆕 27 ก.ค. 2026 (✅ 0f.7) — ช่องเดียวที่เพิ่มจาก prototype:** ฟอร์ม "แพ้" ในหน้าจริงมีแต่ช่องวิเคราะห์แบบ free text ไม่มี dropdown "เหตุผลที่แพ้" (ช่อง `lostReasonType` ที่มีอยู่ใน modal ซึ่งเป็น dead UI) — ข้อสรุปรอบนี้คือ **เก็บทั้งคู่**: dropdown (ราคา / Specification / ระยะเวลาส่งมอบ / เงื่อนไขการขาย / อื่นๆ) ไว้ทำรายงานสาเหตุการแพ้ + free text ไว้เก็บบริบท → ต้องเพิ่ม dropdown เข้าไปในโซนอัพเดตสถานะของหน้า Detail (ทั้ง `Role_Sale` และหน้าอนุมัติฝั่งหัวหน้า/Manager ต้องแสดงค่านี้ด้วย)
 
-ลำดับ (renumber 1 / 1.1 / 1.1.1) = คำนวณจาก `parent_task_id + seq_no` ตอนแสดงผล ไม่เก็บเป็นข้อความ / คอลัมน์เงินตามภาคผนวก A.8 ตรงกับหัวตาราง Prototype ทุกช่อง (ต้นทุน @-Amt, EP รายการ-@-Amt, ราคาขาย @-Amt, GP @-Amt-%, Bid Result 4 ช่อง — ตัด Socomec @/Amt. ออกแล้ว)
+### C.3 ตาราง Project Management → `project.entry_task` (**ยึด `Template_ProjectManagement.xlsx` ไม่ใช่ `taskRow` ของ prototype — ✅ 0f.1/0f.2**)
+
+| Template (sheet `หลายรายการ`) | ปลายทาง |
+|---|---|
+| R1 `ชื่อหน่วยงาน By ชื่อเซลล์` / R4 `ปี ?? : ชื่องาน/ชื่อโครงการ : ? Ys`, `ชื่อเซลล์`, `ชื่อ Dealer` | **ไม่ใช่ข้อมูลที่กรอกในตารางนี้** — ดึงจาก Register/Entry (`registration.org_name`/`project_name`, `entry.sale_user_name`, `entry_revision.dealer_snapshot`, `warranty_years`) มาแสดงเป็นหัวตาราง |
+| R3–R4 (แถวสรุปตัวเลข) | **ไม่เก็บใน DB** — คำนวณตอนแสดงผลตาม A.8.3 (เป็นตัวเลขชุดเดียวกับการ์ดหน้าเปรียบเทียบ Entry) |
+| R5, R9 (`ลำดับ` + `รายการ/สเปก`) | `entry_task` `task_level = 1` (main item) — ตัวเลขทุกช่อง roll-up |
+| R6–R8, R10–R12 (บรรทัดสเปก) | `entry_task` `task_level = 2` (spec line) — ระดับที่กรอกจริง |
+| คอลัมน์ A–R | ตาม A.8.2 (ลำดับ = คำนวณจาก `parent_task_id + seq_no` ตอนแสดงผล ไม่เก็บเป็นข้อความ) |
+| หมายเหตุในไฟล์ (comment/สีเซลล์) | `cost_quote_date` (*"ราคา ณ วันที่เท่าไร"*), `ep_quote_date`/`ep_source` (*"ราคาต้องได้จากจัดส่งเท่านั้น + ลงวันที่ที่ได้ราคามา"*), กติกา OC (*"ช่องขาวคิด GP ไม่รวม OC / ช่องสีเทา คิดรวม OC"*) → A.8.3 |
 
 ---
 
@@ -888,13 +1068,13 @@
 | D2 | ส่งอนุมัติโดยข้อมูล Register/PM ไม่ครบ | server ปฏิเสธพร้อมระบุ field ที่ขาด (ไม่พึ่ง client validation อย่างเดียว) |
 | D3 | ส่งอนุมัติสำเร็จ → หัวหน้าอนุมัติ | `waiting` → `presented`, มีแถวใน StatusLog + Approval history |
 | D4 | หัวหน้า Reject โดยไม่กรอกเหตุผล | ระบบไม่ให้ผ่าน; กรอกแล้ว → `rejected` + เหตุผลแสดงฝั่ง Sales ในหน้า See Detail |
-| D5 | ตรวจซ้ำ: org+project+dealer ตรงครบ 3 field (ต่าง case/ช่องว่าง) | เจอ exact match, เสนอยื่นเป็น Entry ลำดับถัดไป, ยืนยันแล้วได้ `entryCode = PRJ-xxxx-E{n}` |
-| D6 | ตรวจซ้ำ: ตรงแค่ 1–2 field | แสดงรายการซ้ำบางส่วน + เตือน แต่สร้าง Project ใหม่ได้ |
+| D5 | **(ปรับ 0f.4)** ตรวจซ้ำ: org+project ตรงครบ 2 field (ต่าง case/ช่องว่าง) **โดยที่ Dealer เป็นคนละเจ้ากับ Entry เดิม** | เจอ exact match, เสนอยื่นเป็น Entry ลำดับถัดไป, ยืนยันแล้วได้ `entryCode = PRJ-xxxx-E{n}` — **Dealer ต่างกันต้องไม่ทำให้กลายเป็น Project ใหม่** (เคสหลักของ business B2B) |
+| D6 | **(ปรับ 0f.4)** ตรวจซ้ำ: ตรงแค่ field เดียว (org หรือ project) | แสดงรายการซ้ำบางส่วน + เตือน แต่สร้าง Project ใหม่ได้; Dealer ซ้ำเฉยๆ ไม่นับเป็นข้อมูลซ้ำอีกต่อไป |
 | D7 | สองคนยืนยันยื่น Entry ใต้ Project เดียวพร้อมกัน | ได้ `entrySequence` ไม่ชนกัน (UNIQUE constraint + retry) |
 | D8 | อัพเดตสถานะกดได้เฉพาะ `presented` | Entry สถานะอื่นปุ่ม disable และ server ปฏิเสธถ้ายิงตรง |
 | D9 | ส่ง "ได้งาน" ครบทุก field → หัวหน้าอนุมัติ → **Manager อนุมัติ** | `presented` → `waitingWon` → `waitingSupervisorWon` → **`won`** (จบใน Phase เดียวตาม updated-flow) |
 | D10 | ส่ง "เลื่อนวันคาดจบ" → หัวหน้าอนุมัติ | วันคาดจบใหม่ถูก apply, วันเดิมอยู่ใน `status_log`, สถานะกลับ `presented` |
-| D11 | หน้าเปรียบเทียบ: Project มี Entry สถานะ `draft`/`waiting` ปน | ส่วน compare PM แสดงเฉพาะ Entry สถานะ eligible; ส่วนตาราง Register แสดงทุก Entry |
+| D11 | หน้าเปรียบเทียบ: Project มี Entry สถานะ `draft`/`waiting` ปน **และมี 2 Entry ที่ราคาขาย/GP เท่ากันเป๊ะ** | ส่วน compare PM แสดงเฉพาะ Entry สถานะ eligible; ส่วนตาราง Register แสดงทุก Entry; **Entry ที่ค่าเท่ากันติดป้าย "ต่ำสุด/สูงสุด/ดีที่สุด" พร้อมกันทั้งคู่ ไม่ใช่เลือกมาตัวเดียว (✅ 0f.5)** |
 | D12 | การ์ด To do list 5 ใบ | ตัวเลขตรงกับ filter จริงทุกใบ รวม "ใกล้ครบกำหนด" = เหลือ 0–89 วัน |
 | D13 | Role: Sales ธรรมดาเข้าเมนู/URL อนุมัติ | เมนูไม่แสดง + route/API ปฏิเสธ (ตรวจ role ฝั่ง server) |
 | D14 | ปิดการเปิดใช้งานเมนูจาก config | เมนูแสดงจาง กดไม่ได้ |
@@ -919,6 +1099,8 @@
 | D33 | **(ใหม่ — ดู 0e.11, สมมติฐานยังไม่ยืนยัน)** ถามชื่อโครงการที่ไม่มีในระบบเลย (เช่น "โครงการสร้างเขื่อนที่เชียงราย") | ระบบตอบ fallback message ตายตัวพร้อมคำแนะนำการค้นหาใหม่ (ตาม FR-11) — **ไม่สร้างคำตอบสมมติขึ้นมาเอง** (hallucination) แม้ชื่อจะฟังดูใกล้เคียงกับโครงการจริงในระบบก็ตาม |
 | D34 | **(ใหม่ — ดู 0e.9, สมมติฐานยังไม่ยืนยัน)** กดปุ่ม deep-link จากข้อความแชทที่อ้างถึง `PRJ-2026-07-0015` | เปิดหน้า Detail ของ `PRJ-2026-07-0015` ตรงตัวในแอป (ไม่ใช่หน้า search แล้วให้หาเอง) — ถ้า user ไม่มีสิทธิ์เห็นโครงการนั้นจริง (ซึ่งไม่ควรเกิดถ้า D32 ผ่าน) หน้าเว็บปฏิเสธเหมือนเข้าตรงๆ ปกติ |
 | D35 | **(ใหม่ — ดู 0e.10, สมมติฐานยังไม่ยืนยัน)** ถามต่อเนื่องในรอบสนทนาเดียวกัน: "โครงการ รพ.ตำรวจ มีอะไรบ้าง" → "อันแรกมีใครเป็น leader" → "GP เท่าไหร่" | แต่ละคำถามถัดไปอ้างอิงผลลัพธ์จากคำถามก่อนหน้าใน `sessionId` เดียวกันได้ถูกต้อง (ไม่ต้องพิมพ์ชื่อโครงการซ้ำ); เปิดแท็บ/session ใหม่ (ไม่ส่ง `sessionId` เดิม) → ถามคำถามที่อ้างอิง "อันแรก" โดยไม่มี context มาก่อน → ระบบถามกลับให้ระบุโครงการ ไม่เดาว่า "อันแรก" หมายถึงอะไร |
+| D36 | **(ใหม่ 27 ก.ค. 2026 — ✅ 0f.1/0f.2)** กรอกตาราง PM ตามตัวอย่างใน `Template_ProjectManagement.xlsx`: main item 2 รายการ, spec line รายการละ 3 บรรทัด, main item ที่ 2 มีรายการ EP ชนิด **OC** ปนอยู่ | ตัวเลขทุกช่องต้องตรงกับ template: `Amt = Qty×@`; main item roll-up จาก spec line ครบทุกคอลัมน์; **`GP = ราคาขาย − ต้นทุน − EP`** ทุกระดับ; **GP 2 ชุดตรงกับไฟล์เป๊ะ: แถวขาว (spec) `2,863,286.30` (GP% 56.14 — ก่อนหัก OC) / แถวเทาอ่อน (main item 2) `2,713,286.30` (GP% 53.20 — หลังหัก OC 150,000) / แถวเทาเข้ม (สรุป) `5,426,572.60`**; ค่าต่อหน่วยที่แถวสรุป = `Amt ÷ Qty` (ไม่ใช่ผลบวกของ @); **ยอดรวมทั้ง Entry รวมจาก main item เท่านั้น ห้ามนับ spec line ซ้ำ**; **ช่องที่เป็นยอดรวมทุกช่อง (รวม GP) แก้ด้วยมือไม่ได้ และอัปเดตสดทันทีที่พิมพ์ที่ spec line โดยไม่ต้องกดปุ่มหรือบันทึกก่อน**; ลบ spec line 1 บรรทัด → แถว main + แถวสรุป + การ์ดหน้าเปรียบเทียบเปลี่ยนตามทันที; main item ที่ยังไม่มี spec line เลย → กรอกที่แถว main เองได้ พอเพิ่ม spec line แรกระบบสลับเป็น auto พร้อมเตือนก่อนทับค่าเดิม; ยิง `/save` ด้วยตัวเลข GP/ยอดรวมที่จงใจผิด → server ทิ้งค่าที่ส่งมาแล้วคำนวณใหม่เสมอ |
+| D37 | **(ใหม่ 27 ก.ค. 2026 — ✅ 0f.6)** ส่งคำขอ "แก้ไขข้อมูล → ชื่อโครงการ" บน Project ที่มี 3 Entry ของ Sales 3 คน แล้วหัวหน้าอนุมัติ | เกิด **`registration_revision` ร่าง** (ไม่ใช่ `entry_revision`), current ยังเป็นค่าเดิมจนกว่าจะอนุมัติรอบ 2; UI เตือนผู้ขอว่ากระทบทุก Entry; อนุมัติรอบ 2 แล้ว **ชื่อโครงการเปลี่ยนพร้อมกันทั้ง 3 Entry** + `project_name_norm` อัพเดต + log ระดับ Project; ถ้าชื่อใหม่ไปชนกับ Project อื่นที่มีอยู่ (org+project ซ้ำ) → **ปฏิเสธพร้อมชี้ Project ที่ชน** |
 
 ---
 
@@ -934,4 +1116,4 @@
 
 ---
 
-*เอกสารนี้อัปเดตล่าสุด: 23 ก.ค. 2026 (รอบ 9 — Mockup ต้นแบบมือถือ) — รอบ 2 ปรับตาม `updated-flow/` (เพิ่ม Role Manager/พี่บีเข้า Phase 1, หน้า "ระบุ Leader Project", ทางแยก แพ้/ล่ม → `closed`, กติกาแจ้งเตือนตาม role, sort/filter หน้า list); รอบ 3 ปิดคำถาม 9.17–9.21; รอบ 4 ปิด 8 ประเด็นจากการ review (สรุปที่ 0b): แยก EntryStatus/RequestStatus, เพิ่ม Project-level lifecycle, workflow แก้ไขข้อมูลต้องอนุมัติซ้ำ, แยกตาราง Entry/EntryRevision + Leader ชี้ Entry ID คงที่, event notification, Access Matrix, file upload contract, ชื่อตาราง canonical ชุดเดียว — คำถาม business ปิดครบทั้ง 24 ข้อ; รอบ 5 (21 ก.ค. 2026): เปลี่ยน tech stack ทั้งหมดเป็น React + Node.js/Fastify + PostgreSQL + SSO, แยกเป็นระบบ standalone ไม่ผูกกับ Syndome CRM เดิม (สรุปที่ 0c) — เขียนใหม่หัวข้อ 3–9 + ภาคผนวก A–C ให้ตรง stack ใหม่, เปิดคำถามใหม่ 10 ข้อเรื่อง stack/infra/auth ที่ยังไม่ปิด (หัวข้อ 9b) — ยังปิด spec ส่วน auth ไม่ได้จนกว่าจะมีรายละเอียด SSO; รอบ 6 (21 ก.ค. 2026): ปิดคำถาม SSO (9b.1–9b.3) ตามเอกสาร "SSO Management — App Integration Guide" ที่ผู้ใช้ให้มา (สรุปที่ 9c ใหม่) — OAuth2 Authorization Code Flow + JWT RS256, role มาจาก JWT `roles` claim ตรงๆ (ไม่มีตาราง role local, เพิ่ม `auth.user` สำหรับ provisioning), เหลือแค่ BFF vs token-passthrough เป็นทางเลือกภายในทีม (ไม่ blocking) — ปรับหัวข้อ 4.3, 5, 6.2, ภาคผนวก A.13, B intro/B.2, ความเสี่ยง 8.11 (ปิด) + 8.14 (ใหม่), ประมาณการงานหัวข้อ 10 (เพิ่ม Auth/SSO 6–9 man-day เข้ารวม) ให้ตรงกันทั้งหมด; รอบ 7 (22 ก.ค. 2026): เพิ่มขอบเขตใหม่ Mobile Responsive + แจ้งเตือนอนุมัติผ่าน LINE Flex Message ตามคำขอผู้ใช้ (สรุปที่ 0d ใหม่) — ไม่มี Prototype/เอกสารอ้างอิงรองรับมาก่อนแบบรอบ 5/6 จึงเป็นสมมติฐานล้วนๆ ที่ต้องยืนยันก่อน implement: responsive web ชุดเดียว (ไม่ใช่แอป native), ตาราง PM/compare ต้องออกแบบใหม่เป็น card/accordion บนมือถือ (จุดยากสุด), LINE ผูกกับ event notification เดิมแบบ push ทางเดียว — เปิดคำถามใหม่ 5 ข้อยังไม่ปิดเลย (9b.11–9b.15: responsive pattern, LINE OA ตัวไหน, วิธีผูกบัญชี, one-way vs interactive, event ไหนบ้างที่ push) — เพิ่มความเสี่ยงใหม่ 8.15–8.18 (ออกแบบมือถือยาก, LINE quota, ผูกบัญชีไม่ครบ, ข้อมูลหลุดใน Flex Message), endpoint ใหม่ 25 (`/notification/line/link`), scenario ใหม่ D30–D31, ประมาณการงานเพิ่ม Responsive 5–8 + LINE 4–6 man-day (~67–99 → ~76–113 man-day); **รอบ 8 (22 ก.ค. 2026): เพิ่มขอบเขตใหม่ AI Chat Assistant สำหรับค้นหา/สรุปข้อมูลโครงการผ่านแชท ตาม requirement FR-01–FR-11 ที่ผู้ใช้ระบุในแชท (ไม่ใช่เอกสารแนบ — สรุปที่ 0e ใหม่)** — มี requirement ละเอียดกว่ารอบ 7 (มีตัวอย่าง input/output ครบ 11 ข้อ) แต่ยังไม่มีรายละเอียดระดับ implementation (LLM provider/data policy) แบบที่ SSO เคยมี: ออกแบบเป็น **tool-use/function-calling ห่อ endpoint อ่านข้อมูลที่มีอยู่แล้วทั้งหมด** (ไม่ทำ vector search/RAG แยก), บังคับ authorization ต่อ tool call เดียวกับ REST endpoint ปกติทุกจุด, ห้าม LLM สร้างตัวเลข/ข้อเท็จจริงเอง (กัน hallucination), chat เป็น read-only surface ล้วนๆ ไม่มี action เขียนในแชท (ทุก action deep-link กลับไปหน้าเว็บ) — เปิดคำถามใหม่ 6 ข้อยังไม่ปิดเลย (9b.16–9b.21: LLM provider/DPA [blocking], conversation retention, streaming, rate limit, aggregate freshness, ยืนยัน tool-use เพียงพอหรือต้อง RAG) — เพิ่มความเสี่ยงใหม่ 8.19–8.24 (ข้อมูลอ่อนไหวส่งออก LLM ภายนอก [สูงสุด], hallucination, role-leakage ผ่านแชท, ต้นทุน/latency, privacy ของ conversation log, ความกำกวมภาษาไทย), ตารางใหม่ `chat_session`/`chat_message` (A.15), endpoint ใหม่ 26/26b, scenario ใหม่ D32–D35, ประมาณการงานเพิ่ม Chat orchestration 8–12 + Conversation storage/aggregate 3–4 + Chat UI 4–6 + Security/policy 3–5 man-day (~76–113 → ~95–143 man-day)**; **รอบ 9 (23 ก.ค. 2026): เพิ่ม mockup ต้นแบบหน้าจอมือถือ (AI Chat Assistant + LINE Push) ที่ทำขึ้นเองระหว่างงานนี้ (สรุปที่ 4.6 ใหม่, ไฟล์ `updated-flow/ChatAssistant_Mobile_Prototype.html`) เพื่อสาธิต UX ของ 0d/0e ให้เป็นรูปธรรม — ไม่ใช่ requirement/ขอบเขตใหม่, ไม่ปิดคำถามค้างข้อใดเลย (9b.11/9b.12–9b.15/9b.16–9b.21 ยังเปิดอยู่ทั้งหมดเหมือนเดิม), ไม่เพิ่ม risk ใหม่, ไม่กระทบประมาณการงานหัวข้อ 10 — เป็นภาพประกอบสำหรับเก็บ feedback จากผู้ใช้เท่านั้น***
+*เอกสารนี้อัปเดตล่าสุด: 27 ก.ค. 2026 (รอบ 10 — ตาราง Project Management ตาม Template Excel + ปิดคำถามจากรอบ review) — รอบ 2 ปรับตาม `updated-flow/` (เพิ่ม Role Manager/พี่บีเข้า Phase 1, หน้า "ระบุ Leader Project", ทางแยก แพ้/ล่ม → `closed`, กติกาแจ้งเตือนตาม role, sort/filter หน้า list); รอบ 3 ปิดคำถาม 9.17–9.21; รอบ 4 ปิด 8 ประเด็นจากการ review (สรุปที่ 0b): แยก EntryStatus/RequestStatus, เพิ่ม Project-level lifecycle, workflow แก้ไขข้อมูลต้องอนุมัติซ้ำ, แยกตาราง Entry/EntryRevision + Leader ชี้ Entry ID คงที่, event notification, Access Matrix, file upload contract, ชื่อตาราง canonical ชุดเดียว — คำถาม business ปิดครบทั้ง 24 ข้อ; รอบ 5 (21 ก.ค. 2026): เปลี่ยน tech stack ทั้งหมดเป็น React + Node.js/Fastify + PostgreSQL + SSO, แยกเป็นระบบ standalone ไม่ผูกกับ Syndome CRM เดิม (สรุปที่ 0c) — เขียนใหม่หัวข้อ 3–9 + ภาคผนวก A–C ให้ตรง stack ใหม่, เปิดคำถามใหม่ 10 ข้อเรื่อง stack/infra/auth ที่ยังไม่ปิด (หัวข้อ 9b) — ยังปิด spec ส่วน auth ไม่ได้จนกว่าจะมีรายละเอียด SSO; รอบ 6 (21 ก.ค. 2026): ปิดคำถาม SSO (9b.1–9b.3) ตามเอกสาร "SSO Management — App Integration Guide" ที่ผู้ใช้ให้มา (สรุปที่ 9c ใหม่) — OAuth2 Authorization Code Flow + JWT RS256, role มาจาก JWT `roles` claim ตรงๆ (ไม่มีตาราง role local, เพิ่ม `auth.user` สำหรับ provisioning), เหลือแค่ BFF vs token-passthrough เป็นทางเลือกภายในทีม (ไม่ blocking) — ปรับหัวข้อ 4.3, 5, 6.2, ภาคผนวก A.13, B intro/B.2, ความเสี่ยง 8.11 (ปิด) + 8.14 (ใหม่), ประมาณการงานหัวข้อ 10 (เพิ่ม Auth/SSO 6–9 man-day เข้ารวม) ให้ตรงกันทั้งหมด; รอบ 7 (22 ก.ค. 2026): เพิ่มขอบเขตใหม่ Mobile Responsive + แจ้งเตือนอนุมัติผ่าน LINE Flex Message ตามคำขอผู้ใช้ (สรุปที่ 0d ใหม่) — ไม่มี Prototype/เอกสารอ้างอิงรองรับมาก่อนแบบรอบ 5/6 จึงเป็นสมมติฐานล้วนๆ ที่ต้องยืนยันก่อน implement: responsive web ชุดเดียว (ไม่ใช่แอป native), ตาราง PM/compare ต้องออกแบบใหม่เป็น card/accordion บนมือถือ (จุดยากสุด), LINE ผูกกับ event notification เดิมแบบ push ทางเดียว — เปิดคำถามใหม่ 5 ข้อยังไม่ปิดเลย (9b.11–9b.15: responsive pattern, LINE OA ตัวไหน, วิธีผูกบัญชี, one-way vs interactive, event ไหนบ้างที่ push) — เพิ่มความเสี่ยงใหม่ 8.15–8.18 (ออกแบบมือถือยาก, LINE quota, ผูกบัญชีไม่ครบ, ข้อมูลหลุดใน Flex Message), endpoint ใหม่ 25 (`/notification/line/link`), scenario ใหม่ D30–D31, ประมาณการงานเพิ่ม Responsive 5–8 + LINE 4–6 man-day (~67–99 → ~76–113 man-day); **รอบ 8 (22 ก.ค. 2026): เพิ่มขอบเขตใหม่ AI Chat Assistant สำหรับค้นหา/สรุปข้อมูลโครงการผ่านแชท ตาม requirement FR-01–FR-11 ที่ผู้ใช้ระบุในแชท (ไม่ใช่เอกสารแนบ — สรุปที่ 0e ใหม่)** — มี requirement ละเอียดกว่ารอบ 7 (มีตัวอย่าง input/output ครบ 11 ข้อ) แต่ยังไม่มีรายละเอียดระดับ implementation (LLM provider/data policy) แบบที่ SSO เคยมี: ออกแบบเป็น **tool-use/function-calling ห่อ endpoint อ่านข้อมูลที่มีอยู่แล้วทั้งหมด** (ไม่ทำ vector search/RAG แยก), บังคับ authorization ต่อ tool call เดียวกับ REST endpoint ปกติทุกจุด, ห้าม LLM สร้างตัวเลข/ข้อเท็จจริงเอง (กัน hallucination), chat เป็น read-only surface ล้วนๆ ไม่มี action เขียนในแชท (ทุก action deep-link กลับไปหน้าเว็บ) — เปิดคำถามใหม่ 6 ข้อยังไม่ปิดเลย (9b.16–9b.21: LLM provider/DPA [blocking], conversation retention, streaming, rate limit, aggregate freshness, ยืนยัน tool-use เพียงพอหรือต้อง RAG) — เพิ่มความเสี่ยงใหม่ 8.19–8.24 (ข้อมูลอ่อนไหวส่งออก LLM ภายนอก [สูงสุด], hallucination, role-leakage ผ่านแชท, ต้นทุน/latency, privacy ของ conversation log, ความกำกวมภาษาไทย), ตารางใหม่ `chat_session`/`chat_message` (A.15), endpoint ใหม่ 26/26b, scenario ใหม่ D32–D35, ประมาณการงานเพิ่ม Chat orchestration 8–12 + Conversation storage/aggregate 3–4 + Chat UI 4–6 + Security/policy 3–5 man-day (~76–113 → ~95–143 man-day)**; **รอบ 9 (23 ก.ค. 2026): เพิ่ม mockup ต้นแบบหน้าจอมือถือ (AI Chat Assistant + LINE Push) ที่ทำขึ้นเองระหว่างงานนี้ (สรุปที่ 4.6 ใหม่, ไฟล์ `updated-flow/ChatAssistant_Mobile_Prototype.html`) เพื่อสาธิต UX ของ 0d/0e ให้เป็นรูปธรรม — ไม่ใช่ requirement/ขอบเขตใหม่, ไม่ปิดคำถามค้างข้อใดเลย (9b.11/9b.12–9b.15/9b.16–9b.21 ยังเปิดอยู่ทั้งหมดเหมือนเดิม), ไม่เพิ่ม risk ใหม่, ไม่กระทบประมาณการงานหัวข้อ 10 — เป็นภาพประกอบสำหรับเก็บ feedback จากผู้ใช้เท่านั้น***; **รอบ 10 (27 ก.ค. 2026): ผู้ใช้ส่ง `prototype/Template_ProjectManagement.xlsx` (ไฟล์ที่ทีมขายกรอกงานจริง) + ตอบคำถามค้างจากรอบ review เอกสาร (สรุปที่ 0f ใหม่)** — **เขียนภาคผนวก A.8 ใหม่ทั้งหัวข้อให้ตรง template**: 2 ระดับ (main item → spec line) + แถวสรุปโครงการที่คำนวณตอนแสดงผล, 18 คอลัมน์ตาม template, **นิยาม GP ใหม่ `GP = ราคาขาย − ต้นทุน − EP` (เดิมเอกสารตามสูตร prototype ที่ไม่หัก EP) และ GP เป็นค่า derived ห้ามกรอกมือ**, กติกา OC (OC = Overriding Commission ค่าคอม Dealer ซึ่งเป็นรายการหนึ่งใน EP → GP 2 ชุด: แถวขาว = ก่อนหัก OC / แถวเทา = หลังหัก OC ตามตัวเลขจริงในไฟล์ — ผู้ใช้ยืนยันทิศทางแล้ว ดู A.8.3.1), บันทึกความหมายของสีพื้น/ชั้นการ group (ขาว → เทาอ่อน → เทาเข้ม) ไว้ใน A.8.1, **กำหนดให้ทุกช่องที่เป็นยอดรวมคำนวณอัตโนมัติ + read-only เหมือนสูตรใน Excel และอัปเดตสดทันทีที่พิมพ์ (A.8.3.2 ใหม่ — ตารางระบุครบว่าช่องไหนกรอกมือ/ช่องไหน auto ในทั้ง 3 ชั้น รวมเคส main item ที่ไม่มีรายการย่อย)**, เพิ่ม master `project.ep_item_type` (`is_oc`) + field `cost_quote_date`/`ep_quote_date`/`ep_source` ตาม comment ในไฟล์ template; **Project identity เหลือ 2 field (org+project) — Dealer อยู่ระดับ Entry ตาม business B2B ที่ Dealer หลายเจ้าขอราคางานเดียวกัน** (แก้ 1.1, A.4, endpoint 6, D5–D6); **เพิ่ม revision ระดับ Project `project.registration_revision` (A.4b ใหม่)** สำหรับการแก้ชื่อหน่วยงาน/ชื่อโครงการที่ทุก Entry ใช้ร่วมกัน (แก้ 1.4, endpoint 19b, D37 ใหม่); ฟอร์ม "แพ้" เก็บทั้ง dropdown เหตุผลที่แพ้ + free text (เพิ่ม dropdown เข้าหน้าจอ — จุดเดียวที่เพิ่มจาก prototype นอกจากตาราง PM); ยืนยันไม่เพิ่ม field ตอน "ได้งาน" นอกเหนือ prototype (modal `#statusUpdateModal` = dead UI ไม่ implement); Entry ที่ราคา/GP เท่ากันติดป้ายพร้อมกันได้ ไม่ต้อง tie-break; scenario ใหม่ D36–D37; **เปิดคำถามใหม่ 1 ข้อยังไม่ปิด (9b.22 — ผูก item master จาก ERP ผู้ใช้ระบุว่าค้างไว้ก่อน)** และตัวเลข man-day ของตาราง PM ในหัวข้อ 10 ต้องทบทวนหลังปิด 9b.22 — **หน้าจออื่นทั้งหมดไม่แตะ เพราะผ่านการ confirm กับผู้ใช้ปลายทางแล้ว***

@@ -2,14 +2,15 @@
 
 ## 1. Database (PostgreSQL, schema `project`)
 
-- [ ] 1.1 Create `project` schema and all master tables: `status`, `dealer`, `running_number`, `team`, `team_user`, `competitor_brand`, `org_type`, `lost_reason`, `collapse_reason`, `notification_config`
-- [ ] 1.2 Create `registration` (with `project_status`, `leader_entry_id`, normalized org/project-name columns)
+- [ ] 1.1 Create `project` schema and all master tables: `status`, `dealer`, `running_number`, `team`, `team_user`, `competitor_brand`, `org_type`, `lost_reason`, `collapse_reason`, `ep_item_type` (with `is_oc`, D12), `notification_config`
+- [ ] 1.2 Create `registration` (with `project_status`, `leader_entry_id`, normalized org/project-name columns + unique index on the normalized pair, D13)
+- [ ] 1.2b Create `registration_revision` (Project-level revision chain, D14) with its own unique-filtered current-revision index
 - [ ] 1.3 Create `entry` (identity table) and `entry_revision` (form-data table) with the unique-filtered current-revision index
-- [ ] 1.4 Create `entry_file`, `entry_product`, `entry_task` (all child of Revision)
+- [ ] 1.4 Create `entry_file`, `entry_product`, `entry_task` (all child of Revision) — `entry_task` per the Excel template (D12): `task_level` 1–2, `ep_item_type_id`, cost/EP quotation date + source, derived GP columns (before/after OC), `erp_item_code`
 - [ ] 1.5 Create `status_request` (with `request_status`, lose/collapse split columns), `approval`, `status_log`
 - [ ] 1.6 Create `notification`
 - [ ] 1.7 Create `auth.user` (SSO provisioning cache — see `project-access-control`)
-- [ ] 1.8 Seed master data: 13 `status` rows, `team` (10 teams), `competitor_brand`, `org_type`, `lost_reason` (5), `collapse_reason` (5), `notification_config` (`near_due_days = 90`)
+- [ ] 1.8 Seed master data: 13 `status` rows, `team` (10 teams), `competitor_brand`, `org_type`, `lost_reason` (5), `collapse_reason` (5), `ep_item_type` (ค่าขนส่ง `is_oc=false`, OC `is_oc=true`), `notification_config` (`near_due_days = 90`)
 - [ ] 1.9 Add indexes: normalized-name lookups on `registration` (+ `pg_trgm` GIN index for fuzzy search), `entry(project_id)`, `entry(sale_user_name, status_id)`, unique-filtered current-revision index, `notification(target_user_name, is_read)`, `team_user(user_name)`
 - [ ] 1.10 Write migration scripts using the chosen ORM's migration tool (Prisma Migrate / Drizzle Kit / node-pg-migrate — see impact assessment `9b.4`, not yet chosen)
 
@@ -17,10 +18,12 @@
 
 - [ ] 2.1 Data-access layer once the ORM is chosen (impact assessment `9b.4`) — models/schema + registration on the DB client
 - [ ] 2.2 `ProjectRunning` service: issue `project_code` (`PRJ-YYYY-MM-XXXX`, monthly reset) inside a transaction (`SELECT ... FOR UPDATE`), race-safe
-- [ ] 2.3 Duplicate-check service: normalize + exact-match on org name + project name + dealer, `pg_trgm`/`similarity()`-based partial-match warnings, `nextEntrySequence` calculation
+- [ ] 2.3 Duplicate-check service (D13): normalize + exact-match on **org name + project name only** (Dealer is Entry-level, returned as context), `pg_trgm`/`similarity()`-based partial-match warnings, `nextEntrySequence` calculation
+- [ ] 2.3b **(new — D12)** PM costing service as a **shared calculation package used by both API and UI**: spec-line → main-item → project-summary roll-ups, `GP = sell − cost − EP`, GP before/after OC driven by `ep_item_type.is_oc`, unit values as `Amt ÷ Qty` at summary level; server recomputes on every save and discards client-supplied aggregates; unit tests assert the figures in `prototype/Template_ProjectManagement.xlsx` (2,863,286.30 / 2,713,286.30 / 5,426,572.60)
 - [ ] 2.4 Entry-status state machine service covering all transitions in `project-status-request` (including Reject-returns-to-`presented`, D1)
 - [ ] 2.5 Project-status aggregation service (D2): recompute `project_status` on every Entry terminal-state transition, log every change, block new status-update requests once terminal
 - [ ] 2.6 Revision service (D4): draft-clone on edit-request-approval, submit-for-reapproval, current/superseded swap in one transaction
+- [ ] 2.6b **(new — D14)** Project-revision path: edit topics naming org name / project name / org type open a `registration_revision` instead of an Entry revision; approval re-runs the duplicate check before applying, updates the normalized name columns, applies to every Entry at once, logs at Project scope
 - [ ] 2.7 Leader assignment service: single `leader_entry_id` pointer, Manager-only, Project must have >1 Entry
 - [ ] 2.8 Notification service: near-due computed query (role-scoped) + `notification` event writer/reader (D5), starting with the collapse ("ล่ม") event
 - [ ] 2.9 File service: `@fastify/multipart` receive, `entry_file` row + disk/object-storage write as one operation (backend TBD, `9b.5`), orphan-file sweep job, `{project_code}_{TIMESTAMP}_{Seq}` naming
@@ -37,9 +40,11 @@
 - [ ] 3.1 API client setup + `VITE_API_BASE_URL` env var
 - [ ] 3.2 ProjectRegister ALL list: server-side paging, sort (team/sales/due date), filter (team/sales/due date/status) — `project-list-sort-filter`
 - [ ] 3.3 To-do list with 5 summary cards + filter-by-card
-- [ ] 3.4 Create/Edit Register form + PM task table (3-level, auto-calc Amt/GP% client-side, server recomputes) + duplicate-check modal + Dealer search/add modal
+- [ ] 3.4 Create/Edit Register form + duplicate-check modal + Dealer search/add modal — `Amt` in the product box is auto-calculated read-only (`Qty × @`), not a free-typed field as in the prototype
+- [ ] 3.4b **(new — D12)** PM table UI per the Excel template: main item / spec line tiers with the template's grey/white visual hierarchy and collapse-expand, every roll-up read-only and recalculating live as the user types (no calculate button, no save required), GP columns never editable, main item with no spec line editable directly then switching to computed mode with a warning on the first spec line
+- [ ] 3.5b **(new — D14)** Edit-request form warns, when the chosen topic is org name / project name / org type, that the change will apply to every Entry on the Project including other Sales users'
 - [ ] 3.5 File attachment upload UI (multipart via `@fastify/multipart`, per D7) with progress/error display
-- [ ] 3.6 Status-update screens: Won form, Lost form with แพ้/ล่ม branch selection, Postpone form, Edit-request form (round 1) + edit-draft form (round 2)
+- [ ] 3.6 Status-update screens: Won form, Lost form with แพ้/ล่ม branch selection, Postpone form, Edit-request form (round 1) + edit-draft form (round 2) — the "แพ้" form gains the structured Lost Reason selector the prototype's live form is missing (both the selector and the free-text analysis are required)
 - [ ] 3.7 Entry comparison page (cost/GP/BOM visible per accepted risk 8.1) — `project-entry-comparison`
 - [ ] 3.8 Reject-reason history display, split by approver role (head/supervisor cards)
 - [ ] 3.9 Notification bell: merge near-due list + unread `notification` events
@@ -56,12 +61,13 @@
 ## 5. Menu / Config
 
 - [ ] 5.1 Navigation: Project Register menu group, gated by `headsale`/`salemanager`/admin roles read from the SSO JWT `roles` claim (menu-visibility-from-DB mechanism not yet designed — optional, see `openspec/project.md`)
-- [ ] 5.2 Admin config screens: Team + user↔team matrix, Competitor Brand, Org Type, Lost Reason, Collapse Reason, Notification threshold
+- [ ] 5.2 Admin config screens: Team + user↔team matrix, Competitor Brand, Org Type, Lost Reason, Collapse Reason, **EP Item Type (with the `is_oc` flag)**, Notification threshold
 
 ## 6. Testing / UAT
 
 - [ ] 6.1 Server-side validation coverage for every field the prototype only validated client-side (required fields on all 4 status-update forms, transition legality, file type/size)
-- [ ] 6.2 Walk every scenario in `docs/impact-assessment-project-register.md` Appendix D (D1–D29, including the new SSO auth-failure scenario D29) against the real API
+- [ ] 6.2 Walk every scenario in `docs/impact-assessment-project-register.md` Appendix D (D1–D37, including SSO auth failure D29, the PM/template calculation scenario D36, and the Project-revision scenario D37) against the real API
+- [ ] 6.2b **(new — D12)** Verify the PM table end-to-end against `prototype/Template_ProjectManagement.xlsx`: re-key the template's sample data and assert every tier matches the workbook (GP before OC 2,863,286.30 / GP after OC 2,713,286.30 / summary 5,426,572.60), roll-ups update live while typing, and a hand-tampered aggregate posted to `/save` is overwritten by the server
 - [ ] 6.3 Authorization tests: role-level rejection (D13-equivalent) and record-level rejection — Sales A cannot act on Sales B's Entry, a body-supplied identity field is ignored (D28-equivalent)
 - [ ] 6.4 Concurrency tests: simultaneous duplicate-check submissions get distinct `entry_sequence`, simultaneous `project_code` issuance doesn't collide
 - [ ] 6.5 Auth tests: expired access token triggers refresh, reused/revoked refresh token forces re-login, invalid JWT signature is rejected (D29)

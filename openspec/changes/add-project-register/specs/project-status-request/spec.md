@@ -23,11 +23,19 @@ A "Won" status-update request SHALL require Bid Result data (sales analysis, com
 - **THEN** the server SHALL reject it even if client-side validation was bypassed
 
 ### Requirement: Lost via "แพ้" (competitive loss) requires two-tier approval
-A "not won" request where the Sales user selects "แพ้" (lost to a competitor) SHALL require a lost reason, sales analysis, and Bid Result data, and SHALL pass through the same two-tier approval as Won before the Entry reaches `lost`.
+A "not won" request where the Sales user selects "แพ้" (lost to a competitor) SHALL require **both** a structured lost reason selected from the Lost Reason master **and** a free-text sales analysis, plus Bid Result data (competitor brand/model/price, inspector, result date), and SHALL pass through the same two-tier approval as Won before the Entry reaches `lost`. The structured reason exists so losses can be reported on by category; the free text captures the context that a category cannot. The HTML prototype's live "แพ้" form offers only the free-text field, so the reason selector SHALL be added to it.
 
 #### Scenario: Full lose path
 - **WHEN** a Sales user submits a complete "แพ้" request from `presented`
 - **THEN** the Entry SHALL move to `waitingLost`, then `waitingSupervisorLost` on `headsale` approval, then `lost` on `salemanager` approval
+
+#### Scenario: Free-text analysis alone is not enough
+- **WHEN** a "แพ้" request is submitted with a sales analysis but no lost reason selected
+- **THEN** the server SHALL reject it and identify the missing field
+
+#### Scenario: Approvers see both the category and the analysis
+- **WHEN** `headsale` or `salemanager` opens a "แพ้" request for approval
+- **THEN** both the selected lost reason and the free-text analysis SHALL be displayed
 
 ### Requirement: Lost via "ล่ม" (project collapse) closes immediately without approval
 A "not won" request where the Sales user selects "ล่ม" (the project fell through — e.g. cancelled, budget cut, indefinitely postponed, no procurement) SHALL require a collapse reason, collapse date, and note (all required), and SHALL move the Entry directly to `closed` with no approval step.

@@ -9,14 +9,15 @@ Sales teams currently have no system to register a prospective project (โค�
 ## What Changes
 
 - **New standalone system, two new roles.** `headsale` (team lead) and `salemanager` (Thai nickname "พี่บี") are app-specific role strings requested from the org's SSO ("SSO Management") via `group_role_map` configured for this app's `client_id` — there is no local role table to insert into; role membership lives entirely at the SSO.
-- **Register intake**: Sales creates a Register (project + line-item entry) with a Project Management (PM) cost/price/GP task table, checks for duplicates against org name + project name + dealer, and either starts a new Project or joins an existing one as an additional Entry.
+- **Register intake**: Sales creates a Register (project + line-item entry) with a Project Management (PM) cost/price/GP table, checks for duplicates against org name + project name, and either starts a new Project or joins an existing one as an additional Entry. Dealer is deliberately **not** part of the duplicate key — the business is B2B and several Dealers asking for pricing on the same job is exactly why a Project holds several Entries (design D13).
+- **PM cost/price/GP table follows the sales team's own Excel workbook** (`prototype/Template_ProjectManagement.xlsx`), not the simplified table in the HTML prototype: two keyed tiers (main item → spec line) plus a computed project summary, every roll-up auto-calculated and read-only exactly as the spreadsheet formulas behave, **`GP = sell − cost − EP`**, and Overriding Commission (OC — the Dealer commission, carried as an EP line) producing two GP figures — before OC on spec lines, after OC on the summary tiers (design D12).
 - **Two-tier approval on initial submission**: `headsale` approves the initial Register+PM single-level (`waiting → presented`).
 - **Status-update workflow** with four paths from `presented`: Won (2-tier: headsale → salemanager), Lost via "แพ้" — competitive loss (2-tier: headsale → salemanager), Lost via "ล่ม" — project collapse (closes immediately, **no approval**), and Postpone due date (1-tier: headsale). Reject on any status-update request returns the Entry to `presented` (not a terminal `rejected` state) — the request itself carries its own rejected status, separate from the Entry's status.
-- **Edit-after-approval as a two-round flow**: approving an edit request opens a draft revision that the Sales owner fills in, which itself must be submitted and re-approved before it becomes the current revision. The prior revision stays viewable read-only.
+- **Edit-after-approval as a two-round flow**: approving an edit request opens a draft revision that the Sales owner fills in, which itself must be submitted and re-approved before it becomes the current revision. The prior revision stays viewable read-only. Editing an organization/project name revises the **Project**, not the Entry — it is shared by every Entry and is the duplicate-check key, so it gets its own revision chain and re-runs the duplicate check at approval (design D14).
 - **Project-level lifecycle** (`open/won/lost/closed`) derived automatically from the Entries under a Project — no user-settable Project status.
 - **Leader designation**: when a Project has more than one Entry, `salemanager` flags exactly one as Leader via a single pointer column — purely informational.
 - **List, compare, notify**: a role-scoped list (sort/filter by team, sales person, due date, status), a side-by-side Entry comparison (cost/GP/BOM visible to every Sales user, an accepted risk), near-due (<90 days) notifications scoped by role, and event notifications (starting with the "ล่ม" collapse alert to team lead + all managers).
-- **New master data & config**: Team (+ user↔team matrix), Dealer, Competitor Brand, Org Type, Lost Reason, Collapse Reason, Notification threshold — all admin-managed.
+- **New master data & config**: Team (+ user↔team matrix), Dealer, Competitor Brand, Org Type, Lost Reason, Collapse Reason, EP Item Type (with the `is_oc` flag driving the GP calculation), Notification threshold — all admin-managed.
 - **File attachments**: documents/PDF, ≤10 MB total per Entry revision, uploaded via `@fastify/multipart` directly in the API — no separate JSON/multipart split or MVC-action workaround needed, since Fastify natively accepts multipart requests — renamed on disk with a running suffix to avoid collisions.
 - **Auth**: SSO ("SSO Management") via OAuth2 Authorization Code Flow — JWT (RS256) verified locally, roles read from the JWT `roles` claim. Full integration contract (token lifetimes, auto-provisioning, gotchas) is in impact assessment `9c`.
 - **Out of scope for this phase**: the second "SYS No." numbering scheme referenced in the original flowchart (a different system, not yet integrated), and actually firing the notification webhook (the config field is reserved but unused).
@@ -25,6 +26,7 @@ Sales teams currently have no system to register a prospective project (โค�
 
 - Affected specs (new capabilities, all `ADDED`):
   - `project-register-intake`
+  - `project-management-costing`
   - `project-register-approval`
   - `project-status-request`
   - `project-entry-revision`
@@ -41,4 +43,4 @@ Sales teams currently have no system to register a prospective project (โค�
   - **New UI repo** (React): pages/components per `screens.md`, design system not yet chosen (impact assessment `9b.7`), API base URL via environment variable.
   - Repo topology (mono-repo vs. two repos) not yet decided — impact assessment `9b.6`.
   - No existing system's code changes at all — this system shares no DB, auth mechanism, or repo with Syndome CRM (the original non-integration decision is now structural, not just policy).
-- Estimated effort: ~67–99 person-days (see impact assessment `10` for the current breakdown, which now includes Auth/SSO integration); UI and API can proceed in parallel once this spec is agreed, using mocks against the API contract.
+- Estimated effort: ~95–143 person-days (see impact assessment `10` for the current breakdown, which includes Auth/SSO, responsive/LINE, and the AI Chat Assistant; the PM-table line still needs re-estimating now that it follows the Excel template — impact assessment `0f`); UI and API can proceed in parallel once this spec is agreed, using mocks against the API contract.

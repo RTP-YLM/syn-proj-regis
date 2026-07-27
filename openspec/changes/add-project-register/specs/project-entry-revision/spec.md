@@ -33,3 +33,22 @@ A revision that has been replaced by a newer current revision SHALL remain acces
 #### Scenario: View revision history
 - **WHEN** a user with read access to an Entry opens its revision history
 - **THEN** every past revision SHALL be listed with its status (`superseded` or `current`) and SHALL be viewable read-only, including its own snapshot of products, tasks, and files
+
+### Requirement: Edits to Project-level fields revise the Project, not the Entry
+Organization name, project name, and organization type belong to the Project header and are shared by every Entry on that Project, so an approved edit request naming one of them SHALL open a **Project-level** draft revision (`project.registration_revision`) rather than an Entry revision. Edit requests naming Dealer, sale conditions, product data, or warranty SHALL continue to open an Entry revision. A Project-level revision SHALL follow the same two-round lifecycle (draft → resubmit → approve → current, prior revision superseded) and SHALL be logged at Project scope.
+
+#### Scenario: Editing the project name opens a Project revision
+- **WHEN** `headsale` approves an edit request whose topic is the project name
+- **THEN** the system SHALL create a `registration_revision` row in `draft`, SHALL NOT create an Entry revision, and the current project name SHALL remain visible everywhere until the draft is resubmitted and approved
+
+#### Scenario: Approved Project revision applies to every Entry at once
+- **WHEN** the second-round approval of a Project-level revision is granted on a Project holding three Entries owned by three different Sales users
+- **THEN** the new organization/project name SHALL take effect for all three Entries simultaneously, the Project's normalized name columns SHALL be updated, and the change SHALL be logged at Project scope
+
+#### Scenario: Requester is warned about the shared impact
+- **WHEN** a Sales user selects organization name or project name as the topic of an edit request
+- **THEN** the UI SHALL state that the change will affect every Entry on the Project, including Entries owned by other Sales users
+
+#### Scenario: Project revision that would collide is rejected at approval
+- **WHEN** approving a Project-level revision would make the Project's organization + project name identical to another existing Project
+- **THEN** the system SHALL reject the approval, SHALL identify the colliding Project, and SHALL leave the revision in place for correction

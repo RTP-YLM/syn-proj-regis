@@ -12,15 +12,19 @@ Sales SHALL be able to create a new Register (Project header + one Entry + Proje
 - **THEN** the server SHALL validate that all required Register fields and at least one Project Management task row are present, and SHALL reject the submission with field-level errors if not — independent of any client-side validation already performed
 
 ### Requirement: Duplicate check before creating a new Project
-Before a new Project is created, the system SHALL check the submitted organization name, project name, and dealer against existing Projects, using normalized comparison (trim, lowercase, collapsed whitespace).
+Before a new Project is created, the system SHALL check the submitted organization name and project name against existing Projects, using normalized comparison (trim, lowercase, collapsed whitespace). Those two fields alone SHALL identify a Project. Dealer SHALL NOT take part in the match, because the business is B2B and several Dealers routinely request pricing for the same job — that is precisely why a Project holds multiple Entries, each with its own Dealer.
 
-#### Scenario: Exact match on all three fields
-- **WHEN** organization name, project name, and dealer all match an existing Project after normalization
+#### Scenario: Exact match on organization and project name
+- **WHEN** organization name and project name both match an existing Project after normalization
 - **THEN** the system SHALL report the match as an exact duplicate and SHALL offer submitting as a new Entry under that Project instead of creating a new Project
 
+#### Scenario: A different Dealer on the same job is still the same Project
+- **WHEN** the submitted organization and project name match an existing Project but the Dealer differs from every Entry already on it
+- **THEN** the system SHALL still report an exact duplicate and offer joining as a new Entry, and SHALL NOT let the difference in Dealer produce a second Project for the same job
+
 #### Scenario: Partial match warns but does not block
-- **WHEN** only one or two of the three fields match an existing Project after normalization
-- **THEN** the system SHALL show the partial matches as a warning, including a `pg_trgm`/`similarity()`-based supplementary search for near-matches, but SHALL still allow creating a new Project
+- **WHEN** only one of the two fields matches an existing Project after normalization
+- **THEN** the system SHALL show the partial matches as a warning, including a `pg_trgm`/`similarity()`-based supplementary search for near-matches, and SHALL list the Dealers already attached to each matched Project for context, but SHALL still allow creating a new Project
 
 ### Requirement: Join an existing Project as a new Entry
 When a Sales user confirms an exact duplicate match, the system SHALL let them submit a new Entry under the existing Project rather than duplicating the Project.
@@ -44,9 +48,9 @@ The system SHALL issue a unique `project_code` in the format `PRJ-YYYY-MM-XXXX` 
 - **WHEN** two Projects are created at the same time within the same month
 - **THEN** the system SHALL issue each a distinct sequence number using a transaction-protected running-number table, never client-supplied
 
-### Requirement: Project Management task table
-Sales SHALL be able to define a Project Management cost/price/GP task table for an Entry, structured as a task tree up to three levels deep (main / sub / sub-sub), with per-row quantity, unit cost, EP, unit sell price, and derived GP.
+### Requirement: Project Management task table is required to submit
+Every Entry SHALL carry a Project Management cost/price/GP table, whose structure, columns, formulas, and calculation rules are specified in `project-management-costing`. An Entry SHALL NOT be submittable for approval without at least one main item on that table.
 
-#### Scenario: Server recomputes amounts regardless of client values
-- **WHEN** a Sales user submits Project Management task rows with client-calculated amount and GP% values
-- **THEN** the server SHALL recompute `cost_amt = qty × cost_unit`, `sell_amt = qty × sell_unit`, `gp_amt = sell_amt − cost_amt`, and `gp_pct = gp_amt / sell_amt × 100` itself and persist its own computed values, treating any client-submitted totals as display-only input
+#### Scenario: Submission without any PM main item is rejected
+- **WHEN** a Sales user submits a Register whose Project Management table has no main item row
+- **THEN** the server SHALL reject the submission and SHALL keep the Entry in `draft`

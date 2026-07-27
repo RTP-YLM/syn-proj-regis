@@ -24,3 +24,21 @@ Every Sales user, not only the Entry's owner, SHALL be able to view cost, EP, se
 #### Scenario: Comparison page view is audit-logged
 - **WHEN** any user opens a Project's comparison page
 - **THEN** the system SHALL record an audit log entry identifying the viewer, the Project, and the timestamp
+
+### Requirement: Entry totals come from the Project Management summary
+The cost, EP, sell price, and GP totals shown per Entry SHALL be the project summary figures defined in `project-management-costing` — summed from that Entry's main items only, never from its spec lines, so component rows are not counted twice. The GP shown SHALL be the GP-after-OC figure.
+
+#### Scenario: Spec lines are not double-counted
+- **WHEN** an Entry has two main items, each holding three spec lines
+- **THEN** its comparison totals SHALL equal the sum of the two main items, not the sum of all eight rows
+
+#### Scenario: Comparison GP accounts for Overriding Commission
+- **WHEN** an Entry carries an OC line on one of its main items
+- **THEN** the GP figure shown for that Entry in the comparison SHALL be the GP after deducting the OC
+
+### Requirement: Equal figures across Entries are marked equally
+Where two or more Entries share the same lowest cost, lowest sell price, highest GP, or best GP%, the system SHALL mark every Entry holding that value, with no tie-breaking rule that picks a single winner — different Dealers quoting identical figures is a normal outcome.
+
+#### Scenario: Two Entries tie on best GP
+- **WHEN** two eligible Entries have exactly the same GP amount and it is the highest on the Project
+- **THEN** both SHALL carry the "highest GP" marker

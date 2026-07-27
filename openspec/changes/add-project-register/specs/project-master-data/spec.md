@@ -36,6 +36,13 @@ An admin SHALL be able to manage the Lost Reason list (used on the "แพ้" s
 - **WHEN** an admin deactivates a Lost Reason value that has already been used on existing requests
 - **THEN** existing requests SHALL continue to display their originally-selected reason, while new submissions SHALL no longer offer the deactivated value
 
+### Requirement: EP item types are admin-managed and flag Overriding Commission
+An admin SHALL be able to manage the list of EP item types used on the Project Management table (seeded from the sales team's template with ค่าขนส่ง and OC). Each type SHALL carry an `is_oc` flag that marks it as an Overriding Commission line, and that flag SHALL be the only input the GP calculation in `project-management-costing` uses to decide whether a line is an OC.
+
+#### Scenario: New EP item type available without deployment
+- **WHEN** an admin adds a new EP item type and marks it as an Overriding Commission
+- **THEN** it SHALL be selectable on the Project Management table immediately, and lines using it SHALL be excluded from the GP-before-OC figure without any code change
+
 ### Requirement: Notification threshold is configurable, webhook fields reserved but inactive
 An admin SHALL be able to configure the near-due notification threshold (in days). The configuration SHALL include `webhook_url` and `webhook_enable` fields for future use, but no code in this phase SHALL dispatch anything to that URL.
 
