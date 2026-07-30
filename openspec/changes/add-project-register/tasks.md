@@ -9,7 +9,7 @@
 - [ ] 1.4 Create `entry_file`, `entry_product`, `entry_task` (all child of Revision) — `entry_task` per the Excel template (D12): `task_level` 1–2, `ep_item_type_id`, cost/EP quotation date + source, derived GP columns (before/after OC), `erp_item_code`
 - [ ] 1.5 Create `status_request` (with `request_status`, lose/collapse split columns), `approval`, `status_log`
 - [ ] 1.6 Create `notification`
-- [ ] 1.7 Create `auth.user` (SSO provisioning cache — see `project-access-control`)
+- [ ] 1.7 Create `auth.user` (SSO provisioning cache — see `project-access-control`) with the push-channel binding columns `line_user_id` / `telegram_chat_id` (nullable, unique) + `push_channel_pref` (D10)
 - [ ] 1.8 Seed master data: 13 `status` rows, `team` (10 teams), `competitor_brand`, `org_type`, `lost_reason` (5), `collapse_reason` (5), `ep_item_type` (ค่าขนส่ง `is_oc=false`, OC `is_oc=true`), `notification_config` (`near_due_days = 90`)
 - [ ] 1.9 Add indexes: normalized-name lookups on `registration` (+ `pg_trgm` GIN index for fuzzy search), `entry(project_id)`, `entry(sale_user_name, status_id)`, unique-filtered current-revision index, `notification(target_user_name, is_read)`, `team_user(user_name)`
 - [ ] 1.10 Write migration scripts using the chosen ORM's migration tool (Prisma Migrate / Drizzle Kit / node-pg-migrate — see impact assessment `9b.4`, not yet chosen)
@@ -63,12 +63,22 @@
 - [ ] 5.1 Navigation: Project Register menu group, gated by `headsale`/`salemanager`/admin roles read from the SSO JWT `roles` claim (menu-visibility-from-DB mechanism not yet designed — optional, see `openspec/project.md`)
 - [ ] 5.2 Admin config screens: Team + user↔team matrix, Competitor Brand, Org Type, Lost Reason, Collapse Reason, **EP Item Type (with the `is_oc` flag)**, Notification threshold
 
-## 6. Testing / UAT
+## 6. Push notification — LINE / Telegram (`project-push-notification`, D10) — ทำหลัง flow หลักใช้งานได้ครบ
 
-- [ ] 6.1 Server-side validation coverage for every field the prototype only validated client-side (required fields on all 4 status-update forms, transition legality, file type/size)
-- [ ] 6.2 Walk every scenario in `docs/impact-assessment-project-register.md` Appendix D (D1–D37, including SSO auth failure D29, the PM/template calculation scenario D36, and the Project-revision scenario D37) against the real API
-- [ ] 6.2b **(new — D12)** Verify the PM table end-to-end against `prototype/Template_ProjectManagement.xlsx`: re-key the template's sample data and assert every tier matches the workbook (GP before OC 2,863,286.30 / GP after OC 2,713,286.30 / summary 5,426,572.60), roll-ups update live while typing, and a hand-tampered aggregate posted to `/save` is overwritten by the server
-- [ ] 6.3 Authorization tests: role-level rejection (D13-equivalent) and record-level rejection — Sales A cannot act on Sales B's Entry, a body-supplied identity field is ignored (D28-equivalent)
-- [ ] 6.4 Concurrency tests: simultaneous duplicate-check submissions get distinct `entry_sequence`, simultaneous `project_code` issuance doesn't collide
-- [ ] 6.5 Auth tests: expired access token triggers refresh, reused/revoked refresh token forces re-login, invalid JWT signature is rejected (D29)
-- [ ] 6.6 UAT sign-off with Sales, HeadSale, and Manager roles on a staging environment
+- [ ] 6.1 Decide per channel before starting: which LINE OA (`9b.12`) and its linking mechanism (`9b.13`); which Telegram bot + whether the org permits Telegram (`9b.23`) and how `/start` is received — webhook vs. long-polling (`9b.24`); whether a user may link both at once (`9b.25`); and which event types push at all (`9b.15`)
+- [ ] 6.2 Channel-neutral notification payload + dispatch worker: triggered by `project.notification` inserts, runs outside the originating HTTP request, per-channel failure isolated, delivery outcome recorded
+- [ ] 6.3 LINE adapter: Flex Message template per event type, `POST /v2/bot/message/push`, deep-link button back into the web app
+- [ ] 6.4 Telegram adapter: text (HTML/MarkdownV2) + inline keyboard URL button, `POST /bot{token}/sendMessage`, bot token held as a server-side secret
+- [ ] 6.5 Account linking UI + endpoints (`/notification/push/link`, `/unlink`): own-account-only, shows the "not receiving push" state when nothing is linked
+- [ ] 6.6 Telegram inbound `/start` handler: one-time expiring token issued by us, secret-token header verified on every webhook call, never binds from a bare `chat_id`
+- [ ] 6.7 Content guard: assert on the neutral payload that no cost/EP/GP/price field can reach a message on any channel
+
+## 7. Testing / UAT
+
+- [ ] 7.1 Server-side validation coverage for every field the prototype only validated client-side (required fields on all 4 status-update forms, transition legality, file type/size)
+- [ ] 7.2 Walk every scenario in `docs/impact-assessment-project-register.md` Appendix D (D1–D37, including SSO auth failure D29, the PM/template calculation scenario D36, and the Project-revision scenario D37) against the real API
+- [ ] 7.2b **(new — D12)** Verify the PM table end-to-end against `prototype/Template_ProjectManagement.xlsx`: re-key the template's sample data and assert every tier matches the workbook (GP before OC 2,863,286.30 / GP after OC 2,713,286.30 / summary 5,426,572.60), roll-ups update live while typing, and a hand-tampered aggregate posted to `/save` is overwritten by the server
+- [ ] 7.3 Authorization tests: role-level rejection (D13-equivalent) and record-level rejection — Sales A cannot act on Sales B's Entry, a body-supplied identity field is ignored (D28-equivalent)
+- [ ] 7.4 Concurrency tests: simultaneous duplicate-check submissions get distinct `entry_sequence`, simultaneous `project_code` issuance doesn't collide
+- [ ] 7.5 Auth tests: expired access token triggers refresh, reused/revoked refresh token forces re-login, invalid JWT signature is rejected (D29)
+- [ ] 7.6 UAT sign-off with Sales, HeadSale, and Manager roles on a staging environment
