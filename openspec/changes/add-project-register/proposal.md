@@ -17,6 +17,7 @@ Sales teams currently have no system to register a prospective project (โค�
 - **Project-level lifecycle** (`open/won/lost/closed`) derived automatically from the Entries under a Project — no user-settable Project status.
 - **Leader designation**: when a Project has more than one Entry, `salemanager` flags exactly one as Leader via a single pointer column — purely informational.
 - **List, compare, notify**: a role-scoped list (sort/filter by team, sales person, due date, status), a side-by-side Entry comparison (cost/GP/BOM visible to every Sales user, an accepted risk), near-due (<90 days) notifications scoped by role, and event notifications (starting with the "ล่ม" collapse alert to team lead + all managers).
+- **Push notification to LINE and Telegram**: approvers who link a messaging account also receive the events that need their action outside the app, one-way, carrying only a project code and request type plus a deep link back into the authenticated web app. Both channels sit behind one adapter so message content is defined once. **No AI Chat Assistant** — that scope was removed on 2026-07-30 (impact assessment `0g`); this system makes no LLM API calls.
 - **New master data & config**: Team (+ user↔team matrix), Dealer, Competitor Brand, Org Type, Lost Reason, Collapse Reason, EP Item Type (with the `is_oc` flag driving the GP calculation), Notification threshold — all admin-managed.
 - **File attachments**: documents/PDF, ≤10 MB total per Entry revision, uploaded via `@fastify/multipart` directly in the API — no separate JSON/multipart split or MVC-action workaround needed, since Fastify natively accepts multipart requests — renamed on disk with a running suffix to avoid collisions.
 - **Auth**: SSO ("SSO Management") via OAuth2 Authorization Code Flow — JWT (RS256) verified locally, roles read from the JWT `roles` claim. Full integration contract (token lifetimes, auto-provisioning, gotchas) is in impact assessment `9c`.
@@ -37,10 +38,11 @@ Sales teams currently have no system to register a prospective project (โค�
   - `project-notification`
   - `project-file-attachment`
   - `project-master-data`
+  - `project-push-notification`
   - `project-access-control`
 - Affected code:
   - **New API repo** (Node.js + Fastify): route plugins per domain, service layer, PostgreSQL schema `project` (~15 tables, see `design.md`) plus `auth.user` (SSO provisioning cache), migration scripts (ORM/tool not yet chosen — impact assessment `9b.4`), SSO OAuth2 client (callback, token exchange, refresh, logout) and JWT-verification middleware.
   - **New UI repo** (React): pages/components per `screens.md`, design system not yet chosen (impact assessment `9b.7`), API base URL via environment variable.
   - Repo topology (mono-repo vs. two repos) not yet decided — impact assessment `9b.6`.
   - No existing system's code changes at all — this system shares no DB, auth mechanism, or repo with Syndome CRM (the original non-integration decision is now structural, not just policy).
-- Estimated effort: ~95–143 person-days (see impact assessment `10` for the current breakdown, which includes Auth/SSO, responsive/LINE, and the AI Chat Assistant; the PM-table line still needs re-estimating now that it follows the Excel template — impact assessment `0f`); UI and API can proceed in parallel once this spec is agreed, using mocks against the API contract.
+- Estimated effort: ~79–119 person-days (see impact assessment `10` for the current breakdown, which includes Auth/SSO and responsive + LINE/Telegram push, and **excludes the AI Chat Assistant, removed from scope on 2026-07-30 — impact assessment `0g`**; the PM-table line still needs re-estimating now that it follows the Excel template — impact assessment `0f`); UI and API can proceed in parallel once this spec is agreed, using mocks against the API contract.
