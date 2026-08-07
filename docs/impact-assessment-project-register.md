@@ -262,7 +262,10 @@
 - งานหลักแบ่ง 2 ส่วนเหมือนเดิมในเชิงโครงสร้าง (**UI / API**) แต่เปลี่ยนเป็น repo/โปรเจกต์ใหม่ทั้งคู่ (ยังไม่ตั้งชื่อ) — เสนอให้ตกลง **API contract ก่อน** เหมือนแนวทางเดิม เพื่อให้ UI/API พัฒนาขนานกันได้ (mock ได้จาก JSON Schema/OpenAPI ที่ Fastify generate ให้อัตโนมัติจาก route schema)
 - **ข้อดีของการย้าย stack ที่ส่งผลต่อ design บางจุด** (รายละเอียดอยู่ในหัวข้อ 4–6 ที่เกี่ยวข้อง): Fastify มี `@fastify/multipart` รองรับไฟล์แนบในคำขอเดียวกันได้ตรงๆ (ไม่ต้องเลี่ยงผ่าน MVC action แบบเดิม), PostgreSQL รองรับ `STRING_AGG`/JSONB/`pg_trgm` ในตัว (ไม่มีข้อจำกัดแบบ SQL Server 2016)
 - **(ใหม่ 22 ก.ค. 2026 — ปรับ 30 ก.ค. 2026 ดู 0g) LINE Messaging API + Telegram Bot API เป็น external integration ที่ระบบนี้พึ่งพานอกเหนือจาก SSO** — เป็น **push ออกทางเดียว** จาก Fastify (ไม่ใช่ identity provider, ไม่ใช่ที่เก็บข้อมูลธุรกิจ) ผ่าน **channel adapter ตัวเดียว** เพื่อไม่ผูก logic กับผู้ให้บริการรายใด — ข้อยกเว้นเดียวที่เป็น inbound คือขั้นตอนผูกบัญชี Telegram ที่ต้องรับ `/start` จากฝั่ง Telegram (ดู 0g.3, 9b.24) รายละเอียดที่หัวข้อ 5/6/8/9b
-- **สิ่งที่ต้องตัดสินใจก่อนเริ่ม coding จริง** (ไม่ใช่แค่ "แนะนำ" แต่ blocking): ORM/query layer, ที่เก็บไฟล์แนบ (disk vs object storage), responsive breakpoint/pattern สำหรับตารางข้อมูลหนาแน่น, LINE OA + Telegram bot และวิธีผูกบัญชีของทั้ง 2 ช่องทาง — รวมไว้ในหัวข้อ 9b เป็นคำถามคงค้าง (SSO ปิดแล้ว ดู 9c)
+- **สิ่งที่ต้องตัดสินใจก่อนเริ่ม coding** — แยกเป็น 2 ระดับ (นิยามเดียวกับ 0g.5 และหัวข้อ 10 ลำดับงานข้อ 0/ข้อ 6):
+  - **blocking ก่อนเขียนโค้ดบรรทัดแรก (2 ข้อ):** ORM/query layer (9b.4), design system/component library (9b.7) — 2 ข้อนี้กำหนดรูปแบบ migration script และโครงสร้าง UI ทั้งระบบ
+  - **blocking เฉพาะก้อนงานของตัวเอง (ไม่กันงานอื่นเริ่ม):** responsive breakpoint/pattern ของตารางข้อมูลหนาแน่น (9b.11), LINE OA + Telegram bot + วิธีผูกบัญชีทั้ง 2 ช่องทาง (9b.12–9b.15, 9b.23–9b.25) — ต้องปิดก่อนเริ่มก้อน responsive/push, ที่เก็บไฟล์แนบ (9b.5) ต้องปิดก่อนเริ่มงาน upload
+  - ทั้งหมดอยู่ในหัวข้อ 9b เป็นคำถามคงค้าง (SSO ปิดแล้ว ดู 9c)
 
 ---
 
@@ -579,13 +582,13 @@
 
 ---
 
-## 10. ประเมินขนาดงาน (คร่าวๆ — **รวม Manager/พี่บีแล้ว** ตาม updated-flow — ⚠️ ตัวเลขเดิมก่อน re-platform)
+## 10. ประเมินขนาดงาน (คร่าวๆ — **รวม Manager/พี่บีแล้ว** ตาม updated-flow — ปรับผ่านรอบ 5–11 แล้ว)
 
-> ⚠️ ตัวเลข man-day ด้านล่างนี้ประเมินไว้ตอนยังใช้ stack เดิม (.NET/SQL Server) กับทีมที่คุ้นเคย stack นั้น — **ลำดับความซับซ้อนสัมพัทธ์ระหว่างงานแต่ละก้อนน่าจะยังอ้างอิงได้** (เพราะซับซ้อนจาก business logic เป็นหลัก ไม่ใช่จากภาษา/framework) **แต่ตัวเลขรวมต้องประเมินใหม่** หลังจาก: (1) รู้ว่าทีมคุ้นเคย React/Node/Postgres แค่ไหน (ความเสี่ยง 8.12 — ยังไม่ทราบ), (2) ✅ ปิดคำถาม SSO แล้ว (ดู 9c) — Auth/SSO estimate รวมอยู่ในตารางด้านล่างแล้ว, (3) เลือก ORM/design system แล้ว (9b.4/9b.7 — ยังไม่เลือก) — เพิ่มเวลาส่วน "ออกแบบ design system ใหม่ทั้งชุด" (ข้อ 4.2.4) ที่รอบเดิมไม่มี เพราะรอบเดิมมี theme สำเร็จรูปให้แปลงอยู่แล้ว
+> ℹ️ **สถานะตัวเลข (ปรับ 30 ก.ค. 2026):** ยอดรวมท้ายตาราง (**~79–119 man-day**) เป็นตัวเลข**หลัง**ปรับตามรอบ 5 (re-platform), 6 (Auth/SSO), 7 (Mobile+LINE), 8 และ 11 (เพิ่มแล้วตัด AI Chat + เพิ่ม Telegram) แล้ว — ดูประวัติการปรับใต้ตาราง **ไม่ใช่ตัวเลขค้างจากยุค .NET** ส่วนตัวเลขราย**บรรทัด**บางแถวยังเป็นสัดส่วนที่ประเมินไว้ตั้งแต่ stack เดิม — **ลำดับความซับซ้อนสัมพัทธ์ระหว่างงานแต่ละก้อนยังอ้างอิงได้** (เพราะความซับซ้อนมาจาก business logic เป็นหลัก ไม่ใช่จากภาษา/framework) แต่ยังมี 3 ตัวแปรที่ทำให้ยอดรวมขยับได้อีก: (1) รู้ว่าทีมคุ้นเคย React/Node/Postgres แค่ไหน (ความเสี่ยง 8.12 — ยังไม่ทราบ), (2) ✅ ปิดคำถาม SSO แล้ว (ดู 9c) — Auth/SSO estimate รวมอยู่ในตารางด้านล่างแล้ว, (3) เลือก ORM/design system แล้ว (9b.4/9b.7 — ยังไม่เลือก) — เพิ่มเวลาส่วน "ออกแบบ design system ใหม่ทั้งชุด" (ข้อ 4.2.4) ที่รอบเดิมไม่มี เพราะรอบเดิมมี theme สำเร็จรูปให้แปลงอยู่แล้ว
 
 | งาน | ประมาณการ (man-day) |
 |---|---|
-| เขียน spec/API contract (คำถาม business ปิดครบ 24 ข้อแล้ว, SSO ปิดแล้ว — เหลือคำถาม stack 9b บางส่วน: ORM/design system/repo topology ฯลฯ) | 3–4 |
+| เขียน spec/API contract (คำถาม business ปิดครบ 24 ข้อแล้ว, SSO ปิดแล้ว — เหลือคำถาม stack 9b ที่ blocking 2 ข้อ: ORM 9b.4 / design system 9b.7 — ข้ออื่นเช่น repo topology 9b.6 ไม่ blocking) | 3–4 |
 | DB design + migration script + seed master (+ ตาราง/คอลัมน์ใหม่จาก updated-flow) | 3–4 |
 | API: entities/service/endpoints + validation state machine **2 ชั้นอนุมัติ (won/lost) + แพ้/ล่ม** | 10–14 |
 | API: revision versioning (แยกตาราง Entry/Revision + flow อนุมัติซ้ำรอบ 2 — ข้อ 9.23/review R4) | 3–5 |
@@ -604,7 +607,7 @@
 | **(ใหม่ 22 ก.ค. 2026 — ดู 0d/4.4) Responsive ทุกหน้า + ออกแบบใหม่เฉพาะจุด** (mockup + build pattern การ์ด/accordion สำหรับตาราง PM/compare บนมือถือ — งานออกแบบยาก ไม่ใช่แค่ CSS) | 5–8 |
 | **(ใหม่ — ดู 0d/5/6.4) LINE Messaging integration** (account-linking flow + Flex Message template ต่อ event type + dispatch service แบบ async ผ่าน channel adapter) | 4–6 |
 | **(ใหม่ 30 ก.ค. 2026 — ดู 0g) Telegram Bot integration** (adapter ตัวที่ 2 + template HTML/inline keyboard + account-linking ที่ต้องรับ `/start` ผ่าน webhook หรือ long-polling — ถูกกว่า LINE เพราะ dispatch service/ตาราง/UI ผูกบัญชีใช้ร่วมกันแล้ว) | 2–3 |
-| ทดสอบรวม + แก้บั๊ก + UAT (เพิ่ม flow Manager + แพ้/ล่ม + auth ผ่าน SSO — D29 + responsive/LINE — D30–D31 + AI chat — D32–D35) | 9–13 |
+| ทดสอบรวม + แก้บั๊ก + UAT (เพิ่ม flow Manager + แพ้/ล่ม + auth ผ่าน SSO — D29 + responsive/LINE + Telegram — D30–D31) | 9–13 |
 | **รวม (รวม Auth/SSO + Mobile + LINE + Telegram — ✂️ ไม่รวม AI Chat Assistant ที่ตัดออกแล้ว, ไม่รวม ramp-up stack ใหม่)** | **~79–119 man-day** |
 
 > ตัวเลขเป็น effort รวม UI+API ถ้าทำขนาน 2 คน (UI/API) ระยะเวลาปฏิทินประมาณ **12–16 สัปดาห์รวม UAT** (รวม Auth/SSO + Mobile + LINE/Telegram — ✂️ ตัด AI Chat ออกแล้วตาม 0g — ยังไม่รวม ramp-up stack ใหม่ถ้ามี) — ประวัติการปรับตัวเลขรอบก่อนหน้า: รอบ 2 เพราะ updated-flow ดึงขั้น Manager/พี่บีเข้ามาทั้งหมด (~43–65 → ~54–78 man-day); รอบ 3/4 (review) เพิ่ม Project-level lifecycle, revision อนุมัติซ้ำ, event notification (~54–78 → ~59–86 man-day); รอบ 5 (re-platform) เพิ่มงาน design system ใหม่ แต่ตัด/ปรับงานที่เคย workaround เฉพาะ .NET ออก (เช่น file upload ผ่าน MVC action) — สุทธิใกล้เคียงเดิม (~59–86 → ~61–90 man-day) บวก Auth/SSO ที่ตอนนั้นยัง estimate ไม่ได้; รอบ 6 (ปิด SSO): เพิ่ม Auth/SSO integration 6–9 man-day เข้ารวมยอด (~61–90 → ~67–99 man-day); รอบ 7 (Mobile + LINE): เพิ่ม Responsive 5–8 + LINE integration 4–6 man-day เข้ารวมยอด (~67–99 → ~76–113 man-day) — ตัวเลข Mobile/LINE นี้ยังหยาบกว่าส่วนอื่นเพราะคำถาม 9b.11–9b.15 ยังไม่ปิดเลยสักข้อ; **รอบ 8 (AI Chat Assistant):** เพิ่ม Chat orchestration 8–12 + Conversation storage/aggregate 3–4 + Chat UI 4–6 + Security/policy 3–5 man-day เข้ารวมยอด (~76–113 → ~95–143 man-day) — ก้อนงานใหญ่ที่สุดในบรรดา 3 รอบขยายขอบเขตหลังปิด business spec (0d/0e) เพราะเป็น subsystem ใหม่ทั้งชุด (LLM orchestration + conversation UI) ไม่ใช่แค่ integration จุดเดียวแบบ LINE — และมีคำถาม blocking (9b.16 — LLM data policy) ที่ต้องปิดก่อนเริ่ม ไม่ต่างจาก SSO เดิมที่เคย block ทั้งชุด — ยังไม่รวม ramp-up stack ใหม่ถ้าทีมไม่คุ้นเคย React/Node/Postgres (ความเสี่ยง 8.12 ยังไม่ทราบคำตอบ); **รอบ 11 (30 ก.ค. 2026): ตัด AI Chat Assistant ออกทั้งก้อน −18–27 man-day (Chat orchestration 8–12 + Conversation storage/aggregate 3–4 + Chat UI 4–6 + Security/policy 3–5) และเพิ่ม Telegram เป็นช่องทาง push ที่ 2 +2–3 man-day → สุทธิ ~95–143 → ~79–119 man-day**
@@ -829,7 +832,7 @@
 
 > ✅ **ยืนยันจากผู้ใช้แล้ว (27 ก.ค. 2026):** *"เฉพาะแถวขาว — ถ้ามี OC อยู่ในรายการ EP ช่อง GP ของแถวขาวจะไม่รวม (ไม่หัก) OC"* → ตรงกับตัวเลขที่คำนวณจริงในไฟล์ทุกประการ **ปิดประเด็นนี้แล้ว ไม่ต้องถามซ้ำ**: แถวขาว = GP ก่อนหัก OC / แถวเทาอ่อน + เทาเข้ม = GP หลังหัก OC
 
-> 📌 **สมมติฐานที่ใช้ต่อ (ยังไม่ยืนยัน — เปลี่ยนได้ก่อนเริ่ม implement):** ตัวเลข GP ที่แสดง**นอกหน้า Project Management** — การ์ด/ตารางหน้าเปรียบเทียบ Entry, ป้าย "GP สูงสุด/ดีที่สุด" และรายงานสรุปใดๆ ในอนาคต — ใช้ **`gp_after_oc`** (margin จริงหลังจ่ายค่าคอม Dealer) เป็นค่าหลัก ส่วน `gp_before_oc` แสดงเฉพาะในตาราง PM ที่แถวสีขาวตาม template — ถ้าต้องการให้หน้าเปรียบเทียบใช้ `gp_before_oc` แทน ให้แจ้งก่อนเริ่ม (กระทบเฉพาะชั้น response shaping ไม่กระทบ schema/สูตร)
+> ✅ **ข้อสรุป (ยืนยันแล้ว 2 ส.ค. 2026 — ปิดประเด็น ไม่ต้องถามซ้ำ):** ตัวเลข GP ที่แสดง**นอกหน้า Project Management** — การ์ด/ตารางหน้าเปรียบเทียบ Entry, ป้าย "GP สูงสุด/ดีที่สุด" และรายงานสรุปใดๆ ในอนาคต — ใช้ **`gp_after_oc`** (margin จริงหลังจ่ายค่าคอม Dealer) เป็นค่าหลัก **เสมอ** เพราะเป็นตัวเลขที่ใช้ตัดสินใจทางธุรกิจจริง ส่วน `gp_before_oc` แสดงเฉพาะในตาราง PM ที่แถวสีขาวตาม template เท่านั้น — ตรงกับ spec `project-entry-comparison` ที่เขียนเป็นข้อกำหนดบังคับ (SHALL) ไว้แล้ว
 
 #### A.8.3.2 ช่องไหนกรอกมือ / ช่องไหน auto — **ต้องรวมยอดอัตโนมัติเหมือน Excel (ข้อสรุปผู้ใช้ 27 ก.ค. 2026)**
 
@@ -984,7 +987,7 @@
 | `/config/**` | ❌ | ❌ | ❌ | ✅ | — |
 
 - ทุก endpoint ตรวจ role จาก JWT ที่ verify แล้ว (SSO, `roles` array) + record-level rule ตามตารางนี้**ฝั่ง server เสมอ** — การซ่อนปุ่ม/เมนูฝั่ง UI เป็นแค่ UX ไม่ใช่การคุมสิทธิ์ — **role ในตารางนี้ (sales/headsale/salemanager/admin) ต้องขอให้ SSO admin ตั้งค่า `group_role_map` ของ client_id ระบบนี้ให้ตรงทั้ง 4 ชื่อตอนลงทะเบียนแอป (ดู 9c) — ไม่ใช่สมมติฐานอีกต่อไป แต่เป็น config ที่ต้องประสานทำจริง**
-- Scenario ทดสอบ: D13 (role-level), D18 (matrix ทีม), D28 (record-level + ปลอมตัวตนใน body), D32 (role-leakage ผ่านแชท — ใหม่)
+- Scenario ทดสอบ: D13 (role-level), D18 (matrix ทีม), D28 (record-level + ปลอมตัวตนใน body)
 
 ---
 
