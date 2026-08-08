@@ -2,7 +2,7 @@
 
 ## Context
 
-New two-part module (React UI + Fastify API — repo topology mono vs. split not yet decided, see impact assessment `9b.6`) with a non-trivial state machine (13 Entry states across 2 approval tiers), a Project/Entry/Revision data model, and a derived Project-level status. The design went through several rounds: an initial pass against the HTML prototypes + flowchart (closing 21 open questions), an independent design review that surfaced 8 structural gaps (R1–R8 below, closed with 3 more decisions, 9.22–9.24), a full tech-stack re-platform to React + Node.js/Fastify + PostgreSQL + SSO (standalone from Syndome CRM), a closure of the SSO/auth open questions (9b.1–9b.3) against a concrete SSO integration guide, an added scope for mobile-responsive layout + LINE (Flex Message) approval notifications (impact assessment `0d`, no prototype backing — assumptions only), and an added scope for an AI Chat Assistant that answers natural-language questions about project data (impact assessment `0e`, backed by a detailed FR-01–FR-11 requirement the user typed in chat — not an attached reference document, unlike the SSO guide). This file captures the resulting technical shape; the full narrative — prototype-by-prototype comparison, every open question and answer, the DDL draft, API contract draft, field mapping, and 35 acceptance scenarios — lives in `docs/impact-assessment-project-register.md` and should be treated as the detailed backing reference for everything summarized here.
+New two-part module (React UI + Fastify API — repo topology mono vs. split not yet decided, see impact assessment `9b.6`) with a non-trivial state machine (13 Entry states across 2 approval tiers), a Project/Entry/Revision data model, and a derived Project-level status. The design went through several rounds: an initial pass against the HTML prototypes + flowchart (closing 21 open questions), an independent design review that surfaced 8 structural gaps (R1–R8 below, closed with 3 more decisions, 9.22–9.24), a full tech-stack re-platform to React + Node.js/Fastify + PostgreSQL + SSO (standalone from Syndome CRM), a closure of the SSO/auth open questions (9b.1–9b.3) against a concrete SSO integration guide, an added scope for mobile-responsive layout + LINE (Flex Message) approval notifications (impact assessment `0d`, no prototype backing — assumptions only), a re-write of the Project Management costing table against the sales team's real Excel template (impact assessment `0f`, decisions D12–D14 below), and — most recently — the removal of the AI Chat Assistant from scope entirely, leaving LINE + Telegram push as the only outbound channels (impact assessment `0g`, D11 below). This file captures the resulting technical shape; the full narrative — prototype-by-prototype comparison, every open question and answer, the DDL draft, API contract draft, field mapping, and 33 acceptance scenarios (D1–D31, D36–D37) — lives in `docs/impact-assessment-project-register.md` and should be treated as the detailed backing reference for everything summarized here.
 
 ## Goals / Non-Goals
 
@@ -96,7 +96,7 @@ Leader assignment (`project-leader-assignment`) then simply stores `project.regi
 
 ### D9 — Mobile is responsive web on the same React codebase, not a native app; the two densest screens need a dedicated mobile layout, not shrunk CSS
 
-**Problem (impact assessment `0d`):** No prototype ever addressed mobile — every screen was designed desktop-only, and two of them (the PM cost/price task tree, up to 3 levels deep, and the Entry-comparison table) are the highest-column-count screens in the system. Naive responsive CSS on a wide table is unreadable at phone width, not just cramped.
+**Problem (impact assessment `0d`):** No prototype ever addressed mobile — every screen was designed desktop-only, and two of them (the PM cost/price table — 2 record levels plus a display-only summary row, 18 columns, D12 — and the Entry-comparison table) are the highest-column-count screens in the system. Naive responsive CSS on a wide table is unreadable at phone width, not just cramped.
 
 **Decision:** Single React SPA, breakpoint-driven layout — no separate mobile app, no separate codebase, no forked API. Feature parity is guaranteed by construction: mobile calls the exact same endpoints as desktop, so there is no data/feature gap to maintain across two surfaces, only a presentation difference. The PM task table and Entry-comparison table get a dedicated card/accordion pattern on narrow viewports instead of a horizontally-scrolled or shrunk table — this is the single largest unresolved UI-design item in the whole feature (impact assessment `9b.11`, no mockup yet) and should be prototyped and validated with a Sales/headsale user before broad implementation, not guessed at from this doc alone.
 
@@ -124,6 +124,39 @@ Two consequences worth stating explicitly, because they change this document's r
 - The only remaining blocking questions before implementation are the ORM (`9b.4`) and the UI design system (`9b.7`).
 
 The full prior design is preserved in git history (commit `748d2bc`) and can be restored intact if the feature returns.
+
+### D12 — The PM costing table follows the sales team's Excel template, not the HTML prototype: 2 record levels + a computed summary row, with two GP figures
+
+**Problem (impact assessment `0f.1`/`0f.2`, appendix `A.8`):** three sources disagreed about the PM table. The HTML prototype computed GP *without* subtracting EP and let users type GP by hand; the comparison screen subtracted EP; and the prototype allowed an arbitrary 3-level tree. On 2026-07-27 the user supplied `prototype/Template_ProjectManagement.xlsx` (sheet `หลายรายการ`) — the file the sales team actually fills in — which is now the source of truth for this table and overrides both prototypes.
+
+**Decision:**
+
+- **Structure is two stored levels, not three.** `task_level = 1` main item → `task_level = 2` spec line. The project-total row (the dark-grey row in the template) is **computed at display time, never stored**. Entry-level totals sum **main items only**, so spec lines are never double-counted.
+- **All 18 template columns are carried over as-is**, including `cost_quote_date`, `ep_quote_date`, and `ep_source`, which exist as cell comments in the template.
+- **GP is always derived, never entered.** `GP = sell − cost − EP`, `GP% = GP ÷ sell × 100`. Every roll-up cell is auto-computed, read-only whenever the main item has spec lines beneath it, and updates live as the user types (`A.8.3.2`).
+- **Two GP figures, decided by the OC rule.** OC (Overriding Commission — the Dealer-side commission) is one *line item inside EP*, not a column of its own. Per the template's own arithmetic: white rows (spec lines) carry `gp_before_oc` = `sell − cost − EP where is_oc = false`; grey rows (main item + summary) carry `gp_after_oc` = `sell − cost − all EP`. Where a main item has no OC line the two are equal and only one is shown. **Which EP lines are OC is decided by the `project.ep_item_type.is_oc` flag, never by string-matching the item name** — real files contain `OC 5% N Success` and `Support งาน Sale 1%`.
+
+**Why it matters:** the same formulas have to exist in React (live preview) and Fastify (authority). They are kept in one shared package and unit-tested against the template's real figures (2,863,286.30 / 2,713,286.30 / 5,426,572.60) rather than hand-written expectations — see Risks.
+
+**Deferred, deliberately:** the `รายการ`/`Model` fields bind to the ERP item master eventually (`9b.22`), but ship as free text with an `erp_item_code` column reserved. Closing that question later invalidates nothing here, though it will move the PM-table effort figure.
+
+### D13 — Project identity — and therefore the duplicate check — is org name + project name only; Dealer lives at Entry level
+
+**Problem (impact assessment `0f.4`):** the duplicate check was originally specified over three fields including Dealer. That is wrong for the business: this is B2B, and several Dealers routinely quote the *same* project. Keying identity on Dealer would let the same project be registered once per Dealer and defeat the check entirely.
+
+**Decision:** `project.registration` is identified by **organisation name + project name** (two fields), stored alongside `org_name_norm`/`project_name_norm` for exact-match-on-normalized duplicate detection. Dealer is an attribute of `project.entry` — displayed and used for warnings, never part of the key. A consequence accepted explicitly (`0f.5`): two Entries from different Dealers may quote identical prices or GP, and the "lowest / highest / best" badges may then apply to several Entries at once. **No tie-break rule** — this is correct behaviour, not a defect.
+
+### D14 — Renaming a Project opens a Project-level revision, parallel to the Entry-level one
+
+**Problem (impact assessment `0f.6`, appendix `A.4b`):** the "แก้ไขข้อมูล" request form lets a user edit organisation name and project name. Those fields live on `project.registration` — **every Entry of the Project shares them, and they are the duplicate-check key**. They cannot be versioned inside `entry_revision`, which is scoped to one Entry.
+
+**Decision:** add `project.registration_revision` as a second revision chain, with the same `draft`/`waiting`/`current`/`superseded` status set and the same unique-filtered `is_current_revision` index as `entry_revision`. Routing is by edit topic: **org name / project name / org type → Project revision; Dealer, sale condition, product info, warranty → Entry revision** (the existing 9.23 flow). The submit endpoint (`/entry-revision/submit`) carries a `revisionScope` of `entry` or `project`.
+
+Three rules ship with it:
+
+1. The requester is **warned before submitting** that the change affects other Sales users' Entries, not only their own.
+2. **The duplicate check re-runs at approval time** against the new org+project key; a collision rejects the approval and names the colliding Project — otherwise the edit path becomes a way to manufacture duplicate Projects.
+3. `org_name_norm`/`project_name_norm` are updated **only on approval** (a draft revision must not touch them), and the change is logged at Project scope in `project.status_log`.
 
 ## Data Model Summary
 

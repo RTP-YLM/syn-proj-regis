@@ -27,7 +27,7 @@
 - [ ] 2.7 Leader assignment service: single `leader_entry_id` pointer, Manager-only, Project must have >1 Entry
 - [ ] 2.8 Notification service: near-due computed query (role-scoped) + `notification` event writer/reader (D5), starting with the collapse ("ล่ม") event
 - [ ] 2.9 File service: `@fastify/multipart` receive, `entry_file` row + disk/object-storage write as one operation (backend TBD, `9b.5`), orphan-file sweep job, `{project_code}_{TIMESTAMP}_{Seq}` naming
-- [ ] 2.10 Route plugins (one per domain area, e.g. `plugins/project-register/routes.js`): all endpoints from `design.md`'s data model / the impact assessment's API contract appendix, each enforcing `project-access-control`'s matrix from the verified SSO JWT only
+- [ ] 2.10 Route plugins (one per domain area, e.g. `plugins/project-register/routes.js`): all endpoints from the API contract in `docs/impact-assessment-project-register.md` **Appendix B** (`design.md` carries the data model only, not an endpoint list), each enforcing `project-access-control`'s matrix from the verified SSO JWT only
 - [ ] 2.11 **(new — SSO/OAuth2 client, see impact assessment `9c`)** Callback route (`GET /auth/callback`): receive `code`+`state`, verify `state`, exchange for tokens via `POST {SSO_BASE_URL}/v1/oauth2/token` (`application/x-www-form-urlencoded`, server-side only)
 - [ ] 2.12 **(new)** Session layer: store SSO access/refresh tokens server-side, issue our own httpOnly session cookie to the browser (BFF pattern, recommended — see `9b.2`/`9c`)
 - [ ] 2.13 **(new)** Refresh logic: renew the SSO access token via `POST /v1/oauth2/refresh` before its 900s expiry; store the rotated refresh token (single-use — the old one is revoked on use)
@@ -76,7 +76,7 @@
 ## 7. Testing / UAT
 
 - [ ] 7.1 Server-side validation coverage for every field the prototype only validated client-side (required fields on all 4 status-update forms, transition legality, file type/size)
-- [ ] 7.2 Walk every scenario in `docs/impact-assessment-project-register.md` Appendix D (D1–D37, including SSO auth failure D29, the PM/template calculation scenario D36, and the Project-revision scenario D37) against the real API
+- [ ] 7.2 Walk every scenario in `docs/impact-assessment-project-register.md` Appendix D (D1–D31 and D36–D37 — 33 scenarios; D32–D35 were removed with the AI-chat descope, see `0g` — including SSO auth failure D29, the PM/template calculation scenario D36, and the Project-revision scenario D37) against the real API
 - [ ] 7.2b **(new — D12)** Verify the PM table end-to-end against `prototype/Template_ProjectManagement.xlsx`: re-key the template's sample data and assert every tier matches the workbook (GP before OC 2,863,286.30 / GP after OC 2,713,286.30 / summary 5,426,572.60), roll-ups update live while typing, and a hand-tampered aggregate posted to `/save` is overwritten by the server
 - [ ] 7.3 Authorization tests: role-level rejection (D13-equivalent) and record-level rejection — Sales A cannot act on Sales B's Entry, a body-supplied identity field is ignored (D28-equivalent)
 - [ ] 7.4 Concurrency tests: simultaneous duplicate-check submissions get distinct `entry_sequence`, simultaneous `project_code` issuance doesn't collide
